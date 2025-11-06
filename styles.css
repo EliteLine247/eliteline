@@ -114,12 +114,25 @@ nav ul li a:hover {
     .social-icons {
         margin-top: 10px;
     }
-}
+
+    .hero {
+      background-position: center top; /* show more of the top of the photo */
+      height: 70vh; /* reduce the visible height on small screens */
+    }
+  
+    .hero-content h1 {
+      font-size: 32px;
+    }
+  
+    .hero-content p {
+      font-size: 18px;
+    }
+  }
 
 
 .hero {
     background: url('images/home_page.jpg') no-repeat center center/cover;
-    height: 100vh;
+    height: 110vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -419,4 +432,6 @@ ul li h1 {
 #output {
     margin-top: 20px;
 }
+
+
 
