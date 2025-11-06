@@ -490,12 +490,21 @@ ul li h1 {
   } */ 
 
 /* 📱 Mobile adjustment */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .hero {
       height: auto;            /* fit image naturally */
-      min-height: 80vh;        /* still tall enough */
-      background-size: cover;  /* maintain proportions */
-      background-position: center top;
+      /* min-height: 80vh;        /* still tall enough */
+      /* background-size: cover;  /* maintain proportions */
+      /* background-position: center top;
     }
 
-}
+} */  
+ 
+@media (max-width: 768px) {
+    .hero {
+      background-position: center center;
+      background-size: contain;
+      min-height: 90vh;
+    }
+  }
+  
