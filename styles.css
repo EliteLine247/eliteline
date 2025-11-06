@@ -457,4 +457,10 @@ ul li h1 {
 }
 
 
-
+@media (max-width: 768px) {
+    .hero {
+      background-position: center top;
+      height: 80vh;
+    }
+  }
+  
