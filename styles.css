@@ -151,18 +151,33 @@ nav ul li a:hover {
 
 
     /* 🌆 HERO SECTION (Final version, responsive on all screens) */
-.hero {
+/* .hero {
     background: url('images/home_page.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh; /* desktop full screen */
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     text-align: center;
     position: relative;
     overflow: hidden;
+  } */ 
+
+  .hero {
+    background: url('images/home_page.jpg') no-repeat center center;
+    background-size: contain; /* Show entire image, keep proportions */
+    background-color: #00223E; /* Optional: background fill behind image */
+    width: 100%;
+    height: auto;
+    min-height: 100vh; /* Keeps section tall enough */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
   }
+  
   
   /* Content box */
   .hero-content {
