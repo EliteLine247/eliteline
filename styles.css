@@ -139,8 +139,13 @@ nav ul li a:hover {
     color: #fff;
     text-align: center;
     position: relative;
-    background-size: 700px;
+    /* background-size: 700px; */
+    background-size: contain;
+    background-attachment: scroll;
 }
+
+
+
 
 .hero h1, .hero p { /* Assuming you have headings and paragraphs inside */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adjust the shadow size and color */
