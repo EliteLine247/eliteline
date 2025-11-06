@@ -1,0 +1,422 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* justify-content: center; */
+    background-color: #00223E;
+    font-family: 'Monserrat';
+    line-height: 1.6;
+    color: #333;
+}
+
+header {
+    background: #000000;
+    position: fixed;
+    top: -100px; /* Initially hide the header */
+    width: calc(100% - 40px); /* Add 20px space on each side */
+    margin: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease-in-out;
+    z-index: 1000; /* Ensure the header stays above other content */
+    border-radius: 25px; /* Make the header curved */
+    font: #028e17;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Logo Styles */
+.logo {
+    display: inline-block;
+    background-color: #B8860B; /* Background color for the frame */
+    padding: 5px; /* Space between the image and the frame */
+    border-radius: 25px; /* Curvy frame */
+}
+
+.logo img {
+    display: block;
+    border-radius: 15px; /* Curvy corners for the image itself */
+    height: 50px; /* Adjust as needed */
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    color: #FFF;
+}
+
+/* Responsive Menu */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: #fe5f00;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .logo {
+        margin-left: 0;
+    }
+
+    .social-icons {
+        margin-top: 10px;
+    }
+}
+
+
+.hero {
+    background: url('images/home_page.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    background-size: 700px;
+}
+
+.hero h1, .hero p { /* Assuming you have headings and paragraphs inside */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adjust the shadow size and color */
+}
+
+/* Hero Section */
+/* .hero {
+    background: url('images/home_page.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+} */
+
+/* .hero-content {
+    max-width: 800px;
+    padding: 20px; */
+    /*background: rgb(230, 172, 0); */
+    /* background: #B8860B;
+    border-radius: 10px;
+} */
+
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+    /* Adjusted background color with transparency */
+    background: rgba(184, 134, 11, 0.6); /* 0.8 is 80% opacity */
+    border-radius: 10px;
+}
+
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.hero-content p {
+    font-size: 24px;
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease-out;
+}
+
+
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #000000;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Footer Styles */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* General Styles for Social Icons */
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* Specific background color for each social icon */
+.facebook-icon {
+    background-color: #0867ff;
+}
+
+.facebook-icon:hover {
+    color: #dfe3ee;
+}
+
+.instagram-icon {
+    background-color: #cc2d8b; /* Burgundy color */
+}
+
+.instagram-icon:hover {
+    color: #E1306C;
+}
+
+.deliveroo-icon {
+    background-color: #00c7b7; /* Deliveroo color */
+}
+
+.deliveroo-icon:hover {
+    color: #009f8e;
+}
+
+.uber-icon {
+    background-color: #000000; /* Uber black color */
+}
+
+.uber-icon:hover {
+    color: #aaaaaa;
+}
+
+.justeat-icon {
+    background-color: #ff8000; /* Deliveroo color */
+}
+
+.justeat-icon:hover {
+    color: #ff8000;
+}
+
+
+        /* Contact info styles */
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .contact-info a {
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #555;
+        }
+
+
+/* General Section Styles */
+.curved-section {
+    background-color: #B8860B;
+    color: #fff;
+    padding: 20px;
+    border-radius: 25px;
+    margin: 20px auto;
+    max-width: 1000px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.curved-section h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.curved-section p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.partners-grid .partner {
+    background: #fff;
+    color: #333;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 40px);
+    box-sizing: border-box;
+}
+
+.partners-grid .partner img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.partners-grid .partner p {
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+ul {
+    list-style-type: disc; /* Default bullet style */
+    padding-left: 20px; /* Indent the bullet points */
+}
+
+ul li {
+    font-weight: bold;
+    text-align: left; /* Align text to the left */
+}
+
+ul li h1 {
+    font-size: 1.5em; /* This is the size for h3, adjust as needed */
+    margin: 0; /* Remove any default margin */
+}
+
+
+ 
+
+
+
+
+
+/* body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+} */
+
+.quote-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 960px;
+}
+
+.quote-form input, .quote-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.quote-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.quote-form button:hover {
+    background-color: #0056b3;
+}
+
+#output {
+    margin-top: 20px;
+}
+

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Line</title>
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Google Maps API -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWvnGYkT0owKr_87DGo2DYkFyhgJmSRIQ&libraries=places"></script>
+
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <img src="images/logo.png" alt="Elite Line">
+        </div>
+        <button class="menu-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="services.html">OUR SERVICES</a></li>
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61567137089321" target="_blank" class="facebook-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/eliteline247/" target="_blank" class="instagram-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Elite Line</h1>
+      <p>Chichester Chauffeur Service</p>
+      <a href="#about" class="btn">Learn More</a>
+    </div>
+  </section>
+
+  <section id="about" data-aos="fade-up" class="curved-section">
+    <h2>About Us</h2>
+    <p>At Elite Line Chauffeur Service, we are committed to providing reliable and professional transportation solutions. Whether it's business travel, airport transfers, or special events, our expert drivers ensure a safe and comfortable journey every time. With a focus on punctuality and customer satisfaction, we offer both local and long-distance services tailored to your needs. Travel in style and comfort with Elite Line – where every journey is a VIP experience.</p>
+  </section>
+
+  <!-- Quote Form -->
+  <!-- <section id="contact" data-aos="fade-up" class="curved-section">
+    <h2>Get Quote & Book Now</h2>
+    <div class="quote-form">
+      <form id="distanceForm">
+        <input type="text" id="pickup" placeholder="Enter pickup location" required>
+        <input type="text" id="dropoff" placeholder="Enter dropoff location" required>
+        <input type="date" id="date" required>
+        <input type="time" id="time" required>
+        <label>
+          <input type="checkbox" id="return"> Return Journey?
+        </label>
+        <button type="submit">Calculate Price</button>
+      </form>
+      <div id="output">
+        <p id="distance"></p>
+        <p id="price"></p>
+      </div>
+    </div>
+  </section> -->
+
+  <section id="contact" data-aos="fade-up" class="curved-section">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p>Phone or WhatsApp: <a href="tel:07340868719">07340868719</a></p>
+      <!-- <p>Phone Short distance (local): <a href="tel:07587713098">07587713098</a></p> -->
+      <p>Email: <a href="mailto:eliteline247@gmail.com">eliteline247@gmail.com</a></p>
+    </div>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61567137089321" target="_blank" class="facebook-icon">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/eliteline247/" target="_blank" class="instagram-icon">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Copyright All Rights Reserved © 2024 | Elite Line, Chichester District Council. Operator's Licence Number 381, United Kingdom</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.top = '0'; // Show the header when user scrolls down
+      } else {
+        header.style.top = '-100px'; // Hide the header when user is at the top
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Line</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWvnGYkT0owKr_87DGo2DYkFyhgJmSRIQ&libraries=places"></script> -->
+
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWvnGYkT0owKr_87DGo2DYkFyhgJmSRIQ&libraries=places"></script> -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWvnGYkT0owKr_87DGo2DYkFyhgJmSRIQ&libraries=places"></script> -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places"></script> -->
+<!-- </head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <img src="images/logo.png" alt="Elite Line">
+        </div>
+        <button class="menu-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="services.html">OUR SERVICES</a></li>
+
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61567137089321" target="_blank" class="facebook-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+
+          <a href="https://www.instagram.com/eliteline247/" target="_blank" class="instagram-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+        
+        </div>
+      </div>
+    </nav>
+  </header> -->
+
+  <!-- <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Elite Line</h1>
+      <p>Chichester Chauffeur Service </p>
+      <a href="#about" class="btn">Learn More</a>
+    </div>
+  </section>
+
+  <section id="about" data-aos="fade-up" class="curved-section">
+    <h2>About Us</h2>
+    <p>At Elite Line Chauffeur Service, we are committed to providing reliable and professional transportation solutions. Whether it's business travel, airport transfers, or special events, our expert drivers ensure a safe and comfortable journey every time. With a focus on punctuality and customer satisfaction, we offer both local and long-distance services tailored to your needs. Travel in style and comfort with Elite Line – where every journey is a VIP experience.</p>
+  </section> -->
+  
+  <!-- <section id="services" data-aos="fade-up" class="curved-section">
+    <h2>Our Story</h2>
+<p>Our Story
+
+  Founded by Mohammad, who journeyed from Syria to the UK as a refugee, Damascus Bakery is a testament to resilience and passion. Mohammad's dream was to create a place where the people of Brighton could experience the true taste of Syrian cuisine. With the support of friends and family, he opened Damascus Bakery, transforming his vision into a beloved community spot.</p>      <!-- Your content here -->
+    </p>
+
+    <!-- <section id="contact" data-aos="fade-up" class="curved-section">
+      <h2>Get Quote & Book Now</h2>
+
+      <div class="quote-form">
+        <h2>Get Quote & Book Now</h2>
+        <form id="distanceForm">
+            <input type="text" id="pickup" placeholder="Enter pickup location" required>
+            <input type="text" id="dropoff" placeholder="Enter dropoff location" required>
+            <input type="date" id="date" required>
+            <input type="time" id="time" required>
+            <label>
+                <input type="checkbox" id="return"> Return Journey?
+            </label>
+            <button type="submit">Calculate Price</button>
+        </form>
+        <div id="output">
+            <p id="distance"></p>
+            <p id="price"></p>
+        </div>
+    </div>
+
+      
+      <script src="script.js"></script>
+    </section> -->
+    
+  <!-- </section>
+  
+  <section id="contact" data-aos="fade-up" class="curved-section">
+  
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p>Phone Long distance:   <a href="tel:07340868719">07340868719</a></p>
+      <p>Phone Short distance:   (local) <a href="tel:07587713098">07587713098</a></p>
+      <p>Email: <a href="mailto:eliteline247@gmail.com">eliteline247@gmail.com</a></p>
+  </div>
+
+    <p>
+      <li>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61567137089321" target="_blank" class="facebook-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+
+          <a href="https://www.instagram.com/eliteline247/" target="_blank" class="instagram-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </li>
+    </p>
+  </section> -->
+
+
+
+
+  
+  
+
+  
+  <!-- <footer>
+    <p>Copyright All Rights Reserved © 2024 | Elite Line, Chichester District Council. Operator's Licence Number 381, United Kingdom,</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.top = '0'; // Show the header when user scrolls down
+        } else {
+            header.style.top = '-100px'; // Hide the header when user is at the top
+        }
+    });
+  </script>
+
+</body>
+</html> -->
