@@ -136,7 +136,7 @@ nav ul li a:hover {
   }
 
 
-/* .hero {
+.hero {
     background: url('images/home_page.jpg') no-repeat center center/cover;
     height: 110vh;
     display: flex;
@@ -148,10 +148,10 @@ nav ul li a:hover {
     background-size: 700px; 
     /* background-size: contain;
     background-attachment: scroll; */
-/* } */ 
+} 
 
 
-/*THIS IS THE ONE
+/*THIS IS THE ONE*/
 /* .hero {
     background: url('images/home_page.jpg') no-repeat center center;
     background-size: cover;
@@ -164,17 +164,17 @@ nav ul li a:hover {
     position: relative;
   } */
 
-  .hero {
+  /* .hero {
     background: url('images/home_page.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh; /* full screen on desktop */
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     text-align: center;
     position: relative;
-  }
+  } */ 
 
 
 
