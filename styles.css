@@ -36,7 +36,7 @@ header .container {
 /* Logo Styles */
 .logo {
     display: inline-block;
-    background-color: #B8860B; /* Background color for the frame */
+    background-color: #D3B184; /* Background color for the frame */
     padding: 5px; /* Space between the image and the frame */
     border-radius: 25px; /* Curvy frame */
 }
@@ -136,33 +136,7 @@ nav ul li a:hover {
   }
 
 
-/* .hero {
-    background: url('images/home_page.jpg') no-repeat center center/cover;
-    height: 110vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    background-size: 700px; 
-    /* background-size: contain;
-    background-attachment: scroll; */
 
-
-    /* 🌆 HERO SECTION (Final version, responsive on all screens) */
-/* .hero {
-    background: url('images/home_page.jpg') no-repeat center center;
-    background-size: cover;
-    height: 100vh; /* desktop full screen */
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  } */ 
 
   .hero {
     background: url('images/home_page.jpg') no-repeat center center;
@@ -183,7 +157,7 @@ nav ul li a:hover {
   .hero-content {
     max-width: 800px;
     padding: 20px;
-    background: rgba(184, 134, 11, 0.6); /* semi-transparent gold */
+    background: rgba(211, 177, 132, 0.6); /* semi-transparent gold */
     border-radius: 10px;
   }
 
@@ -360,7 +334,7 @@ footer {
 
 /* General Section Styles */
 .curved-section {
-    background-color: #D6AE80;
+    background-color: #D3B184;
     color: #fff;
     padding: 20px;
     border-radius: 25px;
