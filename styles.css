@@ -150,10 +150,24 @@ nav ul li a:hover {
     background-attachment: scroll; */
 /* } */ 
 
-.hero {
+
+/*THIS IS THE ONE
+/* .hero {
     background: url('images/home_page.jpg') no-repeat center center;
     background-size: cover;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    position: relative;
+  } */
+
+  .hero {
+    background: url('images/home_page.jpg') no-repeat center center;
+    background-size: cover;
+    height: 100vh; /* full screen on desktop */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -457,10 +471,21 @@ ul li h1 {
 }
 
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .hero {
       background-position: center top;
       height: 80vh;
     }
   }
-  
+   */
+
+
+   /* 📱 Mobile adjustments */
+@media (max-width: 768px) {
+    .hero {
+      height: auto; /* allow flexible height on mobile */
+      min-height: 80vh; /* at least 80% of screen */
+      background-position: center top;
+      background-size: cover;
+    }
+  }
