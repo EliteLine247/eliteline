@@ -136,7 +136,7 @@ nav ul li a:hover {
   }
 
 
-.hero {
+/* .hero {
     background: url('images/home_page.jpg') no-repeat center center/cover;
     height: 110vh;
     display: flex;
@@ -148,72 +148,48 @@ nav ul li a:hover {
     background-size: 700px; 
     /* background-size: contain;
     background-attachment: scroll; */
-} 
 
 
-/*THIS IS THE ONE*/
-/* .hero {
+    /* 🌆 HERO SECTION (Final version, responsive on all screens) */
+.hero {
     background: url('images/home_page.jpg') no-repeat center center;
     background-size: cover;
-    height: 100vh;
+    height: 100vh; /* desktop full screen */
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
     text-align: center;
     position: relative;
-  } */
+    overflow: hidden;
+  }
+  
+  /* Content box */
+  .hero-content {
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(184, 134, 11, 0.6); /* semi-transparent gold */
+    border-radius: 10px;
+  }
 
-  /* .hero {
-    background: url('images/home_page.jpg') no-repeat center center;
-    background-size: cover;
-    height: 100vh; /* full screen on desktop */
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-    position: relative;
-  } */ 
-
-
+  /* .hero-content {
+    max-width: 800px;
+    padding: 20px;
+    /* Adjusted background color with transparency */
+    /* background: rgba(184, 134, 11, 0.6); /* 0.8 is 80% opacity */
+    /* border-radius: 10px;
+} */
 
 
 .hero h1, .hero p { /* Assuming you have headings and paragraphs inside */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adjust the shadow size and color */
 }
 
-/* Hero Section */
-/* .hero {
-    background: url('images/home_page.jpg') no-repeat center center/cover;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    background-size: cover;
-} */
-
-/* .hero-content {
-    max-width: 800px;
-    padding: 20px; */
-    /*background: rgb(230, 172, 0); */
-    /* background: #B8860B;
-    border-radius: 10px;
-} */
-
-.hero-content {
-    max-width: 800px;
-    padding: 20px;
-    /* Adjusted background color with transparency */
-    background: rgba(184, 134, 11, 0.6); /* 0.8 is 80% opacity */
-    border-radius: 10px;
-}
 
 
-.hero-content h1 {
+
+
+/* .hero-content h1 {
     font-size: 48px;
     margin-bottom: 20px;
     animation: fadeInDown 1s ease-out;
@@ -223,7 +199,15 @@ nav ul li a:hover {
     font-size: 24px;
     margin-bottom: 40px;
     animation: fadeInUp 1s ease-out;
-}
+} */
+
+.hero-content h1 {
+    font-size: 32px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+  }
 
 
 
@@ -481,11 +465,22 @@ ul li h1 {
 
 
    /* 📱 Mobile adjustments */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .hero {
       height: auto; /* allow flexible height on mobile */
-      min-height: 80vh; /* at least 80% of screen */
-      background-position: center top;
+      /* min-height: 80vh; /* at least 80% of screen */
+      /* background-position: center top;
       background-size: cover;
     }
-  }
+  } */ 
+
+/* 📱 Mobile adjustment */
+@media (max-width: 768px) {
+    .hero {
+      height: auto;            /* fit image naturally */
+      min-height: 80vh;        /* still tall enough */
+      background-size: cover;  /* maintain proportions */
+      background-position: center top;
+    }
+
+}
