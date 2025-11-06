@@ -145,9 +145,9 @@ nav ul li a:hover {
     color: #fff;
     text-align: center;
     position: relative;
-    /* background-size: 700px; */
-    background-size: contain;
-    background-attachment: scroll;
+    background-size: 700px; 
+    /* background-size: contain;
+    background-attachment: scroll; */
 }
 
 
@@ -335,7 +335,7 @@ footer {
 
 /* General Section Styles */
 .curved-section {
-    background-color: #B8860B;
+    background-color: #D6AE80;
     color: #fff;
     padding: 20px;
     border-radius: 25px;
