@@ -119,6 +119,12 @@ nav ul li a:hover {
       background-position: center top; /* show more of the top of the photo */
       height: 70vh; /* reduce the visible height on small screens */
     }
+    
+    .hero {
+        background-size: contain; /* keeps full image visible */
+        height: auto;
+        aspect-ratio: 16 / 9; /* maintain image shape */
+      }
   
     .hero-content h1 {
       font-size: 32px;
