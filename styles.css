@@ -523,3 +523,89 @@ ul li h1 {
     }
   }
   
+
+  .pricing-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+
+  .pricing-section h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .card {
+    background: #D3B184;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  }
+
+  .card h3 {
+    color: #000;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    margin: 5px 0;
+  }
+
+  .price {
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  .book-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .book-btn:hover {
+    background-color: #cc7a00;
+  }
+
+  .info-section {
+    background: #fff3e0;
+    margin-top: 60px;
+    padding: 40px 20px;
+    border-radius: 10px;
+  }
+
+  .info-section h3 {
+    text-align: center;
+    color: #000;
+  }
+
+  .info-section ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+
+  .info-section li {
+    margin: 8px 0;
+  }
