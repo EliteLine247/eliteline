@@ -284,11 +284,11 @@
   </section>
 
 <br>
-<br>
 
   <footer>
     <p>Copyright All Rights Reserved © 2025 | Elite Line, Chichester District Council. Operator's Licence Number 381, United Kingdom,</p>
   </footer>
+
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
@@ -304,59 +304,62 @@
             header.style.top = '-100px'; // Hide the header when user is at the top
         }
     });
-  </script> -->
-
-
-<!-- <script>
-  // Toggle mobile menu
-  document.querySelector('.menu-toggle').addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.toggle('active');
-  });
-</script> -->
-
-<!-- <script> -->
-    <!-- // document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-    //   toggle.addEventListener('click', () => {
-    //     const card = toggle.closest('.card');
-    //     card.classList.toggle('active');
-    //   });
-    // });
-
-//     document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-//   toggle.addEventListener('click', () => {
-//     const card = toggle.closest('.card');
-//     card.classList.toggle('active');
-//   });
-// }); -->
-
-  <!-- // </script> -->
-
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init();
   </script>
-  <script src="scripts.js"></script>
+
+
   <script>
-    document.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.style.top = '0'; // Show the header when user scrolls down
-        } else {
-            header.style.top = '-100px'; // Hide the header when user is at the top
-        }
+      document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const card = toggle.closest('.card');
+      card.classList.toggle('active');
     });
-  </script>
-
-
-<script>
-  // Toggle mobile menu
-  document.querySelector('.menu-toggle').addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.toggle('active');
   });
-</script>
+
+    </script> -->
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // ✅ Mobile menu toggle (works on all pages)
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+    
+        if (menuToggle && navLinks) {
+          menuToggle.addEventListener("click", function() {
+            navLinks.classList.toggle("active");
+          });
+        }
+    
+        // ✅ Card dropdown toggle (for Prices page)
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+    
+        if (dropdownToggles.length > 0) {
+          dropdownToggles.forEach(toggle => {
+            toggle.addEventListener("click", () => {
+              const card = toggle.closest(".card");
+              if (card) {
+                card.classList.toggle("active");
+              }
+            });
+          });
+        }
+    
+        // ✅ Scroll header effect (works on all pages)
+        const header = document.querySelector("header");
+        if (header) {
+          document.addEventListener("scroll", function() {
+            if (window.scrollY > 50) {
+              header.style.top = "0";
+            } else {
+              header.style.top = "-100px";
+            }
+          });
+        }
+      });
+    </script>
+    
+  
 
 
 </body>
 </html>
-
-  
