@@ -7,7 +7,7 @@
 
 body {
     /* justify-content: center; */
-    background-color: #00223E;
+    background-color: #000;
     font-family: 'Monserrat';
     line-height: 1.6;
     color: #333;
@@ -141,7 +141,8 @@ nav ul li a:hover {
   .hero {
     background: url('images/home_page.jpg') no-repeat center center;
     background-size: contain; /* Show entire image, keep proportions */
-    background-color: #00223E; /* Optional: background fill behind image */
+    /* background-color: #00223E; Optional: background fill behind image */
+    background-color: #000; /* Optional: background fill behind image */
     width: 100%;
     height: auto;
     min-height: 100vh; /* Keeps section tall enough */
@@ -239,7 +240,7 @@ nav ul li a:hover {
 
 /* Footer Styles */
 footer {
-    background: #333;
+    background: rgb(160, 160, 150);
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -524,10 +525,13 @@ ul li h1 {
   }
   
 
+
+
+
   .pricing-section {
-    max-width: 1200px;
+    max-width: 950px;
     margin: 60px auto;
-    padding: 0 20px;
+    padding: 0 30px;
   }
 
   .pricing-section h2 {
@@ -614,6 +618,8 @@ ul li h1 {
 
 
 
+
+
   .dropdown-content {
     display: none;
     margin-top: 15px;
@@ -649,3 +655,9 @@ ul li h1 {
     to {opacity: 1; transform: translateY(0);}
   }
   
+
+
+
+  p {
+    color: #000;  
+  }
