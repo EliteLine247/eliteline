@@ -36,7 +36,8 @@ header .container {
 /* Logo Styles */
 .logo {
     display: inline-block;
-    background-color: #D3B184; /* Background color for the frame */
+    /* background-color: #D3B184; Background color for the frame */
+    background-color:  #F1B82D; /* Background color for the frame */
     padding: 5px; /* Space between the image and the frame */
     border-radius: 25px; /* Curvy frame */
 }
@@ -158,7 +159,8 @@ nav ul li a:hover {
   .hero-content {
     max-width: 800px;
     padding: 20px;
-    background: rgba(211, 177, 132, 0.6); /* semi-transparent gold */
+    /* background: rgba(211, 177, 132, 0.6); semi-transparent gold */
+    background: rgb(241, 184, 45, 0.6); /* semi-transparent gold */
     border-radius: 10px;
   }
 
@@ -240,7 +242,7 @@ nav ul li a:hover {
 
 /* Footer Styles */
 footer {
-    background: rgb(160, 160, 150);
+    background: rgb(241, 184, 45, 0.5);
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -335,7 +337,7 @@ footer {
 
 /* General Section Styles */
 .curved-section {
-    background-color: #D3B184;
+    background-color: #F1B82D;
     color: #fff;
     padding: 20px;
     border-radius: 25px;
@@ -502,7 +504,7 @@ ul li h1 {
   }
   
   /* Responsive menu styles */
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     .nav-links {
       display: none;
       flex-direction: column;
@@ -517,6 +519,41 @@ ul li h1 {
   
     .nav-links.active {
       display: flex;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+  } */
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.95);
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      padding: 20px 0;
+      z-index: 1000; /* keeps menu on top of all content */
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+  
+    /* ✅ keep dropdowns visible inside nav-links on mobile */
+    .nav-links .dropdown-content {
+      position: static;
+      background: none;
+      box-shadow: none;
+      display: none;
+    }
+  
+    .nav-links li.active .dropdown-content {
+      display: block;
     }
   
     .menu-toggle {
@@ -548,7 +585,9 @@ ul li h1 {
   }
 
   .card {
-    background: #D3B184;
+    /* background: #D3B184; */
+    /* background: #9D5B04; */
+    background: #F1B82D;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 25px;
