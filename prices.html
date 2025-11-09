@@ -7,149 +7,6 @@
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <!-- <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-
-    header {
-      background-color: #000;
-      padding: 15px 0;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 25px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: orange;
-    }
-
-    .hero {
-      text-align: center;
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/luxury-car-bg.jpg') center/cover;
-      color: white;
-      padding: 100px 20px;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      margin-top: 5px;
-    }
-
-    .pricing-section {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-
-    .pricing-section h2 {
-      text-align: center;
-      color: #000;
-      font-size: 2rem;
-      margin-bottom: 30px;
-    }
-
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 25px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-    }
-
-    .card h3 {
-      color: #000;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      margin: 5px 0;
-    }
-
-    .price {
-      font-weight: bold;
-      color: orange;
-      font-size: 1.1rem;
-    }
-
-    .book-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: orange;
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-
-    .book-btn:hover {
-      background-color: #cc7a00;
-    }
-
-    .info-section {
-      background: #fff3e0;
-      margin-top: 60px;
-      padding: 40px 20px;
-      border-radius: 10px;
-    }
-
-    .info-section h3 {
-      text-align: center;
-      color: #000;
-    }
-
-    .info-section ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-    }
-
-    .info-section li {
-      margin: 8px 0;
-    }
-
-    footer {
-      text-align: center;
-      background-color: #000;
-      color: white;
-      padding: 15px;
-      margin-top: 50px;
-    }
-  </style> -->
 </head>
 <body>
     <header>
@@ -163,7 +20,7 @@
             </button>
             <ul class="nav-links">
               <li><a href="index.html">HOME</a></li>
-              <li><a href="services.html">OUR SERVICES</a></li>
+              <li><a href="services.html">SERVICES</a></li>
               <li><a href="prices.html">PRICE</a></li>
     
             </ul>
@@ -181,10 +38,7 @@
         </nav>
       </header>
 
-  <!-- <section class="hero">
-    <h1>Our Prices</h1>
-    <p><strong>Business class base fare £75 includes 10 miles / £140 includes 20 miles.</strong></p>
-  </section> -->
+
 
   <section class="pricing-section">
     <h2>Our Price List</h2>
@@ -429,19 +283,53 @@
     </ul>
   </section>
 
-  <!-- <section class="info-section">
-    <h3>Additional Information</h3>
-    <ul>
-      <li>Waiting Time: £60/hour (after 15 minutes grace period)</li>
-      <li>Hourly Rides: £75/hour (Business Class)</li>
-      <li>Cancellation within 24 hours: 50% charge</li>
-      <li>Cancellation within 12 hours: Full charge</li>
-    </ul>
-  </section> -->
+<br>
+<br>
 
   <footer>
     <p>Copyright All Rights Reserved © 2025 | Elite Line, Chichester District Council. Operator's Licence Number 381, United Kingdom,</p>
   </footer>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.top = '0'; // Show the header when user scrolls down
+        } else {
+            header.style.top = '-100px'; // Hide the header when user is at the top
+        }
+    });
+  </script> -->
+
+
+<!-- <script>
+  // Toggle mobile menu
+  document.querySelector('.menu-toggle').addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('active');
+  });
+</script> -->
+
+<!-- <script> -->
+    <!-- // document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    //   toggle.addEventListener('click', () => {
+    //     const card = toggle.closest('.card');
+    //     card.classList.toggle('active');
+    //   });
+    // });
+
+//     document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+//   toggle.addEventListener('click', () => {
+//     const card = toggle.closest('.card');
+//     card.classList.toggle('active');
+//   });
+// }); -->
+
+  <!-- // </script> -->
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
@@ -460,23 +348,15 @@
   </script>
 
 
-<!-- <script>
+<script>
   // Toggle mobile menu
   document.querySelector('.menu-toggle').addEventListener('click', function() {
     document.querySelector('.nav-links').classList.toggle('active');
   });
-</script> -->
-
-<script>
-    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const card = toggle.closest('.card');
-        card.classList.toggle('active');
-      });
-    });
-  </script>
-  
+</script>
 
 
 </body>
 </html>
+
+  
