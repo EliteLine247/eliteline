@@ -758,7 +758,7 @@ ul li h1 {
   display: flex;
   align-items: center;
   gap: 40px;
-  padding: 40px 0;
+  padding: 40px 30px;;
 }
 
 .split-section .text {
@@ -818,4 +818,11 @@ img {
   display: block;
 }
 
+
+
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
 
