@@ -802,3 +802,13 @@ ul li h1 {
   margin: 0 auto;     /* center the image */
   border-radius: 20px; /* adjust number for more or less curve */
 }
+
+
+img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover; /* optional – prevents distortion */
+}
+
