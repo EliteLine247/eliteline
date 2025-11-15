@@ -278,7 +278,7 @@ footer {
 }
 
 .facebook-icon:hover {
-    color: #dfe3ee;
+    color: #37ff00;
 }
 
 .instagram-icon {
@@ -286,7 +286,15 @@ footer {
 }
 
 .instagram-icon:hover {
-    color: #E1306C;
+    color: #37ff00;
+}
+
+.whatsapp-icon {
+  background-color: #1fb039; /* Burgundy color */
+}
+
+.whatsapp-icon:hover {
+  color: #1fb039;
 }
 
 .deliveroo-icon {
@@ -343,7 +351,7 @@ footer {
     border-radius: 25px;
     margin: 20px auto;
     max-width: 1000px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1);
     text-align: center;
 }
 
@@ -700,3 +708,97 @@ ul li h1 {
   p {
     color: #000;  
   }
+
+
+
+
+
+
+  /* Force proper styling for the Prices page "Additional Information" section */
+#about.curved-section {
+  background-color: #F1B82D !important; /* your site’s gold tone */
+  color: #000 !important; /* readable black text */
+  padding: 40px 20px;
+  border-radius: 25px;
+  margin: 60px auto;
+  max-width: 1000px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Optional: Make list items clean and matching your theme */
+#about.curved-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#about.curved-section li {
+  font-size: 1.1em;
+  margin: 10px 0;
+  color: #111;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.split-section {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 0;
+}
+
+.split-section .text {
+  flex: 1;
+}
+
+.split-section .image {
+  flex: 1;
+}
+
+.split-section img {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 20px;
+}
+
+/* Reverse layout */
+.split-section.reverse {
+  flex-direction: row-reverse;
+}
+
+/* For mobile */
+@media (max-width: 768px) {
+  .split-section,
+  .split-section.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+
+
+
+.services-image {
+  width: 100%;
+  max-width: 800px;   /* keeps it from becoming larger than original */
+  height: auto;       /* keeps aspect ratio */
+  display: block;
+  margin: 0 auto;     /* center the image */
+  border-radius: 20px; /* adjust number for more or less curve */
+}

@@ -6,19 +6,38 @@ document.addEventListener('DOMContentLoaded', function() {
         componentRestrictions: { country: 'GB' } // Only show UK suggestions
     };
 
-    const pickupInput = document.getElementById('pickup');
-    const dropoffInput = document.getElementById('dropoff');
+    // const pickupInput = document.getElementById('pickup');
+    // const dropoffInput = document.getElementById('dropoff');
 
+    // // Apply UK restriction to both input fields
+    // const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput, options);
+    // const dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput, options);
+
+    const pickupInput = document.getElementById('pickup');
+const dropoffInput = document.getElementById('dropoff');
+
+if (pickupInput && dropoffInput) {
     // Apply UK restriction to both input fields
+    const options = {
+        componentRestrictions: { country: 'GB' } // Only show UK suggestions
+    };
+
     const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput, options);
     const dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput, options);
+}
+
 
     console.log("Autocomplete initialized with UK restriction");
 
     // Form submission handler
-    document.getElementById('distanceForm').addEventListener('submit', function(event) {
+    // document.getElementById('distanceForm').addEventListener('submit', function(event) {
+    // Form submission handler (only if the form exists)
+const distanceForm = document.getElementById('distanceForm');
+if (distanceForm) {
+    distanceForm.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent traditional form submission
         console.log("Form submitted");
+    
 
         // Get the values from the input fields
         const pickupLocation = pickupInput.value;
@@ -62,7 +81,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+}
 });
+
+
 
 
 
