@@ -804,11 +804,18 @@ ul li h1 {
 }
 
 
-img {
+/* img {
   max-width: 100%;
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover; /* optional – prevents distortion */
+/* } */ 
+
+img {
+  max-width: 100%; /* responsive */
+  height: auto;    /* keeps aspect ratio */
+  display: block;
 }
+
 
