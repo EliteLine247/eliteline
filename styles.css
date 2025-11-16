@@ -278,7 +278,7 @@ footer {
 }
 
 .facebook-icon:hover {
-    color: #37ff00;
+    color: #fff700;
 }
 
 .instagram-icon {
@@ -286,7 +286,7 @@ footer {
 }
 
 .instagram-icon:hover {
-    color: #37ff00;
+    color: #fff700;
 }
 
 .whatsapp-icon {
@@ -294,7 +294,7 @@ footer {
 }
 
 .whatsapp-icon:hover {
-  color: #1fb039;
+  color: #fff700;
 }
 
 .deliveroo-icon {
@@ -968,3 +968,69 @@ p {
   background: #000;
   color: #fff !important;
 }
+
+
+
+/* body {
+  padding-top: 120px;
+} */
+
+
+.nav-links a:hover {
+  color: #F1B82D; /* your gold color */
+  transition: 0.3s ease;
+}
+
+
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #F1B82D;   /* gold */
+  transition: 0.3s ease;
+}
+
+
+
+
+
+
+
+/* Hide "Menu" text by default (desktop) */
+/* .menu-toggle .menu-text {
+  display: none;
+} */
+
+/* Mobile styling */
+/* @media (max-width: 768px) { */
+
+  /* Move hamburger to the right */
+  /* .menu-toggle {
+    display: flex;
+    flex-direction: column; /* icon above, text below */
+    /* align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    z-index: 1000;
+  } */ 
+
+  /* Show the menu label */
+  /* .menu-toggle .menu-text {
+    display: block;
+    font-size: 12px;
+    margin-top: 3px;
+    color: #fff; /* change if you want gold */
+  /* } */
+
+  /* Make sure nav links hide when collapsed */
+  /* .nav-links {
+    display: none;
+  } */
+
+  /* When mobile nav is open */
+  /* .nav-links.active {
+    display: block;
+  }
+} */
