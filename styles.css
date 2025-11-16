@@ -742,6 +742,18 @@ ul li h1 {
 }
 
 
+#additional-info.curved-section {
+  background-color: #F1B82D;
+  color: #000;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -826,3 +838,48 @@ p {
   text-justify: inter-word;
 }
 
+
+
+/* Curved Section
+.curved-section {
+  background: #fff;
+  padding: 60px 20px;
+  position: relative;
+  text-align: center;
+  color: #000;
+  z-index: 1;
+}
+
+.curved-section::before,
+.curved-section::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  left: 0;
+  background: #fff;
+}
+
+.curved-section::before {
+  top: -80px;
+  border-bottom-left-radius: 100% 50px;
+  border-bottom-right-radius: 100% 50px;
+}
+
+.curved-section::after {
+  bottom: -80px;
+  border-top-left-radius: 100% 50px;
+  border-top-right-radius: 100% 50px;
+} */
+
+
+
+/* related resource: styles.css:745:1 */
+#additional-info.curved-section { /* the element was section#additional-info */
+  opacity: 1;
+}
+
+/* related resource: styles.css:745:1 */
+#about.curved-section { /* the element was section#additional-info */
+  opacity: 1;
+}
