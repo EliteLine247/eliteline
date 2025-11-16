@@ -249,6 +249,7 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
+    border-radius: 20;
 }
 
 /* General Styles for Social Icons */
@@ -1034,3 +1035,36 @@ p {
     display: block;
   }
 } */
+
+
+
+.enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.enquiry-form input,
+.enquiry-form textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.submit-btn {
+  padding: 12px;
+  background: #000;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.submit-btn:hover {
+  background: #333;
+}
+
