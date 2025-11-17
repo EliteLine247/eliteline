@@ -67,7 +67,7 @@
     <section id="contact-form" data-aos="fade-up" class="curved-section">
       <h2>Make an Enquiry</h2>
   
-      <form class="enquiry-form" method="POST" action="send-email.php">
+      <form id="enquiryForm" class="enquiry-form" method="POST" action="send-email.php">
   
         <input type="text" name="fullName" placeholder="Full Name *" required>
   
@@ -83,8 +83,10 @@
   
         <button type="submit" class="submit-btn">Submit Enquiry</button>
   
-      </form>
+      </form id="enquiryForm">
     </section>
+
+
 
 
   <section id="about" data-aos="fade-up" class="curved-section">
@@ -253,6 +255,35 @@
   });
 </script>
 
+
+
+
+
+<script>
+  document.getElementById("enquiryForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+  
+    const formData = {
+      fullName: this.fullName.value,
+      phone: this.phone.value,
+      email: this.email.value,
+      pickup: this.pickup.value,
+      dropoff: this.dropoff.value,
+      message: this.message.value,
+    };
+  
+    const response = await fetch("/.netlify/functions/send-email", {
+      method: "POST",
+      body: JSON.stringify(formData)
+    });
+  
+    if (response.ok) {
+      window.location.href = "thank-you.html";
+    } else {
+      alert("Error sending enquiry. Please try again.");
+    }
+  });
+  </script>
 
 </body>
 </html>
