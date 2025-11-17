@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Line | Services</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <img src="images/logo.png" alt="Damascus Bakery Restaurant">
+        </div>
+        <button class="menu-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+          <span class="menu-text">Menu</span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="services.html" class="active">SERVICES</a></li>
+          <li><a href="prices.html">PRICE</a></li>
+          <li><a href="about_us.html">ABOUT US</a></li>
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61567137089321" target="_blank" class="facebook-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+
+          <a href="https://www.instagram.com/elitelineofficial/" target="_blank" class="instagram-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a href="https://wa.me/447340868719" target="_blank" class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          
+        
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <section id="about" data-aos="fade-up" class="curved-section">
+    <h1>Thank you for your enquiry!</h1>
+    <p>We will get back to you shortly.</p>
+
+
+
+  </section>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+  
+  
+  <footer>
+    <p>Copyright All Rights Reserved © 2025 | Elite Line, Chichester District Council. Operator's Licence Number 381, United Kingdom,</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.top = '0'; // Show the header when user scrolls down
+        } else {
+            header.style.top = '-100px'; // Hide the header when user is at the top
+        }
+    });
+  </script>
+
+
+<script>
+  // Toggle mobile menu
+  document.querySelector('.menu-toggle').addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('active');
+  });
+</script>
+
+
+</body>
+</html>
