@@ -1,0 +1,10 @@
+[build]
+  # leave build.command empty for static sites; but specify functions dir
+  functions = "netlify/functions"
+  publish = "." # if your site is served from repo root (adjust if your build outputs to /dist)
+
+[functions]
+  node_bundler = "esbuild"
+
+[context.production.environment]
+  NODE_VERSION = "18"
