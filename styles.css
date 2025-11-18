@@ -88,11 +88,13 @@ nav ul li a:hover {
     .nav-links {
         display: none;
         flex-direction: column;
-        width: 100%;
+        width: 35%;
         position: absolute;
         top: 60px;
         left: 0;
         background: #fe5f00;
+        border-radius: 15%;
+        
     }
 
     .nav-links.active {
