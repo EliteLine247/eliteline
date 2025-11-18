@@ -281,8 +281,8 @@
       dropoff: this.dropoff.value,
       message: this.message.value,
     };
-  
-    const response = await fetch("/.netlify/functions/send-email", {
+    // const response = await fetch("/.netlify/functions/send-email", {
+    const response = await fetch("/api/send-email", {
       method: "POST",
       body: JSON.stringify(formData)
     });
