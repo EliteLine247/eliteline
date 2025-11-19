@@ -247,12 +247,18 @@ footer {
     background: rgb(241, 184, 45, 0.5);
     color: #fff;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px;
     position: relative;
     bottom: 0;
     width: 100%;
-    border-radius: 20;
+    border-radius: 20px;
 }
+
+
+/* padding: 20px;
+border-radius: 25px;
+margin: 20px auto;
+max-width: 1000px; */
 
 /* General Styles for Social Icons */
 .social-icons {
