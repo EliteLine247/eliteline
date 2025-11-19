@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: "elitelin247@gmail.com", // <-- Check this email address carefully!
+      to: "eliteline247@gmail.com", // <-- Check this email address carefully!
       subject: "New Enquiry",
       html: `
         <h3>New enquiry received</h3>
