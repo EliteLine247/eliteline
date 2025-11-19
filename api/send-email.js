@@ -6,7 +6,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const data = JSON.parse(req.body);
+    const data = req.body;
+    // const data = JSON.parse(req.body);
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
