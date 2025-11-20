@@ -141,20 +141,38 @@ nav ul li a:hover {
 
 
 
-  .hero {
-    background: url('images/home_page.jpg') no-repeat center center;
+  /* .hero-image{
+    background: url('images/circle_logo.png') no-repeat center center;
     background-size: contain; /* Show entire image, keep proportions */
     /* background-color: #00223E; Optional: background fill behind image */
-    background-color: #000; /* Optional: background fill behind image */
-    width: 100%;
+    /* background-color: #000; /* Optional: background fill behind image */
+    /* width: 100%;
     height: auto;
     min-height: 100vh; /* Keeps section tall enough */
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
+    color: #fff; */
+  /* } */ 
+
+  .hero-image {
+    background: url('images/circle_logo.png') no-repeat center center;
+    background-size: contain;
+    background-color: #000;
+    height: 100vh;    /* <-- this is the REAL fix */
+    width: 100%;
   }
+  
+
+  /* .hero-image {
+    background: url('images/circle_logo.png') no-repeat center center;
+    background-size: contain;      /* keep proportions, no stretching */
+    /* background-color: #000;        /* optional */
+    /* width: 100%;
+    height: auto;
+    min-height: 100vh;             /* adjust or remove if still too tall */
+  /* } */ 
   
   
   /* Content box */
@@ -1046,12 +1064,21 @@ p {
 
 
 
-.enquiry-form {
+/* .enquiry-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
   max-width: 700px;
+  max-height: 57vh;
   margin: 0 auto;
+} */
+
+.enquiry-form {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .enquiry-form input,
@@ -1075,4 +1102,195 @@ p {
 .submit-btn:hover {
   background: #333;
 }
+
+
+
+/* .hero-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  width: 100%;
+} */
+
+.hero-wrapper {
+  display: grid;
+  grid-template-columns: 70% 30%;   /* left slightly wider than right */
+  height: 100vh;
+  width: 100%;
+  max-width: 1500px;               /* optional site max width */
+  margin: 0 auto;
+}
+
+
+/* Nudge the left background down a tiny bit */
+/* .hero-image {
+  background: url('images/circle_logo.png') no-repeat center left;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  transform: translateY(30px);     /* move down 22px - tweak this number */
+  /* transition: transform 0.3s ease;
+  will-change: transform;
+} */
+
+/* .hero-image {
+  background: url('images/circle_logo.png') no-repeat center left;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+} */
+
+/* Right column: keep contents top-aligned and constrained */
+/* .hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;    /* ensure top aligned */
+  /* align-items: flex-end;          /* push content to the right edge of the column */
+  /* padding: 40px;
+  gap: 18px;
+  box-sizing: border-box;
+} */ 
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 40px;
+  background-color: black;
+}
+
+.hero-content {
+  background: rgba(241, 184, 45, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+}
+
+/* Make the hero box narrower */
+/* .hero-content {
+  max-width: 360px;               /* reduces width of the yellow hero box */
+  /* width: 100%;
+  padding: 18px;
+  border-radius: 10px;
+  background: rgba(241,184,45,0.85);
+  text-align: right;              /* aligns text to the right side in the small box */
+/* } */
+
+/* .enquiry-box {
+  background: #F1B82D;
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+} */
+
+/* Make the enquiry box smaller and aligned with the hero box */
+.enquiry-box {
+  max-width: 420px;               /* overall enquiry container width */
+  width: 100%;
+  padding: 18px;
+  border-radius: 16px;
+  background: #F1B82D;
+  color: #000;
+  align-self: flex-end;           /* stick it to the right edge of the right column */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+
+/* Inputs inside the form should fit the smaller container */
+.enquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;               /* align with hero box width */
+  width: 100%;
+  margin: 0;  
+  height: 100%;                    /* remove auto-centering */
+}
+
+/* make submit button full width of small form */
+/* .enquiry-form .submit-btn {
+  width: 100%;
+  padding: 12px;
+} */
+
+/* @media (max-width: 768px) {
+  
+  .hero-wrapper {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .hero-image {
+    height: 50vh;
+    background-position: center top;
+  }
+
+  .hero-right {
+    padding: 20px;
+  }
+
+  .enquiry-box {
+    margin-top: 20px;
+  }
+
+} */
+
+
+/* ---------- Mobile: stack vertically and reset transforms ---------- */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 0;
+  }
+  
+
+  /* .hero-image {
+    height: 50vh;
+    transform: translateY(0);      /* no downward nudge on mobile */
+    /* background-position: center top;
+  } */ 
+
+  .hero-image {
+    background: url('images/circle_logo.png') no-repeat center center;
+    background-size: contain;
+    background-color: #000;
+    height: 60vh;    /* <-- this is the REAL fix */
+    width: 100%;
+  }
+
+  .hero-right {
+    align-items: stretch;
+    padding: 18px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  /* .enquiry-box {
+    max-width: 100%;
+    align-self: stretch;
+    margin-top: 16px;
+  } */
+
+  .enquiry-box {
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
+  }
+
+  .enquiry-form {
+    max-width: 100%;
+  }
+}
+.hero {
+  padding: 20px 10px; /* smaller padding */
+}
+
+
+
 
