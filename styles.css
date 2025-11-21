@@ -139,23 +139,6 @@ nav ul li a:hover {
   }
 
 
-
-
-  /* .hero-image{
-    background: url('images/circle_logo.png') no-repeat center center;
-    background-size: contain; /* Show entire image, keep proportions */
-    /* background-color: #00223E; Optional: background fill behind image */
-    /* background-color: #000; /* Optional: background fill behind image */
-    /* width: 100%;
-    height: auto;
-    min-height: 100vh; /* Keeps section tall enough */
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff; */
-  /* } */ 
-
   .hero-image {
     background: url('images/circle_logo.png') no-repeat center center;
     background-size: contain;
@@ -164,15 +147,6 @@ nav ul li a:hover {
     width: 100%;
   }
   
-
-  /* .hero-image {
-    background: url('images/circle_logo.png') no-repeat center center;
-    background-size: contain;      /* keep proportions, no stretching */
-    /* background-color: #000;        /* optional */
-    /* width: 100%;
-    height: auto;
-    min-height: 100vh;             /* adjust or remove if still too tall */
-  /* } */ 
   
   
   /* Content box */
@@ -184,13 +158,6 @@ nav ul li a:hover {
     border-radius: 10px;
   }
 
-  /* .hero-content {
-    max-width: 800px;
-    padding: 20px;
-    /* Adjusted background color with transparency */
-    /* background: rgba(184, 134, 11, 0.6); /* 0.8 is 80% opacity */
-    /* border-radius: 10px;
-} */
 
 
 .hero h1, .hero p { /* Assuming you have headings and paragraphs inside */
@@ -199,19 +166,6 @@ nav ul li a:hover {
 
 
 
-
-
-/* .hero-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    animation: fadeInDown 1s ease-out;
-}
-
-.hero-content p {
-    font-size: 24px;
-    margin-bottom: 40px;
-    animation: fadeInUp 1s ease-out;
-} */
 
 .hero-content h1 {
     font-size: 32px;
@@ -538,28 +492,6 @@ ul li h1 {
     cursor: pointer;
   }
   
-  /* Responsive menu styles */
-  /* @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.9);
-      position: absolute;
-      top: 70px;
-      left: 0;
-      right: 0;
-      padding: 20px 0;
-    }
-  
-    .nav-links.active {
-      display: flex;
-    }
-  
-    .menu-toggle {
-      display: block;
-    }
-  } */
   
   @media (max-width: 768px) {
     .nav-links {
@@ -776,23 +708,6 @@ ul li h1 {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .split-section {
   display: flex;
   align-items: center;
@@ -860,44 +775,21 @@ img {
 
 
 
-p {
+/* p {
   text-align: justify;
   text-justify: inter-word;
-}
-
-
-
-/* Curved Section
-.curved-section {
-  background: #fff;
-  padding: 60px 20px;
-  position: relative;
-  text-align: center;
-  color: #000;
-  z-index: 1;
-}
-
-.curved-section::before,
-.curved-section::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 80px;
-  left: 0;
-  background: #fff;
-}
-
-.curved-section::before {
-  top: -80px;
-  border-bottom-left-radius: 100% 50px;
-  border-bottom-right-radius: 100% 50px;
-}
-
-.curved-section::after {
-  bottom: -80px;
-  border-top-left-radius: 100% 50px;
-  border-top-right-radius: 100% 50px;
 } */
+
+
+p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+}
+
+
+
 
 
 
@@ -973,6 +865,8 @@ p {
 }
 
 .pricing-table {
+  table-layout: fixed;
+  word-wrap: break-word;
   width: 100%;
   border-collapse: collapse;
   background: #F1B82D;
@@ -982,9 +876,15 @@ p {
 
 .pricing-table th,
 .pricing-table td {
+  white-space: normal !important;
+  overflow-wrap: break-word;
+  word-break: break-word;
   padding: 15px;
   text-align: center;
   color: #000;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
 }
 
 .pricing-table tr:nth-child(even) {
@@ -1020,59 +920,6 @@ p {
 
 
 
-
-
-/* Hide "Menu" text by default (desktop) */
-/* .menu-toggle .menu-text {
-  display: none;
-} */
-
-/* Mobile styling */
-/* @media (max-width: 768px) { */
-
-  /* Move hamburger to the right */
-  /* .menu-toggle {
-    display: flex;
-    flex-direction: column; /* icon above, text below */
-    /* align-items: center;
-    justify-content: center;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    cursor: pointer;
-    z-index: 1000;
-  } */ 
-
-  /* Show the menu label */
-  /* .menu-toggle .menu-text {
-    display: block;
-    font-size: 12px;
-    margin-top: 3px;
-    color: #fff; /* change if you want gold */
-  /* } */
-
-  /* Make sure nav links hide when collapsed */
-  /* .nav-links {
-    display: none;
-  } */
-
-  /* When mobile nav is open */
-  /* .nav-links.active {
-    display: block;
-  }
-} */
-
-
-
-/* .enquiry-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 700px;
-  max-height: 57vh;
-  margin: 0 auto;
-} */
-
 .enquiry-form {
   max-width: 700px;
   width: 100%;
@@ -1103,14 +950,6 @@ p {
   background: #333;
 }
 
-
-
-/* .hero-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 100vh;
-  width: 100%;
-} */
 
 .hero-wrapper {
   display: grid;
@@ -1168,22 +1007,7 @@ p {
   text-align: center;
 }
 
-/* Make the hero box narrower */
-/* .hero-content {
-  max-width: 360px;               /* reduces width of the yellow hero box */
-  /* width: 100%;
-  padding: 18px;
-  border-radius: 10px;
-  background: rgba(241,184,45,0.85);
-  text-align: right;              /* aligns text to the right side in the small box */
-/* } */
 
-/* .enquiry-box {
-  background: #F1B82D;
-  padding: 20px;
-  border-radius: 20px;
-  color: white;
-} */
 
 /* Make the enquiry box smaller and aligned with the hero box */
 .enquiry-box {
@@ -1209,33 +1033,6 @@ p {
   height: 100%;                    /* remove auto-centering */
 }
 
-/* make submit button full width of small form */
-/* .enquiry-form .submit-btn {
-  width: 100%;
-  padding: 12px;
-} */
-
-/* @media (max-width: 768px) {
-  
-  .hero-wrapper {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
-
-  .hero-image {
-    height: 50vh;
-    background-position: center top;
-  }
-
-  .hero-right {
-    padding: 20px;
-  }
-
-  .enquiry-box {
-    margin-top: 20px;
-  }
-
-} */
 
 
 /* ---------- Mobile: stack vertically and reset transforms ---------- */
@@ -1247,11 +1044,6 @@ p {
   }
   
 
-  /* .hero-image {
-    height: 50vh;
-    transform: translateY(0);      /* no downward nudge on mobile */
-    /* background-position: center top;
-  } */ 
 
   .hero-image {
     background: url('images/circle_logo.png') no-repeat center center;
@@ -1271,11 +1063,7 @@ p {
     text-align: center;
   }
 
-  /* .enquiry-box {
-    max-width: 100%;
-    align-self: stretch;
-    margin-top: 16px;
-  } */
+
 
   .enquiry-box {
     width: 100%;
@@ -1292,5 +1080,8 @@ p {
 }
 
 
+.pricing-table {
+  table-layout: fixed;
+}
 
 
