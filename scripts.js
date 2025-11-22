@@ -86,6 +86,46 @@ if (distanceForm) {
 
 
 
+// const menuBtn = document.querySelector('.menu-btn');
+// const mobileMenu = document.querySelector('.mobile-menu');
+
+// let menuTimer;
+
+// menuBtn.addEventListener('click', () => {
+//   mobileMenu.classList.toggle('active');
+
+//   clearTimeout(menuTimer); // reset timer every time user opens it
+
+//   if (mobileMenu.classList.contains('active')) {
+//     menuTimer = setTimeout(() => {
+//       mobileMenu.classList.remove('active');
+//     }, 10000); // 10 seconds
+//   }
+// });
+
+
+
+const menuBtn = document.querySelector('.menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+let menuTimer;
+
+menuBtn.addEventListener('click', () => {
+  // Toggle show/hide
+  mobileMenu.classList.toggle('active');
+
+  // Reset timer
+  clearTimeout(menuTimer);
+
+  // Auto close after 10 seconds
+  if (mobileMenu.classList.contains('active')) {
+    menuTimer = setTimeout(() => {
+      mobileMenu.classList.remove('active');
+    }, 10000);
+  }
+});
+
+
 
 
 
