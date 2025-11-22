@@ -108,7 +108,7 @@
       </p>
       <br>
       <br>
-      <p>Your journey between cities—redefined with comfort, class, and convenience.</p>
+      <span class="highlight-text type-on-scroll"data-text=" Your journey between cities—redefined with comfort, class, and convenience."></span>
     </div>
   
     <div class="image">
@@ -144,9 +144,10 @@
       </p>
       <br>
       <br>
-      <p>
-        Your flight may be long—your transfer shouldn’t be.
-      </p>
+      <span 
+        class="highlight-text type-on-scroll"data-text=" Your flight may be long—your transfer shouldn’t be.">
+      </span>
+
     </div>
   
     <div class="image">
@@ -181,10 +182,10 @@
 
       <br>
       <br>
-      <p>
-         
-        We create a travel experience that is as effortless as it is elegant.
-      </p>
+
+    <span 
+      class="highlight-text type-on-scroll"data-text="We create a travel experience that is as effortless as it is elegant.">
+    </span>
     </div>
   
     <div class="image">
@@ -212,9 +213,10 @@
       </p>
       <br>
       <br>
-      <p>
-        Ultimate convenience, personalised service, and luxury travel on your terms.
-      </p>
+
+    <span 
+      class="highlight-text type-on-scroll"data-text="Ultimate convenience, personalised service, and luxury travel on your terms.">
+    </span>
     </div>
   
     <div class="image">
@@ -240,9 +242,10 @@
 
         <br>
         <br>
-        <p>
-          Luxury travel, expertly delivered.
-        </p>
+
+      <span 
+        class="highlight-text type-on-scroll"data-text="Luxury travel, expertly delivered.">
+      </span>
         
         
       </p>
@@ -260,6 +263,14 @@
       <p>
         Experience seamless, premium chauffeured transfers to and from any heliport. We ensure punctual pickups, 
         smooth coordination with flight schedules, and a luxurious door-to-heliport journey tailored for your comfort and convenience.
+
+        <br>
+        <br>
+
+
+      <span 
+        class="highlight-text type-on-scroll"data-text="The Perfect Link Between Road and Sky.">
+      </span>
         
 
     </div>
@@ -287,9 +298,10 @@
 
         <br>
         <br>
-        <p>
-          Relax, unwind, and let your holiday begin the moment we arrive.
-        </p>
+
+      <span 
+        class="highlight-text type-on-scroll"data-text="Relax, unwind, and let your holiday begin the moment we arrive.">
+      </span>
         
         
       </p>
@@ -321,9 +333,10 @@
         
         <br>
         <br>
-        <p>
-          Arrive with confidence, celebrate with elegance.
-        </p>
+
+      <span 
+        class="highlight-text type-on-scroll"data-text="Arrive with confidence, celebrate with elegance.">
+      </span>
 
     </div>
   
@@ -350,9 +363,10 @@
 
         <br>
         <br>
-        <p>
-          Luxury travel without limits—your journey, elevated.
-        </p>
+
+      <span 
+        class="highlight-text type-on-scroll"data-text="Luxury travel without limits—your journey, elevated.">
+      </span>
         
         
       </p>
@@ -395,6 +409,132 @@
   });
 </script>
 
+
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".type-on-scroll");
+  
+    const typeText = (el, text, speed = 50) => {
+      let i = 0;
+      el.style.opacity = "1"; // show the text now
+      const interval = setInterval(() => {
+        el.textContent += text.charAt(i);
+        i++;
+        if (i === text.length) {
+          clearInterval(interval);
+          el.style.borderRight = "none"; // remove cursor after typing
+        }
+      }, speed);
+    };
+  
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const text = el.getAttribute("data-text");
+  
+          if (!el.classList.contains("typed")) {
+            el.classList.add("typed");
+            typeText(el, text);
+          }
+  
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+  
+    elements.forEach(el => observer.observe(el));
+  });
+  </script>
+   -->
+  
+   <!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const elements = document.querySelectorAll(".type-on-scroll");
+    
+      function typeText(el, text, speed = 50) {
+        el.style.opacity = "1";    // Show block before typing
+        el.textContent = "";       // Ensure it's empty
+        let i = 0;
+    
+        function typing() {
+          if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+          } else {
+            el.style.borderRight = "none"; // Stop cursor blink
+          }
+        }
+    
+        typing();
+      }
+    
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const text = el.dataset.text;
+    
+            if (!el.classList.contains("typed")) {
+              el.classList.add("typed");
+              typeText(el, text);
+            }
+    
+            obs.unobserve(el);
+          }
+        });
+      }, { threshold: 0.25 });
+    
+      elements.forEach(el => observer.observe(el));
+    
+    });
+    </script> -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(".type-on-scroll");
+
+  function typeText(el, text, speed = 45) {
+    el.style.opacity = "1";
+    el.textContent = "";
+    let i = 0;
+
+    function typing() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(typing, speed);
+      } else {
+        el.style.borderRight = "none";
+      }
+    }
+    typing();
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const text = el.dataset.text;
+
+        if (!el.classList.contains("typed")) {
+          el.classList.add("typed");
+          typeText(el, text);
+        }
+
+        obs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  elements.forEach(el => observer.observe(el));
+});
+
+    </script>
+    
 
 </body>
 </html>

@@ -1209,3 +1209,74 @@ p {
 
 
 
+/* .highlight-text {
+  color: rgb(255, 255, 255);              /* text colour */
+  /* background-color: #ff5500; /* yellow highlight */
+  /* padding: 10px 10px;
+  border-radius: 5px;
+  border:3px solid rgb(0, 0, 0); padding:3px;
+} */ 
+
+/* .highlight-text {
+  font-weight: bold;
+  border-right: 2px solid #000;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+
+  background: #fff;
+  color: #000;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-weight: bold;
+  /* display: block; */
+  /* width: 100%; */
+  /* opacity: 0; */
+  /* width: 0; */
+  /* white-space: nowrap; */
+  /* overflow: hidden; */
+  /* border-right: 3px solid #000; */
+  /* animation: typing 3s steps(40) forwards, blink 0.6s infinite; */
+/* } */
+
+
+/* @keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+} */
+
+/* .highlight-text {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+
+  background: #fff;
+  color: #000;
+  padding: 2px 6px;
+  border-radius: 8px;
+  width: fit-content;
+  border-right: 3px solid #000;
+
+  opacity: 0;          /* Hidden until JS starts */
+/* } */ 
+
+.highlight-text {
+  display: inline-block;          /* stays the size of the text, not stretched */
+  background: rgba(255, 78, 2, 0.852); /* soft dark highlight */
+  color: #ffffff;                    /* font colour */
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 1rem;               /* SAME as your paragraph */
+  line-height: 1.5;
+  opacity: 0;                     /* hidden before animation */
+  border-right: 2px solid #000;   /* typewriter cursor */
+  /* white-space: nowrap;            prevents stretching across lines */
+}
+.type-on-scroll.typed {
+  opacity: 1;                     /* visible after animation */
+}
+
