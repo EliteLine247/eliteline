@@ -5,6 +5,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  // ✅ ADMIN AUTH CHECK
+  const auth = req.headers.authorization;
+  if (!auth || auth !== `Bearer ${process.env.ADMIN_TOKEN}`) {
+    return res.status(401).json({ error: "Not authorized" });
+  }
+
   try {
     const { db } = await connectToDatabase();
 
