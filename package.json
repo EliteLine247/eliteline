@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "nodemailer": "^6.9.4"
+    "nodemailer": "^6.9.4",
+    "mongodb": "^6.5.0",
+    "stripe": "^16.0.0",
+    "jsonwebtoken": "^9.0.0"
   }
 }
