@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eliteline | About Us</title>
+  <link rel="icon" type="image/png" href="images/circle_logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/circle_logo.png" alt="Eliteline logo">
+          </a>
+        </div>        
+        <button class="menu-toggle" aria-label="Open Menu">
+          <i class="fas fa-bars"></i>
+          <span class="menu-text">Menu</span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="services.html">SERVICES</a></li>
+          <li><a href="prices.html">PRICE</a></li>
+          <li><a href="about_us.html" class="active">ABOUT US</a></li>
+          <li><a href="booking.html">BOOKING</a></li>
+          <li><a href="terms_conditions.html">TERMS & <br> CONDITIONS</a></li>
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?id=61567137089321" target="_blank" class="facebook-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+
+          <a href="https://www.instagram.com/elitelineofficial/" target="_blank" class="instagram-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a href="https://wa.me/447340868719" target="_blank" class="whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          
+        
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+<div class="admin-wrapper">
+  <h1>Eliteline Admin Panel</h1>
+
+  <!-- LOGIN -->
+  <div id="loginSection" class="login-box">
+    <h2>Admin Login</h2>
+    <input type="email" id="adminEmail" placeholder="Admin email">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button id="loginBtn">Login</button>
+    <p id="loginStatus" class="status-line"></p>
+  </div>
+
+  <!-- BOOKINGS TABLE -->
+  <div id="bookingsSection" class="table-box" style="display:none;">
+    <h2>Bookings</h2>
+    <p id="bookingsStatus" class="status-line"></p>
+
+    <table id="bookingsTable">
+      <thead>
+        <tr>
+          <th>Date / Time</th>
+          <th>Name</th>
+          <th>Trip</th>
+          <th>Vehicle</th>
+          <th>Pickup → Dropoff</th>
+          <th>Price</th>
+          <th>Paid</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// LOGIN
+document.getElementById("loginBtn").addEventListener("click", async () => {
+  const email = adminEmail.value.trim();
+  const password = adminPassword.value.trim();
+  loginStatus.textContent = "Logging in...";
+
+  try {
+    const res = await fetch("/api/admin-login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      loginStatus.textContent = "Login successful.";
+      loginSection.style.display = "none";
+      bookingsSection.style.display = "block";
+      loadBookings();
+    } else {
+      loginStatus.textContent = "Invalid email or password.";
+    }
+  } catch {
+    loginStatus.textContent = "Login error.";
+  }
+});
+
+// LOAD BOOKINGS
+async function loadBookings() {
+  bookingsStatus.textContent = "Loading bookings...";
+  const tbody = document.querySelector("#bookingsTable tbody");
+  tbody.innerHTML = "";
+
+  try {
+    const res = await fetch("/api/get-bookings");
+    if (res.status === 401) {
+      bookingsStatus.textContent = "Not authorized.";
+      loginSection.style.display = "block";
+      bookingsSection.style.display = "none";
+      return;
+    }
+
+    const bookings = await res.json();
+    bookingsStatus.textContent = "";
+
+    if (bookings.length === 0) {
+      bookingsStatus.textContent = "No bookings found.";
+      return;
+    }
+
+    bookings.forEach(b => {
+      const dt = new Date(b.createdAt).toLocaleString();
+      const row = `
+        <tr>
+          <td>${dt}</td>
+          <td>${b.fullName || ""}</td>
+          <td>${b.tripType || ""}</td>
+          <td>${b.vehicle || ""}</td>
+          <td>${b.pickup || ""} → ${b.dropoff || ""}</td>
+          <td>£${b.price || ""}</td>
+          <td><span class="${b.paid ? "tag-paid" : "tag-unpaid"}">${b.paid ? "Paid" : "Unpaid"}</span></td>
+        </tr>
+      `;
+      tbody.insertAdjacentHTML("beforeend", row);
+    });
+
+  } catch {
+    bookingsStatus.textContent = "Error loading bookings.";
+  }
+}
+</script>
+
+</body>
+</html>
