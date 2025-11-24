@@ -1,5 +1,5 @@
-import nodemailer from "nodemailer";
 import Stripe from "stripe";
+import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
   if (req.method !== "POST")
@@ -7,10 +7,8 @@ export default async function handler(req, res) {
 
   const data = req.body;
 
-  // Stripe setup
   const stripe = new Stripe(process.env.STRIPE_SECRET);
 
-  // PRICE LOGIC — customise later if needed
   const prices = {
     business: 80,
     first: 120,
@@ -19,7 +17,7 @@ export default async function handler(req, res) {
 
   const vehiclePrice = prices[data.vehicle] || 80;
 
-  // ---------- CREATE STRIPE PAYMENT ----------
+  // ---------- STRIPE CHECKOUT WITH METADATA ----------
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
@@ -35,11 +33,17 @@ export default async function handler(req, res) {
         quantity: 1
       }
     ],
-    success_url: "https://YOURDOMAIN.vercel.app/success",
-    cancel_url: "https://YOURDOMAIN.vercel.app/cancel"
+    success_url: "https://eliteline.vercel.app/success",
+    cancel_url: "https://eliteline.vercel.app/cancel",
+
+    // 🔥 THIS IS IMPORTANT — data sent back on webhook
+    metadata: {
+      ...data,
+      price: vehiclePrice
+    }
   });
 
-  // ---------- EMAIL SETUP ----------
+  // ---------- EMAIL ----------
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -48,13 +52,13 @@ export default async function handler(req, res) {
     }
   });
 
-  // ---------- SEND EMAIL TO YOU ----------
+  // Email to you
   await transporter.sendMail({
     from: "no-reply@eliteline.co.uk",
     to: "elitelin247@gmail.com",
-    subject: "New Chauffeur Booking",
+    subject: "New Chauffeur Booking (Awaiting Payment)",
     html: `
-      <h2>New Booking</h2>
+      <h2>New Booking Received</h2>
       <p><b>Name:</b> ${data.fullName}</p>
       <p><b>Email:</b> ${data.email}</p>
       <p><b>Phone:</b> ${data.phone}</p>
@@ -64,29 +68,25 @@ export default async function handler(req, res) {
       <p><b>Vehicle:</b> ${data.vehicle}</p>
       <p><b>Pickup:</b> ${data.pickup}</p>
       <p><b>Dropoff:</b> ${data.dropoff}</p>
-      <p><b>PRICE:</b> £${vehiclePrice}</p>
+      <p><b>Price:</b> £${vehiclePrice}</p>
       <br>
-      <p>Payment Link:</p>
-      <a href="${session.url}">${session.url}</a>
+      <a href="${session.url}">Payment Link</a>
     `
   });
 
-  // ---------- SEND EMAIL TO CUSTOMER ----------
+  // Email to customer
   await transporter.sendMail({
     from: "EliteLine Chauffeurs <no-reply@eliteline.co.uk>",
     to: data.email,
-    subject: "Your Booking Request",
+    subject: "Your Chauffeur Booking Request",
     html: `
       <h2>Thank you for your booking</h2>
-      <p>Dear ${data.fullName},</p>
-      <p>We received your request and your payment link is below:</p>
+      <p>Hi ${data.fullName},</p>
+      <p>Your booking has been received.</p>
+      <p>Please complete your payment using the link below:</p>
       <a href="${session.url}">Pay Now</a>
-      <p>We will confirm your booking once the payment is received.</p>
-      <br>
-      <p>EliteLine Chauffeurs</p>
     `
   });
 
-  // ---------- RETURN PAYMENT URL ----------
   res.status(200).json({ paymentUrl: session.url });
 }
