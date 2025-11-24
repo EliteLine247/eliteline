@@ -163,5 +163,34 @@ async function loadBookings() {
 }
 </script>
 
+<footer>
+    <p>Copyright All Rights Reserved © 2025 | Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom. Company Registration Number: 16871447 <a href="privacy_policy.html">Privacy Policy</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="scripts.js"></script>
+  <script>
+    document.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.top = '0'; // Show the header when user scrolls down
+        } else {
+            header.style.top = '-100px'; // Hide the header when user is at the top
+        }
+    });
+  </script>
+
+
+<script>
+  // Toggle mobile menu
+  document.querySelector('.menu-toggle').addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('active');
+  });
+</script>
+
+
 </body>
 </html>
