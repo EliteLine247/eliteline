@@ -106,10 +106,12 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     const data = await res.json();
 
     if (data.success) {
-      loginStatus.textContent = "Login successful.";
-      loginSection.style.display = "none";
-      bookingsSection.style.display = "block";
-      loadBookings();
+        sessionStorage.setItem("adminToken", data.token);
+
+        loginStatus.textContent = "Login successful.";
+        loginSection.style.display = "none";
+        bookingsSection.style.display = "block";
+        loadBookings();
     } else {
       loginStatus.textContent = "Invalid email or password.";
     }
