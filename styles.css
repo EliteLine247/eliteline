@@ -1280,3 +1280,176 @@ p {
   opacity: 1;                     /* visible after animation */
 }
 
+
+
+
+
+
+/* ============================
+   ADMIN PANEL STYLING
+   ============================ */
+
+/* Main wrapper */
+.admin-wrapper {
+  max-width: 1000px;
+  margin: 120px auto;
+  padding: 30px;
+  background: #111;
+  border-radius: 25px;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Headings */
+.admin-wrapper h1,
+.admin-wrapper h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #F1B82D;
+}
+
+/* Login box */
+.login-box {
+  background: #000;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font-size: 16px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #F1B82D;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-box button:hover {
+  background: #ffcf5a;
+}
+
+/* Status text */
+.status-line {
+  text-align: center;
+  margin-top: 10px;
+  color: #eee;
+  font-size: 14px;
+}
+
+/* Bookings section */
+.table-box {
+  background: #000;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Table */
+#bookingsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+#bookingsTable th,
+#bookingsTable td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+  text-align: left;
+  color: #fff;
+}
+
+#bookingsTable th {
+  background: #222;
+  color: #F1B82D;
+}
+
+#bookingsTable tr:hover {
+  background: #1b1b1b;
+}
+
+/* Paid / Unpaid tags */
+.tag-paid {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #2e7d32;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tag-unpaid {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #c62828;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .admin-wrapper {
+    margin: 140px 15px;
+    padding: 20px;
+  }
+
+  #bookingsTable th, #bookingsTable td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+
+
+#bookingsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: white;
+}
+
+#bookingsTable th {
+  background: #F1B82D;
+  color: black;
+  padding: 12px;
+  font-weight: bold;
+}
+
+#bookingsTable td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.tag-paid {
+  background: green;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: white;
+}
+
+.tag-unpaid {
+  background: red;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: white;
+}
