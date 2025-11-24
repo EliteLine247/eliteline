@@ -27,6 +27,7 @@
           <li><a href="services.html" class="active">SERVICES</a></li>
           <li><a href="prices.html">PRICE</a></li>
           <li><a href="about_us.html">ABOUT US</a></li>
+          <li><a href="booking.html">BOOKING</a></li>
           <li><a href="terms_conditions.html">TERMS & <br> CONDITIONS</a></li>
         </ul>
         <div class="social-icons">
@@ -382,7 +383,7 @@
   
   
   <footer>
-    <p>Copyright All Rights Reserved © 2025 | Eliteline, Chichester District Council. Operator's Licence Number 381, United Kingdom. <a href="privacy_policy.html">Privacy Policy</a></p>
+    <p>Copyright All Rights Reserved © 2025 | Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom. Company Registration Number: 16871447 <a href="privacy_policy.html">Privacy Policy</a></p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
@@ -411,87 +412,6 @@
 
 
 
-<!-- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const elements = document.querySelectorAll(".type-on-scroll");
-  
-    const typeText = (el, text, speed = 50) => {
-      let i = 0;
-      el.style.opacity = "1"; // show the text now
-      const interval = setInterval(() => {
-        el.textContent += text.charAt(i);
-        i++;
-        if (i === text.length) {
-          clearInterval(interval);
-          el.style.borderRight = "none"; // remove cursor after typing
-        }
-      }, speed);
-    };
-  
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const text = el.getAttribute("data-text");
-  
-          if (!el.classList.contains("typed")) {
-            el.classList.add("typed");
-            typeText(el, text);
-          }
-  
-          obs.unobserve(el);
-        }
-      });
-    }, { threshold: 0.3 });
-  
-    elements.forEach(el => observer.observe(el));
-  });
-  </script>
-   -->
-  
-   <!-- <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    
-      const elements = document.querySelectorAll(".type-on-scroll");
-    
-      function typeText(el, text, speed = 50) {
-        el.style.opacity = "1";    // Show block before typing
-        el.textContent = "";       // Ensure it's empty
-        let i = 0;
-    
-        function typing() {
-          if (i < text.length) {
-            el.textContent += text.charAt(i);
-            i++;
-            setTimeout(typing, speed);
-          } else {
-            el.style.borderRight = "none"; // Stop cursor blink
-          }
-        }
-    
-        typing();
-      }
-    
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const el = entry.target;
-            const text = el.dataset.text;
-    
-            if (!el.classList.contains("typed")) {
-              el.classList.add("typed");
-              typeText(el, text);
-            }
-    
-            obs.unobserve(el);
-          }
-        });
-      }, { threshold: 0.25 });
-    
-      elements.forEach(el => observer.observe(el));
-    
-    });
-    </script> -->
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {

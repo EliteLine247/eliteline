@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elite Line | Thank You</title>
+  <title>Eliteline | About Us</title>
   <link rel="icon" type="image/png" href="images/circle_logo.png">
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -24,7 +24,7 @@
         </button>
         <ul class="nav-links">
           <li><a href="index.html">HOME</a></li>
-          <li><a href="services.html" class="active">SERVICES</a></li>
+          <li><a href="services.html">SERVICES</a></li>
           <li><a href="prices.html">PRICE</a></li>
           <li><a href="about_us.html">ABOUT US</a></li>
           <li><a href="booking.html">BOOKING</a></li>
@@ -55,33 +55,70 @@
   <br>
   <br>
 
-  <section id="about" data-aos="fade-up" class="curved-section">
-    <h1>Thank you for your enquiry!</h1>
-    <p>We will get back to you shortly.</p>
-
-
-
+  <section class="curved-section">
+    <h2>Book Your Chauffeur</h2>
+  
+    <form id="bookingForm" class="enquiry-form">
+  
+      <select name="tripType" required>
+        <option value="">Select Trip Type *</option>
+        <option value="one_way">One Way</option>
+        <option value="return">Return</option>
+        <option value="wait_return">Wait & Return</option>
+      </select>
+  
+      <input type="date" name="date" required>
+      <input type="time" name="time" required>
+  
+      <select name="vehicle" required>
+        <option value="">Select Vehicle *</option>
+        <option value="business">Business Class</option>
+        <option value="first">First Class</option>
+        <option value="xl">Business XL</option>
+      </select>
+  
+      <input type="text" name="pickup" placeholder="Pickup Location *" required>
+      <input type="text" name="dropoff" placeholder="Dropoff Location *" required>
+  
+      <input type="text" name="fullName" placeholder="Full Name *" required>
+      <input type="tel" name="phone" placeholder="Phone Number *" required>
+      <input type="email" name="email" placeholder="Email Address *" required>
+  
+      <button type="submit" class="submit-btn">Proceed to Payment</button>
+    </form>
   </section>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  
+  <script>
+  document.getElementById("bookingForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    
+    const data = Object.fromEntries(new FormData(this).entries());
+  
+    const res = await fetch("https://YOURDOMAIN.vercel.app/api/create-booking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+  
+    const result = await res.json();
+  
+    if (result.paymentUrl) {
+      window.location.href = result.paymentUrl;
+    } else {
+      alert("Error creating booking.");
+    }
+  });
+  </script>
+
+
 
 
 
   
-  <footer>
-    <p>Copyright All Rights Reserved © 2025 | Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom. Company Registration Number: 16871447 <a href="privacy_policy.html">Privacy Policy</a></p>
-  </footer>
+  
+<footer>
+  <p>Copyright All Rights Reserved © 2025 | Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom. Company Registration Number: 16871447 <a href="privacy_policy.html">Privacy Policy</a></p>
+</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
