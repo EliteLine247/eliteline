@@ -13,18 +13,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput, options);
     // const dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput, options);
 
-    const pickupInput = document.getElementById('pickup');
+//     const pickupInput = document.getElementById('pickup');
+// const dropoffInput = document.getElementById('dropoff');
+
+// if (pickupInput && dropoffInput) {
+//     // Apply UK restriction to both input fields
+//     const options = {
+//         componentRestrictions: { country: 'GB' } // Only show UK suggestions
+//     };
+
+//     const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput, options);
+//     const dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput, options);
+// }
+
+
+const pickupInput = document.getElementById('pickup');
 const dropoffInput = document.getElementById('dropoff');
 
-if (pickupInput && dropoffInput) {
-    // Apply UK restriction to both input fields
+if (pickupInput && dropoffInput && typeof google !== "undefined") {
     const options = {
-        componentRestrictions: { country: 'GB' } // Only show UK suggestions
+        componentRestrictions: { country: 'GB' }
     };
 
-    const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput, options);
-    const dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput, options);
+    new google.maps.places.Autocomplete(pickupInput, options);
+    new google.maps.places.Autocomplete(dropoffInput, options);
 }
+
 
 
     console.log("Autocomplete initialized with UK restriction");
@@ -105,25 +119,47 @@ if (distanceForm) {
 
 
 
+// const menuBtn = document.querySelector('.menu-btn');
+// const mobileMenu = document.querySelector('.mobile-menu');
+
+// let menuTimer;
+
+// menuBtn.addEventListener('click', () => {
+//   // Toggle show/hide
+//   mobileMenu.classList.toggle('active');
+
+//   // Reset timer
+//   clearTimeout(menuTimer);
+
+//   // Auto close after 10 seconds
+//   if (mobileMenu.classList.contains('active')) {
+//     menuTimer = setTimeout(() => {
+//       mobileMenu.classList.remove('active');
+//     }, 10000);
+//   }
+// });
+
+
 const menuBtn = document.querySelector('.menu-btn');
 const mobileMenu = document.querySelector('.mobile-menu');
 
 let menuTimer;
 
-menuBtn.addEventListener('click', () => {
-  // Toggle show/hide
-  mobileMenu.classList.toggle('active');
+// Prevent crash on admin pages
+if (menuBtn && mobileMenu) {
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
 
-  // Reset timer
-  clearTimeout(menuTimer);
+    clearTimeout(menuTimer);
 
-  // Auto close after 10 seconds
-  if (mobileMenu.classList.contains('active')) {
-    menuTimer = setTimeout(() => {
-      mobileMenu.classList.remove('active');
-    }, 10000);
-  }
-});
+    if (mobileMenu.classList.contains('active')) {
+      menuTimer = setTimeout(() => {
+        mobileMenu.classList.remove('active');
+      }, 10000);
+    }
+  });
+}
+
 
 
 
