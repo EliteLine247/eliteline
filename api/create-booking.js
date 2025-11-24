@@ -1,14 +1,15 @@
-import Stripe from "stripe";
 import nodemailer from "nodemailer";
+import Stripe from "stripe";
+import { connectToDatabase } from "../lib/mongodb.js";  // ADD THIS
 
 export default async function handler(req, res) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed" });
 
   const data = req.body;
-
   const stripe = new Stripe(process.env.STRIPE_SECRET);
 
+  // Fixed prices for now
   const prices = {
     business: 80,
     first: 120,
@@ -17,7 +18,7 @@ export default async function handler(req, res) {
 
   const vehiclePrice = prices[data.vehicle] || 80;
 
-  // ---------- STRIPE CHECKOUT WITH METADATA ----------
+  // CREATE STRIPE SESSION
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
@@ -26,67 +27,73 @@ export default async function handler(req, res) {
         price_data: {
           currency: "gbp",
           product_data: {
-            name: `Chauffeur Booking (${data.vehicle})`
+            name: `Chauffeur Booking (${data.vehicle})`,
           },
           unit_amount: vehiclePrice * 100
         },
         quantity: 1
       }
     ],
-    success_url: "https://eliteline.vercel.app/success",
-    cancel_url: "https://eliteline.vercel.app/cancel",
-
-    // 🔥 THIS IS IMPORTANT — data sent back on webhook
-    metadata: {
-      ...data,
-      price: vehiclePrice
-    }
+    success_url: "https://www.eliteline.co.uk/success.html",
+    cancel_url: "https://www.eliteline.co.uk/cancel.html",
   });
 
-  // ---------- EMAIL ----------
+  // ------------------------------------------------------
+  // SAVE BOOKING TO MONGODB
+  // ------------------------------------------------------
+  const { db } = await connectToDatabase();
+
+  const saved = await db.collection("bookings").insertOne({
+    ...data,
+    price: vehiclePrice,
+    paid: false,
+    stripeSessionId: session.id,
+    createdAt: new Date()
+  });
+
+  // ------------------------------------------------------
+  // EMAILS
+  // ------------------------------------------------------
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
+      pass: process.env.EMAIL_PASS,
+    },
   });
 
   // Email to you
   await transporter.sendMail({
     from: "no-reply@eliteline.co.uk",
     to: "elitelin247@gmail.com",
-    subject: "New Chauffeur Booking (Awaiting Payment)",
+    subject: "New Chauffeur Booking",
     html: `
       <h2>New Booking Received</h2>
       <p><b>Name:</b> ${data.fullName}</p>
       <p><b>Email:</b> ${data.email}</p>
       <p><b>Phone:</b> ${data.phone}</p>
-      <p><b>Trip Type:</b> ${data.tripType}</p>
-      <p><b>Date:</b> ${data.date}</p>
-      <p><b>Time:</b> ${data.time}</p>
+      <p><b>Trip:</b> ${data.tripType}</p>
       <p><b>Vehicle:</b> ${data.vehicle}</p>
       <p><b>Pickup:</b> ${data.pickup}</p>
       <p><b>Dropoff:</b> ${data.dropoff}</p>
-      <p><b>Price:</b> £${vehiclePrice}</p>
+      <p><b>PRICE:</b> £${vehiclePrice}</p>
       <br>
-      <a href="${session.url}">Payment Link</a>
-    `
+      <p><b>Payment Link:</b> ${session.url}</p>
+    `,
   });
 
   // Email to customer
   await transporter.sendMail({
-    from: "EliteLine Chauffeurs <no-reply@eliteline.co.uk>",
+    from: "Eliteline <no-reply@eliteline.co.uk>",
     to: data.email,
-    subject: "Your Chauffeur Booking Request",
+    subject: "Your Booking Request",
     html: `
-      <h2>Thank you for your booking</h2>
-      <p>Hi ${data.fullName},</p>
-      <p>Your booking has been received.</p>
-      <p>Please complete your payment using the link below:</p>
+      <h2>Thank You For Your Booking</h2>
+      <p>Dear ${data.fullName},</p>
+      <p>Please complete your booking by paying:</p>
       <a href="${session.url}">Pay Now</a>
-    `
+    `,
   });
 
-  res.status(200).json({ paymentUrl: session.url });
+  return res.status(200).json({ paymentUrl: session.url });
 }
