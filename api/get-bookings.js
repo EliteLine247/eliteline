@@ -5,9 +5,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  // ✅ ADMIN AUTH CHECK
-  const auth = req.headers.authorization;
-  if (!auth || auth !== `Bearer ${process.env.ADMIN_TOKEN}`) {
+  // 🔥 FIX: Trim everything to avoid hidden whitespace
+  const authHeader = (req.headers.authorization || "").trim();
+  const requiredToken = (`Bearer ${process.env.ADMIN_TOKEN}`).trim();
+
+  if (!authHeader || authHeader !== requiredToken) {
     return res.status(401).json({ error: "Not authorized" });
   }
 
@@ -23,11 +25,10 @@ export default async function handler(req, res) {
     return res.status(200).json(bookings);
 
   } catch (error) {
-    console.error("🔥 Get bookings error:", JSON.stringify(error, null, 2));
-
+    console.error("Get bookings error:", error);
     return res.status(500).json({
       error: "Failed to fetch bookings",
-      details: error?.message || "Unknown error"
+      details: error.message
     });
   }
 }
