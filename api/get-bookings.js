@@ -23,7 +23,11 @@ export default async function handler(req, res) {
     return res.status(200).json(bookings);
 
   } catch (error) {
-    console.error("Get bookings error:", error);
-    return res.status(500).json({ error: "Failed to fetch bookings" });
+    console.error("🔥 Get bookings error:", JSON.stringify(error, null, 2));
+
+    return res.status(500).json({
+      error: "Failed to fetch bookings",
+      details: error?.message || "Unknown error"
+    });
   }
 }
