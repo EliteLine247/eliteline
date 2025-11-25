@@ -65,7 +65,7 @@ export default async function handler(req, res) {
   // Email to you
   await transporter.sendMail({
     from: "no-reply@eliteline.co.uk",
-    to: "elitelin247@gmail.com",
+    to: "eliteline247@gmail.com",
     subject: "New Chauffeur Booking",
     html: `
       <h2>New Booking Received</h2>
