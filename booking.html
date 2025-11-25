@@ -77,9 +77,12 @@
         <option value="xl">Business XL</option>
       </select>
   
-      <input type="text" name="pickup" placeholder="Pickup Location *" required>
-      <input type="text" name="dropoff" placeholder="Dropoff Location *" required>
-  
+      <!-- <input type="text" name="pickup" placeholder="Pickup Location *" required>
+      <input type="text" name="dropoff" placeholder="Dropoff Location *" required> -->
+
+      <input type="text" id="pickup" name="pickup" placeholder="Pickup Location *" required>
+      <input type="text" id="dropoff" name="dropoff" placeholder="Dropoff Location *" required>
+
       <input type="text" name="fullName" placeholder="Full Name *" required>
       <input type="tel" name="phone" placeholder="Phone Number *" required>
       <input type="email" name="email" placeholder="Email Address *" required>
@@ -88,7 +91,7 @@
     </form>
   </section>
   
-  <script>
+  <!-- <script>
   document.getElementById("bookingForm").addEventListener("submit", async function(e) {
     e.preventDefault();
     
@@ -108,7 +111,39 @@
       alert("Error creating booking.");
     }
   });
-  </script>
+  </script> -->
+
+
+  <script>
+    document.getElementById("bookingForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+    
+      const data = Object.fromEntries(new FormData(this).entries());
+    
+      try {
+        const res = await fetch("/api/create-booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+    
+        const result = await res.json();
+        console.log("Server response:", result);
+    
+        if (res.ok && result.paymentUrl) {
+          // redirect to stripe checkout
+          window.location.href = result.paymentUrl;
+        } else {
+          alert("Error creating booking: " + (result.error || "Unknown error"));
+        }
+    
+      } catch (err) {
+        console.error("Network error:", err);
+        alert("Network error — please try again.");
+      }
+    });
+    </script>
+    
 
 
 
