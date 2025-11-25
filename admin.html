@@ -121,6 +121,57 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
 });
 
 // LOAD BOOKINGS
+// async function loadBookings() {
+//   bookingsStatus.textContent = "Loading bookings...";
+//   const tbody = document.querySelector("#bookingsTable tbody");
+//   tbody.innerHTML = "";
+
+//   try {
+//     const token = sessionStorage.getItem("adminToken");
+
+//     const res = await fetch("/api/get-bookings", {
+//     headers: {
+//         "Authorization": `Bearer ${token}`
+//     }
+//     });
+
+//     if (res.status === 401) {
+//       bookingsStatus.textContent = "Not authorized.";
+//       loginSection.style.display = "block";
+//       bookingsSection.style.display = "none";
+//       return;
+//     }
+
+//     const bookings = await res.json();
+//     bookingsStatus.textContent = "";
+
+//     if (bookings.length === 0) {
+//       bookingsStatus.textContent = "No bookings found.";
+//       return;
+//     }
+
+//     bookings.forEach(b => {
+//       const dt = new Date(b.createdAt).toLocaleString();
+//       const row = `
+//         <tr>
+//           <td>${dt}</td>
+//           <td>${b.fullName || ""}</td>
+//           <td>${b.tripType || ""}</td>
+//           <td>${b.vehicle || ""}</td>
+//           <td>${b.pickup || ""} → ${b.dropoff || ""}</td>
+//           <td>£${b.price || ""}</td>
+//           <td><span class="${b.paid ? "tag-paid" : "tag-unpaid"}">${b.paid ? "Paid" : "Unpaid"}</span></td>
+//         </tr>
+//       `;
+//       tbody.insertAdjacentHTML("beforeend", row);
+//     });
+
+//   } catch {
+//     bookingsStatus.textContent = "Error loading bookings.";
+//   }
+// }
+
+
 async function loadBookings() {
   bookingsStatus.textContent = "Loading bookings...";
   const tbody = document.querySelector("#bookingsTable tbody");
@@ -130,15 +181,16 @@ async function loadBookings() {
     const token = sessionStorage.getItem("adminToken");
 
     const res = await fetch("/api/get-bookings", {
-    headers: {
-        "Authorization": `Bearer ${token}`
-    }
+      method: "GET",
+      headers: {
+        "Authorization": "Bearer " + token
+      }
     });
 
-    if (res.status === 401) {
-      bookingsStatus.textContent = "Not authorized.";
-      loginSection.style.display = "block";
-      bookingsSection.style.display = "none";
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("Response error:", errorText);
+      bookingsStatus.textContent = "Error loading bookings.";
       return;
     }
 
@@ -166,10 +218,12 @@ async function loadBookings() {
       tbody.insertAdjacentHTML("beforeend", row);
     });
 
-  } catch {
+  } catch (err) {
+    console.error("JS error:", err);
     bookingsStatus.textContent = "Error loading bookings.";
   }
 }
+
 </script>
 
 <footer>
