@@ -1354,12 +1354,24 @@ p {
 }
 
 /* Bookings section */
+/* .table-box {
+  background: #000;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+} */
+
 .table-box {
+  width: 100vw;        /* full viewport width */
+  margin-left: calc(50% - 50vw); /* pull box to the very left edge */
+  margin-right: calc(50% - 50vw); /* pull box to the very right edge */
+
   background: #000;
   padding: 25px;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
+
 
 /* Table */
 #bookingsTable {
@@ -1452,4 +1464,379 @@ p {
   padding: 4px 8px;
   border-radius: 6px;
   color: white;
+}
+
+
+
+
+/* Smooth fade animation */
+.smooth-hide, .smooth-show {
+  transition: opacity 0.3s ease, height 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+}
+
+.smooth-hide {
+  opacity: 0;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: none;
+}
+
+.smooth-show {
+  opacity: 1;
+  height: auto;
+}
+
+/* Uber-style input boxes */
+/* .input-box {
+  background: #f4f4f6;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.input-box label {
+  color: #6d6d6d;
+  font-size: 14px;
+}
+
+.input-box input,
+.input-box select {
+  border: none;
+  background: transparent;
+  font-size: 17px;
+  padding: 5px 0;
+  outline: none;
+}
+
+/* Icons similar to Uber */
+/* .input-icon {
+  font-size: 18px;
+  margin-right: 8px;
+} */
+
+
+.input-box {
+  display: block;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.input-box label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fafafa;
+  transition: 0.25s;
+}
+
+.input-box input:focus {
+  border-color: #000;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.08);
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 18px;
+}
+
+.smooth-show {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.35s ease;
+}
+
+.smooth-show.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.trip-tabs {
+  display: flex;
+  background: #000;
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 15px;
+  gap: 4px;
+}
+
+.trip-tab {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: transparent;
+  color: #fff;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.trip-tab.active {
+  background: #1fb039;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.trip-tab:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+/* Journey Type (Airport / City / Other) */
+.journey-type-buttons {
+  display: flex;
+  background: #000;
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 15px;
+  gap: 4px;
+}
+
+.journey-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.journey-btn.active {
+  background: #1fb039;
+  color: #ffffff;
+}
+
+#returnFields,
+#airportExtras,
+#waitHoursWrapper,
+#hourlyWrapper,
+#extraStopAddressWrapper {
+  display: none;
+}
+
+
+
+/* ================================
+   PREMIUM CAR CLASS BUTTONS
+   ================================ */
+   .car-class-buttons {
+    display: flex;
+    background: #000;
+    border-radius: 999px;
+    padding: 4px;
+    margin-bottom: 15px;
+    gap: 4px;
+  }
+  
+  .car-btn {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  
+  .car-btn.active {
+    background: #1fb039;
+    border-color: #1fb039;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  
+
+
+  /* =======================================
+   PREMIUM FORM FIELD STYLING
+======================================= */
+
+.input-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.input-box label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-box .icon {
+  font-size: 18px;
+  color: #000;
+}
+
+/* Premium dropdown */
+.styled-select select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 2px solid #000;
+  background: #fff;
+  font-size: 1rem;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.styled-select select:focus {
+  border-color: #1fb039;
+  box-shadow: 0 0 6px rgba(0,128,0,0.3);
+}
+
+/* Dropdown arrow */
+.styled-select {
+  position: relative;
+}
+
+.styled-select::after {
+  content: "\f078"; /* Font Awesome chevron-down */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  right: 14px;
+  top: 55%;
+  transform: translateY(-50%);
+  color: #000;
+  pointer-events: none;
+  font-size: 14px;
+}
+
+/* Two dropdowns on same row */
+.two-column-row {
+  display: flex;
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .two-column-row {
+    flex-direction: column;
+  }
+}
+
+/* Premium input fields */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="email"],
+input[type="tel"],
+input[type="number"] {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 2px solid #000;
+  background: #fff;
+  font-size: 1rem;
+  transition: 0.25s;
+}
+
+input:focus {
+  border-color: #1fb039;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(0,128,0,0.3);
+}
+
+
+
+
+/* =======================================
+   PREMIUM DROPDOWN (Matches Buttons)
+======================================= */
+.premium-select {
+  position: relative;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.premium-select select {
+  width: 100%;
+  padding: 16px;
+  background: #000;            /* same as tab buttons */
+  color: #fff;
+  border: 3px solid #000;
+  border-radius: 40px;         /* round like buttons */
+  font-size: 1.1rem;
+  font-weight: 600;
+  appearance: none;            /* hide default arrow */
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* dropdown arrow */
+.premium-select::after {
+  content: "\f078"; /* FontAwesome arrow */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 16px;
+  color: #fff;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Green active state on selection (not placeholder) */
+.premium-select select:not([value=""]) {
+  background: #1fb039 !important;
+  color: #fff;
+  border-color: #1fb039;
+}
+
+/* Focus effect */
+.premium-select select:focus {
+  outline: none;
+  background: #1fb039;
+  border-color: #1fb039;
+  color: #fff;
 }
