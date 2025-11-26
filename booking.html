@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places">
+  </script>
+
 </head>
 <body>
   <header>
@@ -205,7 +209,7 @@
     
 
 
-  <script>
+  <!-- <script>
     (function(){
       const tripTabs = document.querySelectorAll(".trip-tab");
       const journeyBtns = document.querySelectorAll(".journey-btn");
@@ -349,7 +353,264 @@
       }
     }
 
+    </script> -->
+
+
+    <script>
+      (function(){
+        const tripTabs = document.querySelectorAll(".trip-tab");
+        const journeyBtns = document.querySelectorAll(".journey-btn");
+    
+        const tripType = document.getElementById("tripType");
+        const standardLocationType = document.getElementById("standardLocationType");
+    
+        const airportWrap  = document.getElementById("airportSelectWrapper");
+        const cityWrap     = document.getElementById("citySelectWrapper");
+        const addressWrap  = document.getElementById("addressFields");
+    
+        const returnFields     = document.getElementById("returnFields");
+        const waitHoursWrapper = document.getElementById("waitHoursWrapper");
+        const hourlyWrapper    = document.getElementById("hourlyWrapper");
+    
+        const airportExtras = document.getElementById("airportExtras");
+    
+        const extraStops = document.getElementById("extraStops");
+        const extraStopAddressWrapper = document.getElementById("extraStopAddressWrapper");
+    
+        // CAR CLASS
+        const carButtons   = document.querySelectorAll(".car-btn");
+        const vehicleInput = document.getElementById("vehicle");
+    
+        // =======================
+        // SET HOURLY MINIMUM BASED ON VEHICLE
+        // =======================
+        function updateHourlyMinHours() {
+          const hoursInput = document.getElementById("hours");
+          if (!hoursInput || !vehicleInput) return;
+    
+          const vehicle = vehicleInput.value;
+    
+          if (vehicle === "business") {
+            hoursInput.min = 4;
+            hoursInput.value = 4;
+          } else {
+            hoursInput.min = 5;
+            hoursInput.value = 5;
+          }
+        }
+    
+        // =======================
+        // TRIP TABS (ONE WAY / RETURN / WAIT & RETURN / BY THE HOUR)
+        // =======================
+        function setActiveTrip(mode){
+          tripType.value = mode;
+    
+          tripTabs.forEach(btn =>
+            btn.classList.toggle("active", btn.dataset.mode === mode)
+          );
+    
+          // Show / hide sections
+          returnFields.style.display     = (mode === "return")      ? "block" : "none";
+          waitHoursWrapper.style.display = (mode === "wait_return") ? "block" : "none";
+          hourlyWrapper.style.display    = (mode === "hourly")      ? "block" : "none";
+    
+          if (mode === "hourly") {
+            // Hide fixed route choices
+            document.getElementById("journeyTypeButtons").style.display = "none";
+            airportWrap.style.display  = "none";
+            cityWrap.style.display     = "none";
+            airportExtras.style.display = "none";
+            addressWrap.style.display  = "block";  // we need pickup & dropoff
+          } else {
+            document.getElementById("journeyTypeButtons").style.display = "flex";
+            handleJourneyType(standardLocationType.value);
+          }
+        }
+    
+        // =======================
+        // JOURNEY TYPE (AIRPORT / CITY / OTHER)
+        // =======================
+        function handleJourneyType(type){
+          standardLocationType.value = type;
+    
+          journeyBtns.forEach(btn =>
+            btn.classList.toggle("active", btn.dataset.type === type)
+          );
+    
+          if (type === "airport") {
+            airportWrap.style.display   = "block";
+            cityWrap.style.display      = "none";
+            addressWrap.style.display   = "none";
+            airportExtras.style.display = "block";
+          } else if (type === "city") {
+            airportWrap.style.display   = "none";
+            cityWrap.style.display      = "block";
+            addressWrap.style.display   = "none";
+            airportExtras.style.display = "none";
+          } else if (type === "other") {
+            airportWrap.style.display   = "none";
+            cityWrap.style.display      = "none";
+            addressWrap.style.display   = "block";
+            airportExtras.style.display = "none";
+          }
+        }
+    
+        // Attach events for trip tabs
+        tripTabs.forEach(btn => {
+          btn.addEventListener("click", () => setActiveTrip(btn.dataset.mode));
+        });
+    
+        // Attach events for journey buttons
+        journeyBtns.forEach(btn => {
+          btn.addEventListener("click", () => handleJourneyType(btn.dataset.type));
+        });
+    
+        // Extra stops
+        if (extraStops && extraStopAddressWrapper) {
+          extraStops.addEventListener("change", () => {
+            extraStopAddressWrapper.style.display = extraStops.checked ? "block" : "none";
+          });
+        }
+    
+        // Car class selector
+        carButtons.forEach(btn => {
+          btn.addEventListener("click", () => {
+            carButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+    
+            vehicleInput.value = btn.dataset.car;
+            updateHourlyMinHours();
+          });
+        });
+    
+        // Initial state
+        setActiveTrip("one_way");
+        updateHourlyMinHours();
+      })();
     </script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const pickupInput  = document.getElementById("pickup");
+    const dropoffInput = document.getElementById("dropoff");
+
+    const directionField       = document.getElementById("direction");
+    const pickupPostcodeField  = document.getElementById("pickupPostcode");
+    const pickupSurchargeField = document.getElementById("pickupSurcharge");
+
+    // Safety check
+    if (!pickupInput || !dropoffInput) return;
+    if (!window.google || !google.maps || !google.maps.places) return;
+
+    const options = {
+      componentRestrictions: { country: "GB" },
+      fields: ["formatted_address", "address_components"]
+    };
+
+    const pickupAC  = new google.maps.places.Autocomplete(pickupInput, options);
+    const dropoffAC = new google.maps.places.Autocomplete(dropoffInput, options);
+
+    function extractPostcode(components) {
+      const pc = components.find(c => c.types.includes("postal_code"));
+      return pc ? pc.long_name.toUpperCase() : "";
+    }
+
+    function getAreaSurcharge(postcode) {
+      if (!postcode) return 0;
+
+      if (postcode.startsWith("PO21")) return 15; // Bognor Regis
+
+      if (
+        postcode.startsWith("PO20") || postcode.startsWith("PO18") ||
+        postcode.startsWith("PO22") || postcode.startsWith("BN17") ||
+        postcode.startsWith("RH20")
+      ) return 20; // Middleton / Wittering / Selsey / Emsworth / etc.
+
+      if (postcode.startsWith("PO9") || postcode.startsWith("BN16"))
+        return 25; // Havant / East Preston
+
+      if (postcode.startsWith("BN11") || postcode.startsWith("PO1"))
+        return 30; // Worthing / Portsmouth
+
+      return 0;
+    }
+
+    function isChichesterPostcode(pc) {
+      if (!pc) return false;
+      return pc.startsWith("PO19") || pc.startsWith("PO18");
+    }
+
+    // When user selects PICKUP
+    pickupAC.addListener("place_changed", function () {
+      const place = pickupAC.getPlace();
+      if (!place.address_components) return;
+
+      const pc = extractPostcode(place.address_components);
+      pickupPostcodeField.value = pc;
+      pickupSurchargeField.value = getAreaSurcharge(pc);
+    });
+
+    // When user selects DROPOFF → determine direction
+    dropoffAC.addListener("place_changed", function () {
+      const place = dropoffAC.getPlace();
+      if (!place.address_components) return;
+
+      const dropPc   = extractPostcode(place.address_components);
+      const pickupPc = pickupPostcodeField.value;
+
+      const fromChichester = isChichesterPostcode(pickupPc);
+      const toChichester   = isChichesterPostcode(dropPc);
+
+      if (fromChichester && !toChichester) {
+        directionField.value = "CHICHESTER_TO_DEST";
+      } else if (!fromChichester && toChichester) {
+        directionField.value = "DEST_TO_CHICHESTER";
+      } else {
+        directionField.value = "OTHER";
+      }
+    });
+  });
+</script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("bookingForm");
+    if (!form) return;
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault(); // STOP normal page reload
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch("/api/create-booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        console.log("Server response:", result);
+
+        if (res.ok && result.paymentUrl) {
+          // ✅ Redirect to Stripe
+          window.location.href = result.paymentUrl;
+        } else {
+          alert("Error creating booking. Please try again.");
+        }
+      } catch (err) {
+        console.error("Network / JS error:", err);
+        alert("Network error — please try again.");
+      }
+    });
+  });
+</script>
+
     
 
   
