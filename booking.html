@@ -54,8 +54,9 @@
   <br>
   <br>
   <br>
+  <br>
 
-  <section class="curved-section">
+  <!-- <section class="curved-section">
     <h2>Book Your Chauffeur</h2>
   
     <form id="bookingForm" class="enquiry-form">
@@ -77,19 +78,439 @@
         <option value="xl">Business XL</option>
       </select>
   
-      <!-- <input type="text" name="pickup" placeholder="Pickup Location *" required>
-      <input type="text" name="dropoff" placeholder="Dropoff Location *" required> -->
+      <input type="text" name="pickup" placeholder="Pickup Location *" required>
+      <input type="text" name="dropoff" placeholder="Dropoff Location *" required> 
 
       <input type="text" id="pickup" name="pickup" placeholder="Pickup Location *" required>
-      <input type="text" id="dropoff" name="dropoff" placeholder="Dropoff Location *" required>
+      <input type="text" id="dropoff" name="dropoff" placeholder="Dropoff Location *" required> 
 
       <input type="text" name="fullName" placeholder="Full Name *" required>
       <input type="tel" name="phone" placeholder="Phone Number *" required>
       <input type="email" name="email" placeholder="Email Address *" required>
   
       <button type="submit" class="submit-btn">Proceed to Payment</button>
-    </form>
-  </section>
+    </form> -->
+
+    <!-- <section class="curved-section">
+      <h2>Book Your Chauffeur</h2>
+    
+      <form id="bookingForm" class="enquiry-form">
+        <!-- Trip mode: Standard vs By the Hour -->
+        <!-- <div class="trip-mode-toggle">
+          <label>
+            <input type="radio" name="bookingType" value="standard" checked>
+            Standard Trip
+          </label>
+          <label>
+            <input type="radio" name="bookingType" value="hourly">
+            By the Hour
+          </label>
+        </div> -->
+    
+        <!-- Existing trip type (keep for backend compatibility) -->
+        <!-- <select name="tripType" id="tripType">
+          <option value="one_way">One Way</option>
+          <option value="return">Return</option>
+          <option value="wait_return">Wait &amp; Return</option>
+        </select> -->
+    
+        <!-- Car class (used in both modes) -->
+        <!-- <select name="vehicle" id="vehicle" required>
+          <option value="">Select Car Class *</option>
+          <option value="business">Business Class</option>
+          <option value="first">First Class</option>
+          <option value="xl">Business XL</option>
+        </select> -->
+    
+        <!-- STANDARD TRIP OPTIONS -->
+        <!-- <div id="standardOptions">
+          <!-- Direction (used for different pickup/drop-off tariffs) -->
+          <!-- <fieldset class="direction-fieldset">
+            <legend>Direction</legend>
+            <label>
+              <input type="radio" name="directionType" value="to_destination" checked>
+              From Chichester → Destination
+            </label>
+            <label>
+              <input type="radio" name="directionType" value="from_destination">
+              From Destination → Chichester
+            </label>
+          </fieldset> --> 
+
+          <!-- <div id="areaSurchargeWrapper">
+            <label for="areaCode">Additional Area (if applicable)</label>
+            <select id="areaCode" name="areaCode">
+              <option value="">Select area (optional)</option>
+              <option value="BOGNOR_REGIS">Bognor Regis (+£15)</option>
+              <option value="MIDDLETON_WITTERING_SELEY_EMSWORTH_MIDHURST_PETWORTH_ARUNDEL_YAPTON_BOSHAM_LITTLEHAMPTON_PULBOROUGH_AMBERLEY_STORRINGTON">
+                Middleton / Wittering / Selsey / Emsworth / Midhurst / Petworth / Arundel / Yapton / Bosham / Littlehampton / Pulborough / Amberley / Storrington (+£20)
+              </option>
+              <option value="HAVANT_EAST_PRESTON">Havant / East Preston (+£25)</option>
+              <option value="WORTHING_PORTSMOUTH">Worthing / Portsmouth (+£30)</option>
+            </select>
+          </div>
+           -->
+    
+          <!-- Location type: Airport / City / Other -->
+          <!-- <fieldset class="location-type-fieldset">
+            <legend>Journey Type</legend>
+            <label>
+              <input type="radio" name="standardLocationType" value="airport" checked>
+              Airport (fixed fare)
+            </label>
+            <label>
+              <input type="radio" name="standardLocationType" value="city">
+              City (fixed fare)
+            </label>
+            <label>
+              <input type="radio" name="standardLocationType" value="other">
+              Other – enter pickup &amp; drop-off
+            </label>
+          </fieldset> -->
+    
+          <!-- Airport dropdown -->
+          <!-- <div id="airportSelectWrapper">
+            <select id="airportSelect" name="airportCode">
+              <option value="">Select Airport *</option>
+              <option value="LHR">London Heathrow Airport (LHR)</option>
+              <option value="LGW">London Gatwick Airport (LGW)</option>
+              <option value="STN">London Stanstead Airport (STN)</option>
+              <option value="SOU">Southampton Airport (SOU)</option>
+              <option value="SOU_CRUISE">Southampton Cruise</option>
+              <option value="LTN">London Luton Airport (LTN)</option>
+              <option value="BOH">Bournemouth Airport (BOH)</option>
+              <option value="LCY">London City Airport (LCY)</option>
+              <option value="BQH">London Biggin Hill Airport (BQH)</option>
+              <option value="FAB">Farnborough Airport (FAB)</option>
+            </select>
+          </div> -->
+    
+          <!-- City dropdown -->
+          <!-- <div id="citySelectWrapper" style="display:none;">
+            <select id="citySelect" name="cityCode">
+              <option value="">Select City *</option>
+              <option value="LONDON_CENTRAL">Central London</option>
+              <option value="BRIGHTON_HOVE">Brighton and Hove</option>
+            </select>
+          </div>
+        </div> -->
+    
+        <!-- BY THE HOUR OPTIONS -->
+        <!-- <div id="hourlyOptions" style="display:none;">
+          <label>
+            Hours (15 miles / hour included)
+            <input type="number" name="hours" id="hours" min="4" step="1" value="4">
+          </label>
+          <p style="font-size:0.9rem;">
+            Minimum: Business 4h, First 5h, XL 5h. Additional miles charged as per tariff.
+          </p>
+        </div> -->
+    
+        <!-- Address fields (used for Standard “Other” + all Hourly trips) -->
+        <!-- <div id="addressFields" style="display:none;">
+          <input
+            type="text"
+            id="pickup"
+            name="pickup"
+            placeholder="Pickup location (address, airport, hotel, …) *"
+          >
+          <input
+            type="text"
+            id="dropoff"
+            name="dropoff"
+            placeholder="Drop-off location (address, airport, hotel, …) *"
+          >
+        </div> -->
+    
+        <!-- Date & Time (shared) -->
+        <!-- <input type="date" name="date" id="date" required>
+        <input type="time" name="time" id="time" required> -->
+    
+        <!-- Extras -->
+        <!-- <fieldset class="extras-fieldset">
+          <legend>Options</legend>
+          <label>
+            <input type="checkbox" name="returnJourney" value="yes">
+            Return Journey
+          </label>
+          <label>
+            <input type="checkbox" name="childSeat" value="yes">
+            Child seat required
+          </label>
+          <label>
+            <input type="checkbox" name="extraWaiting" value="yes">
+            Extra waiting time
+          </label>
+          <label>
+            <input type="checkbox" name="extraStops" value="yes">
+            Extra stops
+          </label>
+        </fieldset> -->
+    
+        <!-- Passenger details -->
+        <!-- <input type="text" name="fullName" placeholder="Full Name *" required>
+        <input type="tel" name="phone" placeholder="Phone Number *" required>
+        <input type="email" name="email" placeholder="Email Address *" required>
+    
+        <button type="submit" class="submit-btn">Proceed to Payment</button>
+      </form>
+    </section>  -->
+
+  
+
+    <section class="curved-section">
+      <h2>Book Your Chauffeur</h2>
+      <form id="bookingForm" class="enquiry-form">
+
+    
+ <!-- ============= 🔹 JOURNEY TYPE TABS (Top) ============= -->
+    <div class="trip-tabs">
+      <button type="button" class="trip-tab active" data-mode="one_way">One Way</button>
+      <button type="button" class="trip-tab" data-mode="return">Return</button>
+      <button type="button" class="trip-tab" data-mode="wait_return">Wait & Return</button>
+      <button type="button" class="trip-tab" data-mode="hourly">By The Hour</button>
+    </div>
+
+    <input type="hidden" id="tripType" name="tripType" value="one_way">
+
+<!-- ============= 🔹 CAR CLASS ============= -->
+<!-- <select name="vehicle" id="vehicle" required>
+  <option value="">Select Car Class *</option>
+  <option value="business">Business Class</option>
+  <option value="first">First Class</option>
+  <option value="xl">Business XL</option>
+</select> -->
+
+
+<div class="car-class-buttons">
+  <button type="button" class="car-btn active" data-car="business">Business Class</button>
+  <button type="button" class="car-btn" data-car="first">First Class</button>
+  <button type="button" class="car-btn" data-car="xl">Business XL</button>
+</div>
+
+<input type="hidden" name="vehicle" id="vehicle" value="business">
+
+<!-- ============= 🔹 JOURNEY TYPE BUTTONS (Airport / City / Other) ============= -->
+<div class="journey-type-buttons" id="journeyTypeButtons">
+  <button type="button" class="journey-btn active" data-type="airport">Airport</button>
+  <button type="button" class="journey-btn" data-type="city">City</button>
+  <button type="button" class="journey-btn" data-type="other">Other</button>
+</div>
+<input type="hidden" id="standardLocationType" name="standardLocationType" value="airport">
+
+<!-- AIRPORT DROPDOWN -->
+<!-- <div id="airportSelectWrapper">
+  <select id="airportSelect" name="airportCode">
+    <option value="">Select Airport *</option>
+    <option value="LHR">London Heathrow Airport (LHR)</option>
+    <option value="LGW">London Gatwick Airport (LGW)</option>
+    <option value="STN">London Stanstead Airport (STN)</option>
+    <option value="SOU">Southampton Airport (SOU)</option>
+    <option value="SOU_CRUISE">Southampton Cruise</option>
+    <option value="LTN">London Luton Airport (LTN)</option>
+    <option value="BOH">Bournemouth Airport (BOH)</option>
+    <option value="LCY">London City Airport (LCY)</option>
+    <option value="BQH">London Biggin Hill Airport (BQH)</option>
+    <option value="FAB">Farnborough Airport (FAB)</option>
+  </select>
+</div> -->
+
+<div id="airportSelectWrapper" class="premium-select">
+  <select id="airportSelect" name="airportCode" required>
+    <option value="">Select Airport *</option>
+    <option value="LHR">London Heathrow Airport (LHR)</option>
+    <option value="LGW">London Gatwick Airport (LGW)</option>
+    <option value="STN">London Stanstead Airport (STN)</option>
+    <option value="SOU">Southampton Airport (SOU)</option>
+    <option value="SOU_CRUISE">Southampton Cruise</option>
+    <option value="LTN">London Luton Airport (LTN)</option>
+    <option value="BOH">Bournemouth Airport (BOH)</option>
+    <option value="LCY">London City Airport (LCY)</option>
+    <option value="BQH">London Biggin Hill Airport (BQH)</option>
+    <option value="FAB">Farnborough Airport (FAB)</option>
+  </select>
+</div>
+
+
+<!-- CITY DROPDOWN -->
+<!-- <div id="citySelectWrapper" style="display:none;">
+  <select id="citySelect" name="cityCode">
+    <option value="">Select City *</option>
+    <option value="LONDON_CENTRAL">Central London</option>
+    <option value="BRIGHTON_HOVE">Brighton & Hove</option>
+  </select>
+</div> -->
+
+<div id="citySelectWrapper" class="premium-select">
+  <select id="citySelect" name="cityCode">
+    <option value="">Select City *</option>
+    <option value="LONDON_CENTRAL">Central London</option>
+    <option value="BRIGHTON_HOVE">Brighton & Hove</option>
+  </select>
+</div>
+
+
+<!-- ADDRESS FIELDS (Shown when “Other” OR Hourly selected) -->
+<div id="addressFields" style="display:none;">
+  <input type="text" id="pickup" name="pickup" placeholder="Pickup location *">
+  <input type="text" id="dropoff" name="dropoff" placeholder="Drop-off location *">
+</div>
+
+<!-- ============= 🔹 DATE & TIME (OUTBOUND) ============= -->
+<input type="date" id="date" name="date" required>
+<input type="time" id="time" name="time" required>
+
+<!-- ============= 🔹 RETURN FIELDS ============= -->
+<div id="returnFields" style="display:none;">
+  <h4>Return Journey Details</h4>
+  <input type="date" id="returnDate" name="returnDate">
+  <input type="time" id="returnTime" name="returnTime">
+</div>
+
+<!-- ============= 🔹 WAIT & RETURN HOURS ============= -->
+<!-- <div id="waitHoursWrapper" style="display:none;">
+  <label>How many hours should the driver wait?</label>
+  <select id="waitHours" name="waitHours">
+    <option value="">Select hours *</option>
+    <option value="1">1 hour</option>
+    <option value="2">2 hours</option>
+    <option value="3">3 hours</option>
+    <option value="4">4 hours</option>
+    <option value="5">5 hours</option>
+    <option value="6">6 hours</option>
+  </select>
+</div> -->
+
+
+<div id="waitHoursWrapper" class="premium-select">
+  <label>How many hours should the driver wait?</label>
+  <select id="waitHours" name="waitHours">
+    <option value="">Select hours *</option>
+    <option value="1">1 hour</option>
+    <option value="2">2 hours</option>
+    <option value="3">3 hours</option>
+    <option value="4">4 hours</option>
+    <option value="5">5 hours</option>
+    <option value="6">6 hours</option>
+  </select>
+</div>
+
+
+
+<!-- ============= 🔹 FLIGHT NUMBER & TERMINAL (AIRPORT ONLY) ============= -->
+<div id="airportExtras" style="display:none;">
+  <input type="text" id="terminal" name="terminal" placeholder="Terminal *">
+  <input type="text" id="flightNumber" name="flightNumber" placeholder="Flight number *">
+</div>
+
+<!-- ============= 🔹 HOURLY FIELDS ============= -->
+<div id="hourlyWrapper" style="display:none;">
+  <label>Hours (minimum 4–5 depending on vehicle)</label>
+  <input type="number" min="4" id="hours" name="hours" value="4">
+</div>
+
+<!-- ============= 🔹 EXTRAS ============= -->
+<fieldset class="extras-fieldset">
+  <legend>Options</legend>
+
+  <label>
+    <input type="checkbox" id="childSeat" name="childSeat" value="yes">
+    Child seat
+  </label>
+
+  <label>
+    <input type="checkbox" id="extraStops" name="extraStops" value="yes">
+    Extra stop(s)
+  </label>
+</fieldset>
+
+<!-- EXTRA STOP ADDRESS -->
+<div id="extraStopAddressWrapper" style="display:none;">
+  <input type="text" id="extraStopAddress" name="extraStopAddress" placeholder="Enter stop address *">
+</div>
+
+<!-- ============= 🔹 PASSENGER DETAILS ============= -->
+<input type="text" name="fullName" placeholder="Full Name *" required>
+<input type="tel" name="phone" placeholder="Phone Number *" required>
+<input type="email" name="email" placeholder="Email Address *" required>
+
+<button type="submit" class="submit-btn">Proceed to Payment</button>
+
+<!-- HIDDEN LOGIC VARIABLES -->
+<input type="hidden" id="direction" name="direction">
+<input type="hidden" id="pickupPostcode" name="pickupPostcode">
+<input type="hidden" id="pickupSurcharge" name="pickupSurcharge">
+
+    
+        <!-- <button type="submit" class="submit-btn">Proceed to Payment</button> -->
+
+        
+
+        <!-- HIDDEN LOGIC FIELDS -->
+        <!-- <input type="hidden" id="direction" name="direction">
+        <input type="hidden" id="pickupPostcode" name="pickupPostcode">
+        <input type="hidden" id="pickupSurcharge" name="pickupSurcharge"> -->
+
+      </form>
+    </section>
+    
+    
+
+    <!-- <form id="bookingForm" class="enquiry-form">
+
+      <!-- Pricing mode selector -->
+      <!-- <select name="pricingMode" id="pricingMode" required>
+        <option value="">Select Booking Type *</option>
+        <option value="fixed_airport">Airport – Fixed Price</option>
+        <option value="fixed_city">City to City – Fixed Price</option>
+        <option value="distance">Other – Price by Distance</option>
+      </select> -->
+    
+      <!-- Airport fixed routes -->
+      <!-- <select name="airportRoute" id="airportRoute" style="display:none;">
+        <option value="">Select Airport Route *</option>
+        <!-- EXAMPLES – change these to your real routes and keys -->
+        <!-- <option value="chichester_gatwick">Chichester ↔ Gatwick</option>
+        <option value="chichester_heathrow">Chichester ↔ Heathrow</option>
+      </select> -->
+    
+      <!-- City fixed routes -->
+      <!-- <select name="cityRoute" id="cityRoute" style="display:none;">
+        <option value="">Select City Route *</option>
+        <!-- EXAMPLES – change to your real fixed city routes -->
+        <!-- <option value="chichester_london">Chichester ↔ London</option>
+        <option value="chichester_brighton">Chichester ↔ Brighton</option>
+      </select>  -->
+    
+      <!-- <select name="tripType" required>
+        <option value="">Select Trip Type *</option>
+        <option value="one_way">One Way</option>
+        <option value="return">Return</option>
+        <option value="wait_return">Wait & Return</option>
+      </select>
+    
+      <input type="date" name="date" required>
+      <input type="time" name="time" required>
+    
+      <select name="vehicle" required>
+        <option value="">Select Vehicle *</option>
+        <option value="business">Business Class</option>
+        <option value="first">First Class</option>
+        <option value="xl">Business XL</option>
+      </select> -->
+    
+      <!-- Add IDs so Google Places autocomplete works -->
+      <!-- <input type="text" id="pickup" name="pickup" placeholder="Pickup Location *" required>
+      <input type="text" id="dropoff" name="dropoff" placeholder="Dropoff Location *" required>
+    
+      <input type="text" name="fullName" placeholder="Full Name *" required>
+      <input type="tel" name="phone" placeholder="Phone Number *" required>
+      <input type="email" name="email" placeholder="Email Address *" required>
+    
+      <button type="submit" class="submit-btn">Proceed to Payment</button>
+    </form> --> 
+    
+  <!-- </section> -->
   
   <!-- <script>
   document.getElementById("bookingForm").addEventListener("submit", async function(e) {
@@ -114,7 +535,7 @@
   </script> -->
 
 
-  <script>
+  <!-- <script>
     document.getElementById("bookingForm").addEventListener("submit", async function(e) {
       e.preventDefault();
     
@@ -142,15 +563,355 @@
         alert("Network error — please try again.");
       }
     });
-    </script>
+    </script> -->
     
 
 
+    <!-- <script>
+      (function () {
+        const form = document.getElementById("bookingForm");
+        const bookingTypeRadios = document.querySelectorAll('input[name="bookingType"]');
+    
+        const standardOptions = document.getElementById("standardOptions");
+        const hourlyOptions   = document.getElementById("hourlyOptions");
+    
+        const addressFields   = document.getElementById("addressFields");
+        const pickupInput     = document.getElementById("pickup");
+        const dropoffInput    = document.getElementById("dropoff");
+    
+        const locationTypeRadios = document.querySelectorAll('input[name="standardLocationType"]');
+        const airportSelectWrapper = document.getElementById("airportSelectWrapper");
+        const citySelectWrapper    = document.getElementById("citySelectWrapper");
+        const airportSelect        = document.getElementById("airportSelect");
+        const citySelect           = document.getElementById("citySelect");
+        const hoursInput           = document.getElementById("hours");
+    
+        function setAddressRequired(isRequired) {
+          if (!pickupInput || !dropoffInput) return;
+          if (isRequired) {
+            pickupInput.setAttribute("required", "required");
+            dropoffInput.setAttribute("required", "required");
+          } else {
+            pickupInput.removeAttribute("required");
+            dropoffInput.removeAttribute("required");
+          }
+        }
+    
+        // function showAddressFields(show) {
+        //   if (!addressFields) return;
+        //   addressFields.style.display = show ? "block" : "none";
+        //   setAddressRequired(show);
+        // }
+        function showAddressFields(show) {
+          if (!addressFields) return;
 
+          if (show) {
+            addressFields.style.display = "block";
+            setTimeout(() => {
+              pickupWrapper.classList.add("show");
+              dropoffWrapper.classList.add("show");
+            }, 50);
+          } else {
+            pickupWrapper.classList.remove("show");
+            dropoffWrapper.classList.remove("show");
 
+            setTimeout(() => {
+              addressFields.style.display = "none";
+            }, 200);
+          }
+        }
+
+    
+        function handleStandardLocationChange() {
+          const selected = document.querySelector('input[name="standardLocationType"]:checked');
+          if (!selected) return;
+    
+          const type = selected.value;
+    
+          if (type === "airport") {
+            airportSelectWrapper.style.display = "block";
+            citySelectWrapper.style.display = "none";
+            citySelect.value = "";
+            showAddressFields(false); // airports are fixed – we’ll fill pickup/dropoff later if needed
+          } else if (type === "city") {
+            airportSelectWrapper.style.display = "none";
+            citySelectWrapper.style.display = "block";
+            airportSelect.value = "";
+            showAddressFields(false); // cities are fixed
+          } else if (type === "other") {
+            airportSelectWrapper.style.display = "none";
+            citySelectWrapper.style.display = "none";
+            airportSelect.value = "";
+            citySelect.value = "";
+            showAddressFields(true); // user must enter pickup & dropoff
+          }
+        }
+    
+        // function handleBookingTypeChange() {
+        //   const selected = document.querySelector('input[name="bookingType"]:checked');
+        //   if (!selected) return;
+    
+        //   if (selected.value === "standard") {
+        //     standardOptions.style.display = "block";
+        //     hourlyOptions.style.display = "none";
+    
+        //     // For standard: address fields only if "Other" is chosen
+        //     handleStandardLocationChange();
+        //   } else {
+        //     standardOptions.style.display = "none";
+        //     hourlyOptions.style.display = "block";
+    
+        //     // For hourly: always show pickup & dropoff
+        //     showAddressFields(true);
+        //   }
+        // }
+
+        function handleBookingTypeChange() {
+          const selected = document.querySelector('input[name="bookingType"]:checked');
+          if (!selected) return;
+
+          // tripType element
+          const tripTypeSelect = document.getElementById("tripType");
+
+          if (selected.value === "standard") {
+            standardOptions.style.display = "block";
+            hourlyOptions.style.display = "none";
+
+            // Show trip type
+            tripTypeSelect.style.display = "block";
+            tripTypeSelect.required = true;
+
+            handleStandardLocationChange();
+          } else {
+            standardOptions.style.display = "none";
+            hourlyOptions.style.display = "block";
+
+            // Hide trip type entirely
+            tripTypeSelect.style.display = "none";
+            tripTypeSelect.required = false;
+            tripTypeSelect.value = "one_way"; // reset safely
+
+            showAddressFields(true);
+          }
+        }
+
+    
+        // Attach listeners
+        bookingTypeRadios.forEach(r => r.addEventListener("change", handleBookingTypeChange));
+        locationTypeRadios.forEach(r => r.addEventListener("change", handleStandardLocationChange));
+    
+        // Initial state on page load
+        handleBookingTypeChange();
+    
+        // Form submit → call your API
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+    
+          // Basic front-end validation for fixed routes:
+          const bookingType = document.querySelector('input[name="bookingType"]:checked').value;
+          const locationType = document.querySelector('input[name="standardLocationType"]:checked')?.value;
+    
+          if (bookingType === "standard") {
+            if (locationType === "airport" && !airportSelect.value) {
+              alert("Please select an airport.");
+              return;
+            }
+            if (locationType === "city" && !citySelect.value) {
+              alert("Please select a city.");
+              return;
+            }
+          }
+    
+          const data = Object.fromEntries(new FormData(form).entries());
+    
+          try {
+            const res = await fetch("/api/create-booking", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data)
+            });
+    
+            const result = await res.json();
+    
+            if (result.paymentUrl) {
+              window.location.href = result.paymentUrl;
+            } else {
+              console.error("Booking error:", result);
+              alert("Error creating booking. Please try again.");
+            }
+          } catch (err) {
+            console.error("Network / JS error:", err);
+            alert("Error creating booking. Please try again.");
+          }
+        });
+      })();
+    </script> -->
+    
+
+    <!-- <script>
+      (function () {
+        const form = document.getElementById("bookingForm");
+    
+        // Segmented tabs
+        const tripTabs = document.querySelectorAll(".trip-tab");
+        const tripTypeInput = document.getElementById("tripType");
+        const bookingTypeInput = document.getElementById("bookingType");
+    
+        // Layout blocks
+        const standardOptions = document.getElementById("standardOptions");
+        const hourlyOptions   = document.getElementById("hourlyOptions");
+        const addressFields   = document.getElementById("addressFields");
+        const pickupInput     = document.getElementById("pickup");
+        const dropoffInput    = document.getElementById("dropoff");
+    
+        // Fixed route controls
+        const locationTypeRadios    = document.querySelectorAll('input[name="standardLocationType"]');
+        const airportSelectWrapper  = document.getElementById("airportSelectWrapper");
+        const citySelectWrapper     = document.getElementById("citySelectWrapper");
+        const airportSelect         = document.getElementById("airportSelect");
+        const citySelect            = document.getElementById("citySelect");
+    
+        const returnJourneyLabel    = document.getElementById("returnJourneyLabel");
+    
+        function setAddressRequired(isRequired) {
+          if (!pickupInput || !dropoffInput) return;
+          if (isRequired) {
+            pickupInput.setAttribute("required", "required");
+            dropoffInput.setAttribute("required", "required");
+          } else {
+            pickupInput.removeAttribute("required");
+            dropoffInput.removeAttribute("required");
+          }
+        }
+    
+        function showAddressFields(show) {
+          if (!addressFields) return;
+          addressFields.style.display = show ? "block" : "none";
+          setAddressRequired(show);
+        }
+    
+        function handleStandardLocationChange() {
+          const selected = document.querySelector('input[name="standardLocationType"]:checked');
+          if (!selected) return;
+    
+          const type = selected.value;
+    
+          if (type === "airport") {
+            airportSelectWrapper.style.display = "block";
+            citySelectWrapper.style.display = "none";
+            citySelect.value = "";
+            showAddressFields(false); // fixed route
+          } else if (type === "city") {
+            airportSelectWrapper.style.display = "none";
+            citySelectWrapper.style.display = "block";
+            airportSelect.value = "";
+            showAddressFields(false); // fixed route
+          } else if (type === "other") {
+            airportSelectWrapper.style.display = "none";
+            citySelectWrapper.style.display = "none";
+            airportSelect.value = "";
+            citySelect.value = "";
+            showAddressFields(true); // free-form pickup & dropoff
+          }
+        }
+    
+        function setMode(mode) {
+          // Update hidden fields
+          tripTypeInput.value = mode;
+          bookingTypeInput.value = (mode === "hourly") ? "hourly" : "standard";
+    
+          // Tab visual state
+          tripTabs.forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.mode === mode);
+          });
+    
+          if (mode === "hourly") {
+            // Hourly layout
+            standardOptions.style.display = "none";
+            hourlyOptions.style.display   = "block";
+            showAddressFields(true);        // always need pickup/dropoff
+            // Return journey checkbox not relevant for hourly
+            if (returnJourneyLabel) {
+              returnJourneyLabel.style.display = "none";
+            }
+          } else {
+            // Standard (one way / return / wait & return)
+            standardOptions.style.display = "block";
+            hourlyOptions.style.display   = "none";
+            handleStandardLocationChange();
+            if (returnJourneyLabel) {
+              returnJourneyLabel.style.display = "inline-block";
+            }
+          }
+        }
+    
+        // Attach tab clicks
+        tripTabs.forEach(btn => {
+          btn.addEventListener("click", () => {
+            const mode = btn.dataset.mode;
+            setMode(mode);
+          });
+        });
+    
+        // Attach radio change for Airport / City / Other
+        locationTypeRadios.forEach(radio => {
+          radio.addEventListener("change", handleStandardLocationChange);
+        });
+    
+        // Initial state on first load
+        setMode("one_way");
+    
+        // Form submit → call your API
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+    
+          const mode = tripTypeInput.value;
+          const locationType = document.querySelector('input[name="standardLocationType"]:checked')?.value;
+    
+          // Simple extra validation for fixed routes
+          if (mode !== "hourly") {
+            if (locationType === "airport" && !airportSelect.value) {
+              alert("Please select an airport.");
+              return;
+            }
+            if (locationType === "city" && !citySelect.value) {
+              alert("Please select a city.");
+              return;
+            }
+          }
+    
+          const data = Object.fromEntries(new FormData(form).entries());
+    
+          try {
+            const res = await fetch("/api/create-booking", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data)
+            });
+    
+            const result = await res.json();
+    
+            if (result.paymentUrl) {
+              window.location.href = result.paymentUrl;
+            } else {
+              console.error("Booking error:", result);
+              alert("Error creating booking. Please try again.");
+            }
+          } catch (err) {
+            console.error("Network / JS error:", err);
+            alert("Error creating booking. Please try again.");
+          }
+        });
+      })();
+    </script>
+    
 
   
-  
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 <footer>
   <p>Copyright All Rights Reserved © 2025 | Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom. Company Registration Number: 16871447 <a href="privacy_policy.html">Privacy Policy</a></p>
 </footer>
@@ -177,8 +938,256 @@
   document.querySelector('.menu-toggle').addEventListener('click', function() {
     document.querySelector('.nav-links').classList.toggle('active');
   });
-</script>
+</script> -->
 
+
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const pickupInput  = document.getElementById("pickup");
+      const dropoffInput = document.getElementById("dropoff");
+  
+      // Hidden fields
+      const directionField        = document.getElementById("direction");
+      const pickupPostcodeField   = document.getElementById("pickupPostcode");
+      const pickupSurchargeField  = document.getElementById("pickupSurcharge");
+  
+      if (!pickupInput || !dropoffInput) return;
+  
+      // Autocomplete Options
+      const options = {
+          componentRestrictions: { country: "GB" },
+          fields: ["formatted_address", "address_components"]
+      };
+  
+      // Initialise Google Autocomplete
+      const pickupAC  = new google.maps.places.Autocomplete(pickupInput, options);
+      const dropoffAC = new google.maps.places.Autocomplete(dropoffInput, options);
+  
+      // Postcode helper
+      function extractPostcode(components) {
+          const pc = components.find(c => c.types.includes("postal_code"));
+          return pc ? pc.long_name : "";
+      }
+  
+      // Surcharge lookup
+      function getAreaSurcharge(postcode) {
+          postcode = postcode.toUpperCase();
+  
+          if (postcode.startsWith("PO21")) return 15; // Bognor Regis
+  
+          if (
+              postcode.startsWith("PO20") || postcode.startsWith("PO18") ||
+              postcode.startsWith("PO22") || postcode.startsWith("BN17") ||
+              postcode.startsWith("RH20")
+          ) return 20; // Middleton / Wittering / Selsey / Emsworth / etc.
+  
+          if (postcode.startsWith("PO9") || postcode.startsWith("BN16"))
+              return 25; // Havant / East Preston
+  
+          if (postcode.startsWith("BN11") || postcode.startsWith("PO1"))
+              return 30; // Worthing / Portsmouth
+  
+          return 0;
+      }
+  
+      // Chichester zone detection
+      function isChichesterPostcode(pc) {
+          return pc.startsWith("PO19") || pc.startsWith("PO18");
+      }
+  
+      // When user selects PICKUP
+      pickupAC.addListener("place_changed", function () {
+          const place = pickupAC.getPlace();
+          if (!place.address_components) return;
+  
+          const pc = extractPostcode(place.address_components);
+          pickupPostcodeField.value = pc;
+  
+          const surcharge = getAreaSurcharge(pc);
+          pickupSurchargeField.value = surcharge;
+      });
+  
+      // When user selects DROPOFF → we also determine direction
+      dropoffAC.addListener("place_changed", function () {
+          const place = dropoffAC.getPlace();
+          if (!place.address_components) return;
+  
+          const dropPc = extractPostcode(place.address_components);
+          const pickupPc = pickupPostcodeField.value;
+  
+          const fromChichester = isChichesterPostcode(pickupPc);
+          const toChichester   = isChichesterPostcode(dropPc);
+  
+          if (fromChichester && !toChichester) {
+              directionField.value = "CHICHESTER_TO_DEST";
+          } else if (!fromChichester && toChichester) {
+              directionField.value = "DEST_TO_CHICHESTER";
+          } else {
+              directionField.value = "OTHER";
+          }
+      });
+  });
+  </script> -->
+
+
+  <script>
+    (function(){
+      const tripTabs = document.querySelectorAll(".trip-tab");
+      const journeyBtns = document.querySelectorAll(".journey-btn");
+    
+      const tripType = document.getElementById("tripType");
+      const standardLocationType = document.getElementById("standardLocationType");
+    
+      const airportWrap  = document.getElementById("airportSelectWrapper");
+      const cityWrap     = document.getElementById("citySelectWrapper");
+      const addressWrap  = document.getElementById("addressFields");
+    
+      const returnFields = document.getElementById("returnFields");
+      const waitHoursWrapper = document.getElementById("waitHoursWrapper");
+      const hourlyWrapper = document.getElementById("hourlyWrapper");
+    
+      const airportExtras = document.getElementById("airportExtras");
+    
+      const extraStops = document.getElementById("extraStops");
+      const extraStopAddressWrapper = document.getElementById("extraStopAddressWrapper");
+    
+      function setActiveTrip(mode){
+        tripType.value = mode;
+    
+        tripTabs.forEach(btn => btn.classList.toggle("active", btn.dataset.mode === mode));
+    
+        returnFields.style.display = (mode === "return") ? "block" : "none";
+        waitHoursWrapper.style.display = (mode === "wait_return") ? "block" : "none";
+        hourlyWrapper.style.display = (mode === "hourly") ? "block" : "none";
+    
+        if(mode === "hourly"){
+          airportWrap.style.display = "none";
+          cityWrap.style.display    = "none";
+          addressWrap.style.display = "block";
+        } else {
+          handleJourneyType(standardLocationType.value);
+        }
+
+          if (mode === "hourly") {
+            document.getElementById("journeyTypeButtons").style.display = "none";
+            airportWrap.style.display = "none";
+            cityWrap.style.display = "none";
+            addressWrap.style.display = "block"; // we need pickup & dropoff
+          } else {
+            document.getElementById("journeyTypeButtons").style.display = "flex";
+          }
+
+      }
+    
+      function handleJourneyType(type){
+        standardLocationType.value = type;
+    
+        journeyBtns.forEach(btn => btn.classList.toggle("active", btn.dataset.type === type));
+    
+        if(type === "airport"){
+          airportWrap.style.display = "block";
+          cityWrap.style.display = "none";
+          addressWrap.style.display = "none";
+          airportExtras.style.display = "block";
+        }
+        if(type === "city"){
+          airportWrap.style.display = "none";
+          cityWrap.style.display = "block";
+          addressWrap.style.display = "none";
+          airportExtras.style.display = "none";
+        }
+        if(type === "other"){
+          airportWrap.style.display = "none";
+          cityWrap.style.display = "none";
+          addressWrap.style.display = "block";
+          airportExtras.style.display = "none";
+        }
+      }
+    
+      tripTabs.forEach(btn => {
+        btn.addEventListener("click", () => setActiveTrip(btn.dataset.mode));
+      });
+    
+      journeyBtns.forEach(btn => {
+        btn.addEventListener("click", () => handleJourneyType(btn.dataset.type));
+      });
+    
+      extraStops.addEventListener("change", () => {
+        extraStopAddressWrapper.style.display = extraStops.checked ? "block" : "none";
+      });
+    
+      setActiveTrip("one_way");
+
+      // =======================
+      // CAR CLASS SELECTOR
+      // =======================
+      const carButtons = document.querySelectorAll(".car-btn");
+      const vehicleInput = document.getElementById("vehicle");
+
+      // =======================
+      // SET HOURLY MINIMUM BASED ON VEHICLE
+      // =======================
+      function updateHourlyMinHours() {
+        const vehicle = vehicleInput.value;
+        const hoursInput = document.getElementById("hours");
+
+        if (!hoursInput) return;
+
+        if (vehicle === "business") {
+          hoursInput.min = 4;
+          hoursInput.value = 4;
+        } else {
+          hoursInput.min = 5;
+          hoursInput.value = 5;
+        }
+      }
+
+
+      // carButtons.forEach(btn => {
+      //   btn.addEventListener("click", () => {
+      //     carButtons.forEach(b => b.classList.remove("active"));
+      //     btn.classList.add("active");
+
+      //     vehicleInput.value = btn.dataset.car;
+      //   });
+      // });
+
+      carButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          carButtons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          vehicleInput.value = btn.dataset.car;
+          updateHourlyMinHours();   // <---- ADD IT HERE
+        });
+      });
+
+
+    })();
+
+    // =======================
+    // SET HOURLY MINIMUM BASED ON VEHICLE
+    // =======================
+    function updateHourlyMinHours() {
+      const vehicle = vehicleInput.value;
+      const hoursInput = document.getElementById("hours");
+
+      if (!hoursInput) return;
+
+      if (vehicle === "business") {
+        hoursInput.min = 4;
+        hoursInput.value = 4;
+      } else {
+        hoursInput.min = 5;
+        hoursInput.value = 5;
+      }
+    }
+
+    </script>
+    
+
+  
 
 </body>
 </html>
