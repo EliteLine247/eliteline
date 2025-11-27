@@ -1,201 +1,112 @@
 // /api/update-booking.js
+
+import nodemailer from "nodemailer";
 import { connectToDatabase } from "../lib/mongodb.js";
 import { ObjectId } from "mongodb";
-import nodemailer from "nodemailer";
-
-// re-use same helper from create-booking
-async function generateBookingId(db) {
-  const last = await db
-    .collection("bookings")
-    .find({ bookingId: { $regex: /^ELITE-\d{6}$/ } })
-    .sort({ createdAt: -1 })
-    .limit(1)
-    .toArray();
-
-  let nextNumber = 1;
-
-  if (last[0]?.bookingId) {
-    const match = last[0].bookingId.match(/^ELITE-(\d{6})$/);
-    if (match) {
-      nextNumber = parseInt(match[1], 10) + 1;
-    }
-  }
-
-  return `ELITE-${String(nextNumber).padStart(6, "0")}`;
-}
-
-function buildJobTiming(body) {
-  if (!body.date || !body.time) return {};
-  const iso = `${body.date}T${body.time}:00`;
-  const jobDateObj = new Date(iso);
-  const dayOfWeek = jobDateObj.toLocaleDateString("en-GB", {
-    weekday: "long",
-  });
-  return { jobDateTime: jobDateObj, jobDayOfWeek: dayOfWeek };
-}
-
-async function sendUpdateEmail(booking, subjectPrefix = "Booking Update") {
-  if (!booking.email) return;
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  const jobWhen =
-    booking.date && booking.time
-      ? `${booking.date} ${booking.time} (${booking.jobDayOfWeek || ""})`
-      : "Not provided";
-
-  const returnWhen =
-    booking.returnDate && booking.returnTime
-      ? `${booking.returnDate} ${booking.returnTime}`
-      : "N/A";
-
-  const extras = [];
-  if (booking.childSeat === "yes") extras.push("Child seat");
-  if (booking.extraStops === "yes") extras.push("Extra stop(s)");
-  const extrasText = extras.length ? extras.join(", ") : "None";
-
-  const paidText = booking.paid ? "Paid" : "Unpaid";
-
-  const title = `${subjectPrefix} – ${booking.bookingId || ""}`;
-
-  const html = `
-    <h2>${subjectPrefix}</h2>
-    <p><b>Booking ID:</b> ${booking.bookingId || ""}</p>
-    <p><b>Customer:</b> ${booking.fullName || ""}</p>
-
-    <h3>Journey</h3>
-    <p><b>Trip Type:</b> ${booking.tripType || ""}</p>
-    <p><b>Vehicle:</b> ${booking.vehicle || ""}</p>
-    <p><b>Pickup:</b> ${booking.pickup || "—"}</p>
-    <p><b>Dropoff:</b> ${booking.dropoff || "—"}</p>
-    <p><b>Date & Time:</b> ${jobWhen}</p>
-    <p><b>Return Date & Time:</b> ${returnWhen}</p>
-
-    <h3>Admin Details</h3>
-    <p><b>Dispatcher:</b> ${booking.dispatcher || "—"}</p>
-    <p><b>Driver:</b> ${booking.driverNameBadge || "—"}</p>
-    <p><b>Vehicle Reg / Badge:</b> ${booking.vehicleRegBadge || "—"}</p>
-
-    <h3>Payment</h3>
-    <p><b>Price:</b> ${
-      booking.price ? "£" + booking.price : "Not set"
-    }</p>
-    <p><b>Status:</b> ${paidText}</p>
-  `;
-
-  await transporter.sendMail({
-    from: "Eliteline <no-reply@eliteline.co.uk>",
-    to: booking.email,
-    subject: title,
-    html,
-  });
-
-  // copy to admin
-  await transporter.sendMail({
-    from: "no-reply@eliteline.co.uk",
-    to: "eliteline247@gmail.com",
-    subject: title,
-    html,
-  });
-}
 
 export default async function handler(req, res) {
-  const { db } = await connectToDatabase();
-  const collection = db.collection("bookings");
-
-  // 🔐 simple admin auth using same ADMIN_TOKEN as get-booking.js
-  const authHeader = (req.headers.authorization || "").trim();
-  const requiredToken = (`Bearer ${process.env.ADMIN_TOKEN}`).trim();
-  if (!authHeader || authHeader !== requiredToken) {
-    return res.status(401).json({ error: "Not authorized" });
+  if (req.method !== "POST" && req.method !== "PUT") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
-  // -----------------------
-  // CREATE FROM ADMIN (POST)
-  // -----------------------
-  if (req.method === "POST") {
-    try {
-      const body = req.body || {};
-      const bookingId = await generateBookingId(db);
-      const jobTiming = buildJobTiming(body);
+  try {
+    const body = req.body;
 
-      const booking = {
-        bookingId,
-        ...body,
-        ...jobTiming,
-        createdAt: new Date(),
-        paid: body.paid ?? false,
-
-        dispatcher: body.dispatcher || "",
-        driverNameBadge: body.driverNameBadge || "",
-        vehicleRegBadge: body.vehicleRegBadge || "",
-      };
-
-      const result = await collection.insertOne(booking);
-      booking._id = result.insertedId;
-
-      await sendUpdateEmail(booking, "New Booking (Admin)");
-
-      return res.status(201).json(booking);
-    } catch (err) {
-      console.error("Admin create booking error:", err);
-      return res
-        .status(500)
-        .json({ error: "Failed to create booking from admin" });
+    const { id, updates } = body; // id = Mongo _id as string
+    if (!id || !updates) {
+      return res.status(400).json({ error: "Missing id or updates" });
     }
-  }
 
-  // -----------------------
-  // UPDATE EXISTING (PUT)
-  // -----------------------
-  if (req.method === "PUT") {
-    try {
-      const body = req.body || {};
-      const { id, ...updateFields } = body;
+    const { db } = await connectToDatabase();
+    const _id = new ObjectId(id);
 
-      if (!id) {
-        return res.status(400).json({ error: "Missing booking id" });
-      }
-
-      const _id = new ObjectId(id);
-
-      const jobTiming = buildJobTiming(updateFields);
-
-      const updateDoc = {
-        ...updateFields,
-        ...jobTiming,
-      };
-
-      // Never allow editing `createdAt` from here
-      delete updateDoc.createdAt;
-
-      await collection.updateOne(
-        { _id },
-        {
-          $set: updateDoc,
-        }
-      );
-
-      const updated = await collection.findOne({ _id });
-
-      if (!updated) {
-        return res.status(404).json({ error: "Booking not found after update" });
-      }
-
-      await sendUpdateEmail(updated, "Booking Update");
-
-      return res.status(200).json(updated);
-    } catch (err) {
-      console.error("Update booking error:", err);
-      return res.status(500).json({ error: "Failed to update booking" });
+    const existing = await db.collection("bookings").findOne({ _id });
+    if (!existing) {
+      return res.status(404).json({ error: "Booking not found" });
     }
-  }
 
-  return res.status(405).json({ error: "Method not allowed" });
+    // Never allow createdAt to be overridden
+    if ("createdAt" in updates) delete updates.createdAt;
+
+    const result = await db.collection("bookings").findOneAndUpdate(
+      { _id },
+      {
+        $set: {
+          ...updates,
+          updatedAt: new Date(),
+        },
+      },
+      { returnDocument: "after" }
+    );
+
+    const updated = result.value;
+
+    // -----------------------------
+    // EMAIL BOTH CUSTOMER + COMPANY
+    // -----------------------------
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const bookingRef = updated.bookingRef || existing.bookingRef || "(no ref)";
+    const fullName   = updated.fullName || existing.fullName || "";
+    const customerEmail = updated.email || existing.email || "";
+
+    const summaryHtml = `
+      <p><b>Booking Ref:</b> ${bookingRef}</p>
+      <p><b>Name:</b> ${fullName}</p>
+      <p><b>Email:</b> ${customerEmail}</p>
+      <p><b>Phone:</b> ${updated.phone || existing.phone || ""}</p>
+
+      <p><b>Trip type:</b> ${updated.tripType || existing.tripType || ""}</p>
+      <p><b>Car class:</b> ${updated.vehicle || existing.vehicle || ""}</p>
+
+      <p><b>Pickup:</b> ${updated.pickup || existing.pickup || ""}</p>
+      <p><b>Dropoff:</b> ${updated.dropoff || existing.dropoff || ""}</p>
+
+      <p><b>Job date / time:</b> ${(updated.date || existing.date || "")} ${(updated.time || existing.time || "")}</p>
+
+      <p><b>Dispatcher:</b> ${updated.dispatcher || ""}</p>
+      <p><b>Driver (name & badge):</b> ${updated.driverInfo || ""}</p>
+      <p><b>Vehicle reg & badge:</b> ${updated.vehicleRegBadge || ""}</p>
+
+      <p><b>Price:</b> £${updated.price ?? existing.price ?? ""}</p>
+      <p><b>Paid:</b> ${updated.paid ?? existing.paid ? "Yes" : "No"}</p>
+    `;
+
+    // Email to company
+    await transporter.sendMail({
+      from: "no-reply@eliteline.co.uk",
+      to: "eliteline247@gmail.com",
+      subject: `Booking update – ${bookingRef}`,
+      html: `
+        <h2>Booking Updated (Admin)</h2>
+        ${summaryHtml}
+      `,
+    });
+
+    // Email to customer, if we have their email
+    if (customerEmail) {
+      await transporter.sendMail({
+        from: "Eliteline <no-reply@eliteline.co.uk>",
+        to: customerEmail,
+        subject: `Your Eliteline booking has been updated – ${bookingRef}`,
+        html: `
+          <h2>Your booking has been updated</h2>
+          <p>Dear ${fullName || "Customer"},</p>
+          <p>Your booking details have been updated. Here is the latest summary:</p>
+          ${summaryHtml}
+        `,
+      });
+    }
+
+    return res.status(200).json({ success: true, booking: updated });
+  } catch (err) {
+    console.error("update-booking error:", err);
+    return res.status(500).json({ error: "Failed to update booking" });
+  }
 }
