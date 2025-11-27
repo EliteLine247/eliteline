@@ -90,7 +90,7 @@
     <!-- ADD NEW BOOKING BUTTON -->
 <button id="addBookingBtn" class="admin-add-btn">+ Add New Booking</button>
 
-<table id="bookingsTable" class="admin-table">
+<!-- <table id="bookingsTable" class="admin-table">
   <thead>
     <tr>
       <th>Booking ID</th>
@@ -109,7 +109,30 @@
     </tr>
   </thead>
   <tbody></tbody>
+</table> -->
+
+<table id="bookingsTable" class="admin-table">
+  <thead>
+    <tr>
+      <th>Booking ID</th>
+      <th>Created</th>
+      <th>Customer</th>
+      <th>Trip</th>
+      <th>Vehicle</th>
+      <th>Pickup → Dropoff</th>
+      <th>Job Date</th>
+      <th>Job Time</th>
+      <th>Price</th>   <!-- 👈 NEW -->
+      <th>Paid</th>
+      <th>Dispatcher</th>
+      <th>Driver (Name + Badge)</th>
+      <th>Vehicle Reg + Badge</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
 </table>
+
 
   </div>
 </div>
@@ -251,66 +274,6 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
 
 
 
-async function loadBookings() {
-  bookingsStatus.textContent = "Loading bookings...";
-  const tbody = document.querySelector("#bookingsTable tbody");
-  tbody.innerHTML = "";
-
-  try {
-    const token = sessionStorage.getItem("adminToken");
-
-    const res = await fetch("/api/get-bookings", {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-    });
-
-    if (res.status === 401) {
-      bookingsStatus.textContent = "Not authorized.";
-      loginSection.style.display = "block";
-      bookingsSection.style.display = "none";
-      return;
-    }
-
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error("Server error:", errorText);
-      bookingsStatus.textContent = "Error loading bookings.";
-      return;
-    }
-
-    const bookings = await res.json();
-
-    if (!Array.isArray(bookings) || bookings.length === 0) {
-      bookingsStatus.textContent = "No bookings found.";
-      return;
-    }
-
-    bookingsStatus.textContent = "";
-
-    bookings.forEach(b => {
-      const dt = new Date(b.createdAt).toLocaleString();
-      const row = `
-        <tr>
-          <td>${dt}</td>
-          <td>${b.fullName || ""}</td>
-          <td>${b.tripType || ""}</td>
-          <td>${b.vehicle || ""}</td>
-          <td>${b.pickup || ""} → ${b.dropoff || ""}</td>
-          <td>£${b.price || ""}</td>
-          <td><span class="${b.paid ? "tag-paid" : "tag-unpaid"}">${b.paid ? "Paid" : "Unpaid"}</span></td>
-        </tr>
-      `;
-      tbody.insertAdjacentHTML("beforeend", row);
-    });
-
-  } catch (err) {
-    console.error("Client JS error:", err);
-    bookingsStatus.textContent = "Error loading bookings.";
-  }
-}
-
 </script>
 
 
@@ -340,58 +303,73 @@ async function loadBookings() {
         const jobDate = b.date || "";
         const jobTime = b.time || "";
   
-        const row = document.createElement("tr");
+        // const row = document.createElement("tr");
   
-        row.innerHTML = `
-          <td>${b.bookingId}</td>
-          <td>${created}</td>
-  
-          <td contenteditable="true" data-field="fullName">${b.fullName || ""}</td>
-  
-          <td>
-            <select data-field="tripType">
-              <option value="one_way" ${b.tripType==="one_way"?"selected":""}>One Way</option>
-              <option value="return" ${b.tripType==="return"?"selected":""}>Return</option>
-              <option value="wait_return" ${b.tripType==="wait_return"?"selected":""}>Wait & Return</option>
-              <option value="hourly" ${b.tripType==="hourly"?"selected":""}>By The Hour</option>
-            </select>
-          </td>
-  
-          <td>
-            <select data-field="vehicle">
-              <option value="business" ${b.vehicle==="business"?"selected":""}>Business Class</option>
-              <option value="first" ${b.vehicle==="first"?"selected":""}>First Class</option>
-              <option value="xl" ${b.vehicle==="xl"?"selected":""}>Business XL</option>
-            </select>
-          </td>
-  
-          <td>
-            <input data-field="pickup" value="${b.pickup || ""}">
-            →
-            <input data-field="dropoff" value="${b.dropoff || ""}">
-          </td>
-  
-          <td><input type="date" data-field="date" value="${jobDate}"></td>
-          <td><input type="time" data-field="time" value="${jobTime}"></td>
-  
-          <td>
-            <select data-field="paid">
-              <option value="false" ${!b.paid?"selected":""}>Unpaid</option>
-              <option value="true" ${b.paid?"selected":""}>Paid</option>
-            </select>
-          </td>
-  
-          <td contenteditable="true" data-field="dispatcher">${b.dispatcher || ""}</td>
-          <td contenteditable="true" data-field="driverNameBadge">${b.driverNameBadge || ""}</td>
-          <td contenteditable="true" data-field="vehicleRegBadge">${b.vehicleRegBadge || ""}</td>
-  
-          <td>
-            <button class="saveBtn" data-id="${b._id}">Save</button>
-            <button class="deleteBtn" data-id="${b._id}">Delete</button>
-          </td>
-        `;
-  
-        tbody.appendChild(row);
+        // const priceValue = b.price ?? b.totalPrice ?? "";
+
+const row = document.createElement("tr");
+
+row.innerHTML = `
+  <td>${b.bookingRef || b.bookingId || b._id}</td>
+  <td>${created}</td>
+
+  <td contenteditable="true" data-field="fullName">${b.fullName || ""}</td>
+
+  <td>
+    <select data-field="tripType">
+      <option value="one_way" ${b.tripType==="one_way"?"selected":""}>One Way</option>
+      <option value="return" ${b.tripType==="return"?"selected":""}>Return</option>
+      <option value="wait_return" ${b.tripType==="wait_return"?"selected":""}>Wait & Return</option>
+      <option value="hourly" ${b.tripType==="hourly"?"selected":""}>By The Hour</option>
+    </select>
+  </td>
+
+  <td>
+    <select data-field="vehicle">
+      <option value="business" ${b.vehicle==="business"?"selected":""}>Business Class</option>
+      <option value="first" ${b.vehicle==="first"?"selected":""}>First Class</option>
+      <option value="xl" ${b.vehicle==="xl"?"selected":""}>Business XL</option>
+    </select>
+  </td>
+
+  <td>
+    <input data-field="pickup" value="${b.pickup || ""}">
+    →
+    <input data-field="dropoff" value="${b.dropoff || ""}">
+  </td>
+
+  <td><input type="date" data-field="date" value="${jobDate}"></td>
+  <td><input type="time" data-field="time" value="${jobTime}"></td>
+
+  <td>
+    <input 
+      type="number" 
+      min="0" 
+      step="0.01" 
+      data-field="price" 
+      value="${priceValue}"
+    >
+  </td>
+
+  <td>
+    <select data-field="paid">
+      <option value="false" ${!b.paid?"selected":""}>Unpaid</option>
+      <option value="true" ${b.paid?"selected":""}>Paid</option>
+    </select>
+  </td>
+
+  <td contenteditable="true" data-field="dispatcher">${b.dispatcher || ""}</td>
+  <td contenteditable="true" data-field="driverNameBadge">${b.driverNameBadge || ""}</td>
+  <td contenteditable="true" data-field="vehicleRegBadge">${b.vehicleRegBadge || ""}</td>
+
+  <td>
+    <button class="saveBtn" data-id="${b._id}">Save</button>
+    <button class="deleteBtn" data-id="${b._id}">Delete</button>
+  </td>
+`;
+
+tbody.appendChild(row);
+
       });
   
       attachAdminListeners();
