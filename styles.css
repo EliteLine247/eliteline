@@ -1840,3 +1840,109 @@ input:focus {
   border-color: #1fb039;
   color: #fff;
 }
+
+
+
+.from-to-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.from-to-col {
+  flex: 1 1 250px;
+}
+
+.from-to-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.from-to-toggle {
+  display: flex;
+  background: #000;
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 10px;
+}
+
+.from-to-toggle button,
+.trip-tabs .trip-tab,
+.car-class-buttons .car-btn,
+.journey-type-buttons .journey-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.from-to-toggle button.active,
+.trip-tabs .trip-tab.active,
+.car-class-buttons .car-btn.active,
+.journey-type-buttons .journey-btn.active {
+  background: #2ca043; /* your green */
+}
+
+.address-wrapper input,
+#otherAddressWrapper input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+
+
+.address-wrapper input {
+  padding: 16px;
+  border-radius: 40px;
+  border: 3px solid #000;
+  background: #fff;
+  font-size: 1.1rem;
+  width: 100%;
+}
+
+
+.enquiry-form {
+  max-width: 800px;       /* wider form */
+  margin: 0 auto;         /* centers the whole form */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;    /* centers internal items */
+}
+
+
+.from-to-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.from-to-col {
+  flex: 1;
+  min-width: 260px;
+}
+
+
+#cityFromToRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+
+.enquiry-form > * {
+  width: 100%;
+}
+
+
+.from-to-label {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
