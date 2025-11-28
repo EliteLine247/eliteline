@@ -31,7 +31,7 @@
           <li><a href="services.html">SERVICES</a></li>
           <li><a href="prices.html">PRICE</a></li>
           <li><a href="about_us.html">ABOUT US</a></li>
-          <li><a href="booking.html">BOOKING</a></li>
+          <li><a href="booking.html" class="active">BOOKING</a></li>
           <li><a href="terms_conditions.html">TERMS & <br> CONDITIONS</a></li>
         </ul>
         <div class="social-icons">
@@ -248,23 +248,31 @@
                       <input class="premium-input" type="tel" name="phone" placeholder="Phone Number *" required>
                       <input class="premium-input" type="email" name="email" placeholder="Email Address *" required>
                     </div>
-              
+
                     <!-- <div class="form-row date-time-row">
-                      <input class="premium-input" type="date" id="date" name="date" required>
-                      <input class="premium-input" type="time" id="time" name="time" step="300" required>
-                    </div> -->
-
-
-                    <div class="form-row date-time-row">
                       <div class="input-box">
-                          <label for="date">Date</label>
-                          <input type="date" id="date" name="date" required>
+                           <label for="date">Date</label> -->
+                          <!-- <input type="date" id="date" name="date" required>
                       </div>
                       <div class="input-box">
-                          <label for="time">Time</label>
-                          <input type="time" id="time" name="time" required step="300">
+                           <label for="time">Time</label> -->
+                          <!-- <input type="time" id="time" name="time" required step="300">
                       </div>
-                  </div>
+                  </div> --> 
+
+
+                  <div class="date-time-row">
+                    <div class="input-box">
+                        <!-- <label>Date</label> -->
+                        <input type="date" placeholder="Select date" required>
+                    </div>
+                
+                    <div class="input-box">
+                        <!-- <label>Time</label> -->
+                        <input type="time" placeholder="Select time" step="300" required>
+                    </div>
+                </div>
+                
                   
             
 
@@ -290,29 +298,30 @@
         </select>
       </div>
   
-      <!-- FLIGHT + TERMINAL (only when airport journey) -->
-      <!-- <div id="airportExtras" style="display:none;">
-        <input class="premium-input" type="text" id="terminal" name="terminal" placeholder="Terminal" required>
-        <input class="premium-input" type="text" id="flightNumber" name="flightNumber" placeholder="Flight number" required>
-      </div>
 
-
-                          <div d="airportExtras" style="display:none;" class="form-row date-time-row">
-                            <input class="premium-input" type="text" name="terminal" placeholder="Terminal *" required>
-                            <input class="premium-input" type="text" name="flightNumber" placeholder="Flight Number *" required>
-                          </div>
-                     -->
-
-                     <div id="airportExtras" class="form-row flight-row" style="display:none;">
-                      <div class="input-box">
-                          <label for="terminal">Terminal</label>
-                          <input type="text" id="terminal" name="terminal" placeholder="Terminal">
+      <div class="terminal-flight-row">
+        <div class="input-box">
+            <!-- <label>Terminal</label> -->
+            <input type="text" placeholder="T1, T2, T3...">
+        </div>
+    
+        <div class="input-box">
+            <!-- <label>Flight Number</label> -->
+            <input type="text" placeholder="BA476, TK1997...">
+        </div>
+    </div>
+    
+                  <!-- FLIGHT + TERMINAL (only when airport journey) -->
+                     <!-- <div id="airportExtras" class="form-row flight-row" style="display:none;">
+                      <div class="input-box"> -->
+                          <!-- <label for="terminal">Terminal</label> -->
+                          <!-- <input type="text" id="terminal" name="terminal" placeholder="Terminal">
                       </div>
-                      <div class="input-box">
-                          <label for="flightNumber">Flight Number</label>
-                          <input type="text" id="flightNumber" name="flightNumber" placeholder="Flight number">
+                      <div class="input-box"> -->
+                          <!-- <label for="flightNumber">Flight Number</label> -->
+                          <!-- <input type="text" id="flightNumber" name="flightNumber" placeholder="Flight number">
                       </div>
-                  </div>
+                  </div> -->
                   
   
       <!-- HOURLY: HOURS ONLY, NO DROPOFF -->

@@ -2436,3 +2436,113 @@ input[type="time"] {
 #airportExtras.flight-row .input-box {
   flex: 1 !important;
 }
+
+
+/* LABEL FIX (small gap, sits right above input) */
+.input-box label {
+  margin-bottom: 3px !important;
+  font-size: 0.85rem !important;
+  line-height: 1 !important;
+}
+
+
+
+
+
+
+
+/* =========================================
+   LABEL FIX — Small gap above fields
+========================================= */
+.input-box label {
+  margin-bottom: 4px !important;
+  font-size: 0.85rem !important;
+  color: #ddd !important;
+  font-weight: 600 !important;
+}
+
+
+/* =========================================
+ DATE & TIME FIX — Visible, tidy, compact
+========================================= */
+input[type="date"],
+input[type="time"] {
+  background-color: #111 !important;
+  color: #fff !important;
+  border: 1px solid #444 !important;
+  border-radius: 10px !important;
+  padding: 10px 12px !important;
+  width: 100% !important;
+  height: 42px !important;  /* SAME height on all devices */
+  font-size: 0.9rem !important;
+}
+
+/* Make placeholders visible */
+input[type="date"]::before {
+  content: attr(placeholder);
+  color: #aaa;
+  margin-right: 8px;
+}
+input[type="time"]::before {
+  content: attr(placeholder);
+  color: #aaa;
+  margin-right: 8px;
+}
+
+/* When user selects a value, hide placeholder */
+input[type="date"]:valid::before,
+input[type="time"]:valid::before {
+  content: "" !important;
+}
+
+
+/* =========================================
+ DATE + TIME IN ONE ROW (EVEN ON MOBILE)
+========================================= */
+.date-time-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.date-time-row > div {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .date-time-row {
+      display: flex;
+      flex-direction: row !important; /* FORCE one row */
+      gap: 10px;
+  }
+}
+
+
+/* =========================================
+ TERMINAL + FLIGHT NUMBER IN ONE ROW
+========================================= */
+.terminal-flight-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.terminal-flight-row > div {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .terminal-flight-row {
+      flex-direction: row !important; /* keep one line on mobile */
+  }
+}
+
+
+/* =========================================
+ MINIMUM PADDING FOR ULTRA-COMPACT FORM
+========================================= */
+.enquiry-form .input-box,
+.enquiry-form input,
+.enquiry-form select {
+  margin-bottom: 8px !important;
+  padding: 8px 10px !important;
+}
