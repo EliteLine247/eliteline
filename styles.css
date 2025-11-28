@@ -1946,3 +1946,440 @@ input:focus {
   margin-bottom: 6px;
   font-weight: 600;
 }
+
+
+
+
+/* ============================
+   PREMIUM INPUT STYLING (MATCHES AIRPORT STYLE)
+============================ */
+
+.premium-input,
+.premium-select select,
+.address-wrapper input,
+.enquiry-form input[type="text"],
+.enquiry-form input[type="tel"],
+.enquiry-form input[type="email"],
+.enquiry-form input[type="date"],
+.enquiry-form input[type="time"],
+.enquiry-form input[type="number"],
+.enquiry-form select {
+    width: 100%;
+    padding: 14px 16px;
+    background: #111;
+    border: 1px solid #444;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 15px;
+    appearance: none;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+/* Hover + focus */
+.premium-select select:focus,
+.enquiry-form input:focus,
+.enquiry-form select:focus {
+    border-color: #27ae60;
+    box-shadow: 0 0 10px rgba(39,174,96,0.5);
+}
+
+/* Placeholder style */
+.enquiry-form input::placeholder {
+    color: #aaa;
+}
+
+/* Dropdown arrow replacement */
+.premium-select {
+    position: relative;
+}
+
+.premium-select::after {
+    content: "\f078"; /* Font Awesome arrow */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+}
+
+
+.extras-fieldset {
+  border: none;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0; /* remove big spacing */
+  padding: 0;
+}
+
+.extras-fieldset .pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 2px solid #000;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-size: 0.9rem;
+}
+
+/* hide ugly default checkbox */
+.extras-fieldset input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+/* tick shape */
+.extras-fieldset input[type="checkbox"]::before {
+  content: "✓";
+  font-size: 14px;
+  color: white;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.25s;
+}
+
+/* checked state */
+.extras-fieldset input[type="checkbox"]:checked {
+  background: #1fb039;
+  /* border-color: #1fb039; */
+}
+
+.extras-fieldset input[type="checkbox"]:checked::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* pill also glows green when checked */
+.extras-fieldset input[type="checkbox"]:checked + span {
+  color: #fff;
+}
+
+.extras-fieldset .pill input[type="checkbox"]:checked ~ span {
+  color: #fff;
+}
+
+.extras-fieldset .pill:has(input[type="checkbox"]:checked) {
+  background: #000000;
+  /* border-color: #1fb039; */
+}
+
+
+.submit-btn {
+    width: 100%;
+    background: #27ae60;
+    color: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #1e8449;
+}
+
+
+/* FIX INPUT TYPE DATE/TIME NATURAL UI */
+input[type="date"].premium-input,
+input[type="time"].premium-input {
+    appearance: auto;     /* RESTORES native picker */
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+}
+
+
+
+input[type="date"] {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10h5v5H7z" opacity=".3"/><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 45px;
+  color: #FFF;
+}
+
+
+input[type="time"] {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-.5-13h-1v7l6.12 3.56.5-.86-5.62-3.22z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 45px;
+  color: #FFF;
+}
+
+
+
+/* RESTORE native date & time pickers */
+input[type="date"],
+input[type="time"] {
+    -webkit-appearance: auto !important;
+    appearance: auto !important;
+    background-color: #111 !important;   /* keep black */
+    color: #fff !important;
+    border: 1px solid #444 !important;
+}
+
+/* Keep your custom icons */
+input[type="date"],
+input[type="time"] {
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 45px;
+}
+
+
+
+/* FORM GRID LAYOUT */
+.form-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.form-row > * {
+  flex: 1;
+}
+
+/* Mobile stacking */
+@media (max-width: 768px) {
+  .form-row {
+      flex-direction: column;
+  }
+}
+
+
+
+/* FIX DATE/TIME PICKER VISIBILITY */
+input[type="date"],
+input[type="time"] {
+    background-color: #000 !important;
+    color: #fff !important;
+    border: 2px solid #000 !important;
+}
+
+/* Keep nice rounded field design */
+input[type="date"],
+input[type="time"] {
+    border-radius: 12px;
+}
+
+/* Replace icons with clean black icons */
+input[type="date"] {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>');
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+}
+
+input[type="time"] {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-.5 5h1v6l4.5 2.7-.5.9L11.5 14V7z"/></svg>');
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+}
+
+
+.enquiry-form {
+  max-width: 550px;   /* slimmer form */
+  gap: 10px;          /* reduce spacing */
+}
+
+.premium-input,
+.premium-select select {
+  padding: 10px 14px;   /* smaller padding */
+  margin-bottom: 8px;   /* tighter fields */
+}
+
+.from-to-row {
+  gap: 12px;
+}
+
+.form-row {
+  gap: 12px;
+}
+
+.from-to-row {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+}
+
+.from-to-col {
+  flex: 1;
+}
+
+
+
+
+
+
+
+
+/* ======== FORM SECTION ISOLATION ======== */
+.booking-section {
+  padding: 20px !important;
+  max-width: 700px !important;
+  margin: 20px auto !important;
+  border-radius: 25px !important;
+}
+
+/* Prevent compact styles from affecting other curved sections */
+.curved-section:not(.booking-section) {
+  padding: 40px !important;
+  max-width: 1000px !important;
+  border-radius: 25px !important;
+}
+
+
+/* ============================================
+   ULTRA COMPACT PREMIUM FORM
+   ============================================ */
+
+/* Make entire form narrower & centered */
+.enquiry-form {
+  max-width: 480px;
+  margin: 0 auto;
+  gap: 6px !important;
+  padding: 0 !important;
+}
+
+/* Title spacing */
+.curved-section h2 {
+  margin-bottom: 10px;
+}
+
+/* Compact inputs */
+.premium-input,
+.premium-select select,
+.address-wrapper input,
+.enquiry-form input[type="text"],
+.enquiry-form input[type="tel"],
+.enquiry-form input[type="email"],
+.enquiry-form input[type="date"],
+.enquiry-form input[type="time"],
+.enquiry-form input[type="number"],
+.enquiry-form select {
+  padding: 8px 10px !important;
+  margin-bottom: 6px !important;
+  font-size: 0.9rem !important;
+  border-radius: 8px !important;
+}
+
+/* FROM/TO Row compact */
+.from-to-row,
+#cityFromToRow {
+  gap: 10px !important;
+  margin: 8px 0 !important;
+}
+
+.from-to-col {
+  min-width: 200px !important;
+}
+
+/* Tiny labels */
+.from-to-label {
+  margin-bottom: 4px !important;
+  font-size: 0.85rem !important;
+}
+
+/* Compact pill tabs (trip, car class, journey type) */
+.trip-tabs,
+.car-class-buttons,
+.journey-type-buttons,
+.from-to-toggle {
+  padding: 3px !important;
+  gap: 3px !important;
+}
+
+.trip-tab,
+.car-btn,
+.journey-btn,
+.from-to-toggle button,
+.city-from-btn,
+.city-to-btn {
+  padding: 6px 8px !important;
+  font-size: 0.8rem !important;
+}
+
+/* Two-field rows compact */
+.form-row {
+  gap: 10px !important;
+  margin: 0 !important;
+}
+
+/* Date/time picker icon spacing */
+input[type="date"],
+input[type="time"] {
+  padding-right: 38px !important;
+}
+
+/* Child seat + extra stops compact pills */
+.extras-fieldset {
+  gap: 6px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.extras-fieldset .pill {
+  padding: 6px 10px !important;
+  gap: 6px !important;
+  font-size: 0.8rem !important;
+}
+
+/* Checkbox size smaller */
+.extras-fieldset input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Remove HUGE spacing under sections */
+#waitHoursWrapper,
+#returnFields,
+#hourlyWrapper,
+#extraStopAddressWrapper {
+  margin-top: 4px !important;
+}
+
+/* Submit button compact */
+.submit-btn {
+  padding: 10px !important;
+  font-size: 1rem !important;
+  border-radius: 8px !important;
+  margin-top: 10px !important;
+}
+
+/* Make airport + city dropdowns smaller and cleaner */
+.premium-select select {
+  padding: 10px 12px !important;
+  border-radius: 24px !important;
+  font-size: 0.9rem !important;
+}
+
+/* Smaller dropdown arrow */
+.premium-select::after {
+  right: 15px !important;
+  font-size: 12px !important;
+}
+
+/* Reduce curved section padding */
+.curved-section {
+  padding: 15px !important;
+  max-width: 700px !important;
+}

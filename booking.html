@@ -64,7 +64,7 @@
 
     
     
-  <section class="curved-section">
+  <section class="curved-section booking-section">
     <h2>Book Your Chauffeur</h2>
     <form id="bookingForm" class="enquiry-form">
   
@@ -122,7 +122,8 @@
   
           <!-- FROM: ADDRESS -->
           <div id="fromAddressWrapper" class="address-wrapper" style="display:none;">
-            <input type="text" id="fromAddress" placeholder="From address *">
+            <input class="premium-input" type="text" id="fromAddress" placeholder="From address *" required>
+            <!-- <input class="premium-input" type="text" name="fullName" placeholder="Full Name *" required> -->
           </div>
         </div>
   
@@ -153,7 +154,7 @@
   
           <!-- TO: ADDRESS -->
           <div id="toAddressWrapper" class="address-wrapper" style="display:none;">
-            <input type="text" id="toAddress" placeholder="To address *">
+            <input class="premium-input" type="text" id="toAddress" placeholder="To address *" required>
           </div>
         </div>
       </div>
@@ -188,7 +189,7 @@
       
           <!-- FROM: ADDRESS INPUT -->
           <div id="fromCityAddressWrapper" class="address-wrapper" style="display:none;">
-            <input type="text" id="fromCityAddress" placeholder="From address *">
+            <input class="premium-input" type="text" id="fromCityAddress" placeholder="From address *" required>
           </div>
         </div>
       
@@ -220,7 +221,7 @@
       
           <!-- TO: ADDRESS -->
           <div id="toCityAddressWrapper" class="address-wrapper" style="display:none;">
-            <input type="text" id="toCityAddress" placeholder="To address *">
+            <input class="premium-input" type="text" id="toCityAddress" placeholder="To address *" required>
           </div>
         </div>
       
@@ -233,19 +234,33 @@
   
       <!-- ============= OTHER / HOURLY ADDRESS FIELDS (plain pickup/dropoff) ============= -->
       <div id="otherAddressWrapper" style="display:none;">
-        <input type="text" id="otherPickup" placeholder="Pickup location *">
-        <input type="text" id="otherDropoff" placeholder="Drop-off location *">
+        <input class="premium-input" type="text" id="otherPickup" placeholder="Pickup location *" required>
+        <input class="premium-input" type="text" id="otherDropoff" placeholder="Drop-off location *" required>
       </div>
   
-      <!-- ============= DATE & TIME ============= -->
-      <input type="date" id="date" name="date" required>
-      <input type="time" id="time" name="time" required>
+
+
+
+                    <!-- ============= PASSENGER DETAILS FIRST ============= -->
+                    <input class="premium-input" type="text" name="fullName" placeholder="Full Name *" required>
+
+                    <div class="form-row">
+                      <input class="premium-input" type="tel" name="phone" placeholder="Phone Number *" required>
+                      <input class="premium-input" type="email" name="email" placeholder="Email Address *" required>
+                    </div>
+              
+                    <div class="form-row">
+                      <input class="premium-input" type="date" id="date" name="date" required>
+                      <input class="premium-input" type="time" id="time" name="time" step="300" required>
+                    </div>
+            
+
   
       <!-- RETURN FIELDS -->
       <div id="returnFields" style="display:none;">
         <h4>Return Journey Details</h4>
         <input type="date" id="returnDate" name="returnDate">
-        <input type="time" id="returnTime" name="returnTime">
+        <input class="premium-input" type="time" id="returnTime" name="returnTime" step="300" required>
       </div>
   
       <!-- WAIT & RETURN HOURS -->
@@ -264,9 +279,16 @@
   
       <!-- FLIGHT + TERMINAL (only when airport journey) -->
       <div id="airportExtras" style="display:none;">
-        <input type="text" id="terminal" name="terminal" placeholder="Terminal">
-        <input type="text" id="flightNumber" name="flightNumber" placeholder="Flight number">
+        <input class="premium-input" type="text" id="terminal" name="terminal" placeholder="Terminal" required>
+        <input class="premium-input" type="text" id="flightNumber" name="flightNumber" placeholder="Flight number" required>
       </div>
+
+
+                          <div d="airportExtras" style="display:none;" class="form-row">
+                            <input class="premium-input" type="text" name="terminal" placeholder="Terminal *" required>
+                            <input class="premium-input" type="text" name="flightNumber" placeholder="Flight Number *" required>
+                          </div>
+                    
   
       <!-- HOURLY: HOURS ONLY, NO DROPOFF -->
       <div id="hourlyWrapper" style="display:none;">
@@ -275,7 +297,7 @@
       </div>
   
       <!-- OPTIONS -->
-      <fieldset class="extras-fieldset">
+      <!-- <fieldset class="extras-fieldset">
         <legend>Options</legend>
         <label>
           <input type="checkbox" id="childSeat" name="childSeat" value="yes">
@@ -285,16 +307,36 @@
           <input type="checkbox" id="extraStops" name="extraStops" value="yes">
           Extra stop(s)
         </label>
-      </fieldset>
+      </fieldset> -->
   
+      <!-- <fieldset class="extras-fieldset">
+        <input type="checkbox" id="childSeat" name="childSeat" value="yes">
+        <label for="childSeat">Child Seat</label>
+    
+        <input type="checkbox" id="extraStops" name="extraStops" value="yes">
+        <label for="extraStops">Extra Stop(s)</label>
+    </fieldset> -->
+
+    <fieldset class="extras-fieldset">
+      <label class="pill">
+          <input type="checkbox" id="childSeat" name="childSeat" value="yes">
+          <span>Child Seat</span>
+      </label>
+  
+      <label class="pill">
+          <input type="checkbox" id="extraStops" name="extraStops" value="yes">
+          <span>Extra Stop(s)</span>
+      </label>
+  </fieldset>
+  
+
+    
+
       <div id="extraStopAddressWrapper" style="display:none;">
-        <input type="text" id="extraStopAddress" name="extraStopAddress" placeholder="Enter stop address *">
+        <input class="premium-input" type="text" id="extraStopAddress" name="extraStopAddress" placeholder="Enter stop address *" required>
       </div>
   
-      <!-- PASSENGER DETAILS -->
-      <input type="text" name="fullName" placeholder="Full Name *" required>
-      <input type="tel" name="phone" placeholder="Phone Number *" required>
-      <input type="email" name="email" placeholder="Email Address *" required>
+
   
       <!-- SUBMIT -->
       <button type="submit" class="submit-btn">Proceed to Payment</button>
@@ -658,6 +700,34 @@
           header.style.top = '-100px'; // Hide the header when user is at the top
       }
   });
+
+
+  function lockPastDates() {
+  const today = new Date().toISOString().split("T")[0];
+
+  const dateInput = document.getElementById("date");
+  const returnDateInput = document.getElementById("returnDate");
+
+  dateInput.min = today;
+  returnDateInput.min = today;
+}
+
+lockPastDates();
+
+
+
+const dateInput = document.getElementById("date");
+const returnDateInput = document.getElementById("returnDate");
+
+dateInput.addEventListener("change", () => {
+  returnDateInput.min = dateInput.value;
+  
+  // Auto-correct wrong return date
+  if (returnDateInput.value < dateInput.value) {
+    returnDateInput.value = dateInput.value;
+  }
+});
+
 </script>
 
 
