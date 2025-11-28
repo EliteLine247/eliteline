@@ -249,10 +249,23 @@
                       <input class="premium-input" type="email" name="email" placeholder="Email Address *" required>
                     </div>
               
-                    <div class="form-row date-time-row">
+                    <!-- <div class="form-row date-time-row">
                       <input class="premium-input" type="date" id="date" name="date" required>
                       <input class="premium-input" type="time" id="time" name="time" step="300" required>
-                    </div>
+                    </div> -->
+
+
+                    <div class="form-row date-time-row">
+                      <div class="input-box">
+                          <label for="date">Date</label>
+                          <input type="date" id="date" name="date" required>
+                      </div>
+                      <div class="input-box">
+                          <label for="time">Time</label>
+                          <input type="time" id="time" name="time" required step="300">
+                      </div>
+                  </div>
+                  
             
 
   
@@ -278,7 +291,7 @@
       </div>
   
       <!-- FLIGHT + TERMINAL (only when airport journey) -->
-      <div id="airportExtras" style="display:none;">
+      <!-- <div id="airportExtras" style="display:none;">
         <input class="premium-input" type="text" id="terminal" name="terminal" placeholder="Terminal" required>
         <input class="premium-input" type="text" id="flightNumber" name="flightNumber" placeholder="Flight number" required>
       </div>
@@ -288,7 +301,19 @@
                             <input class="premium-input" type="text" name="terminal" placeholder="Terminal *" required>
                             <input class="premium-input" type="text" name="flightNumber" placeholder="Flight Number *" required>
                           </div>
-                    
+                     -->
+
+                     <div id="airportExtras" class="form-row flight-row" style="display:none;">
+                      <div class="input-box">
+                          <label for="terminal">Terminal</label>
+                          <input type="text" id="terminal" name="terminal" placeholder="Terminal">
+                      </div>
+                      <div class="input-box">
+                          <label for="flightNumber">Flight Number</label>
+                          <input type="text" id="flightNumber" name="flightNumber" placeholder="Flight number">
+                      </div>
+                  </div>
+                  
   
       <!-- HOURLY: HOURS ONLY, NO DROPOFF -->
       <div id="hourlyWrapper" style="display:none;">
@@ -296,27 +321,8 @@
         <input type="number" min="4" id="hours" name="hours" value="4">
       </div>
   
-      <!-- OPTIONS -->
-      <!-- <fieldset class="extras-fieldset">
-        <legend>Options</legend>
-        <label>
-          <input type="checkbox" id="childSeat" name="childSeat" value="yes">
-          Child seat
-        </label>
-        <label>
-          <input type="checkbox" id="extraStops" name="extraStops" value="yes">
-          Extra stop(s)
-        </label>
-      </fieldset> -->
-  
-      <!-- <fieldset class="extras-fieldset">
-        <input type="checkbox" id="childSeat" name="childSeat" value="yes">
-        <label for="childSeat">Child Seat</label>
-    
-        <input type="checkbox" id="extraStops" name="extraStops" value="yes">
-        <label for="extraStops">Extra Stop(s)</label>
-    </fieldset> -->
 
+    <!--Extra options-->
     <fieldset class="extras-fieldset">
       <label class="pill">
           <input type="checkbox" id="childSeat" name="childSeat" value="yes">

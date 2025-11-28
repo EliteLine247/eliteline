@@ -2385,4 +2385,54 @@ input[type="time"] {
 }
 
 
+/* MAKE DATE/TIME PLACEHOLDER VISIBLE */
+input[type="date"]::before,
+input[type="time"]::before {
+    color: #bbb;
+}
 
+
+
+input[type="date"],
+input[type="time"] {
+    background-color: #111 !important;
+    color: #fff !important;
+    border: 2px solid #555 !important;
+}
+
+
+
+
+
+
+
+/* FORCE DATE + TIME TO STAY ON ONE ROW ON MOBILE */
+.form-row.date-time-row {
+  flex-direction: row !important;
+}
+
+.form-row.date-time-row > * {
+  flex: 1 !important;
+}
+
+/* FORCE TERMINAL + FLIGHT NUMBER TO STAY ON ONE ROW */
+.form-row.flight-row {
+  flex-direction: row !important;
+}
+
+.form-row.flight-row > * {
+  flex: 1 !important;
+}
+
+
+
+/* FORCE TERMINAL + FLIGHT NUMBER TO BE IN ONE ROW */
+#airportExtras.flight-row {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 12px !important;
+}
+
+#airportExtras.flight-row .input-box {
+  flex: 1 !important;
+}
