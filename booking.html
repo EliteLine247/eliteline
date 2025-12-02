@@ -12,13 +12,6 @@
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <!-- Google Maps JS (no callback, no legacy nonsense) -->
-  <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY_Ht1E_M8zy1_GqcnF5llzF-79umXES4&libraries=places&callback=initAutocomplete"
-  async defer>
-</script>
-
 </head>
 
 <body>
@@ -248,7 +241,6 @@
 
     <!-- ============================
          AIRPORT EXTRAS (Terminal + Flight)
-         Only show when an AIRPORT is selected in fixed fare
     ============================ -->
     <div id="airportExtras" class="form-row" style="display:none;">
       <div class="input-box">
@@ -378,14 +370,16 @@
     const AIRPORT_CODES = ["LHR","LGW","STN","SOU","LTN","BOH","LCY","BQH","FAB"];
 
     function updateAirportExtrasVisibility() {
+      if (!airportExtras) return;
+
       // Never show on hourly bookings
       if (tripTypeInput.value === "hourly") {
         airportExtras.style.display = "none";
         return;
       }
 
-      const fromIsFixed = fromFixedWrapper.style.display !== "none";
-      const toIsFixed = toFixedWrapper.style.display !== "none";
+      const fromIsFixed = fromFixedWrapper && fromFixedWrapper.style.display !== "none";
+      const toIsFixed = toFixedWrapper && toFixedWrapper.style.display !== "none";
 
       const fromCode = fromIsFixed ? fromFixedSelect.value : "";
       const toCode = toIsFixed ? toFixedSelect.value : "";
@@ -400,8 +394,8 @@
     function setFromType(type) {
       fromButtons.forEach(b => b.classList.toggle("active", b.dataset.from === type));
 
-      fromFixedWrapper.style.display = type === "fixed" ? "block" : "none";
-      fromAddressWrapper.style.display = type === "address" ? "block" : "none";
+      if (fromFixedWrapper) fromFixedWrapper.style.display = type === "fixed" ? "block" : "none";
+      if (fromAddressWrapper) fromAddressWrapper.style.display = type === "address" ? "block" : "none";
 
       updateAirportExtrasVisibility();
     }
@@ -409,8 +403,8 @@
     function setToType(type) {
       toButtons.forEach(b => b.classList.toggle("active", b.dataset.to === type));
 
-      toFixedWrapper.style.display = type === "fixed" ? "block" : "none";
-      toAddressWrapper.style.display = type === "address" ? "block" : "none";
+      if (toFixedWrapper) toFixedWrapper.style.display = type === "fixed" ? "block" : "none";
+      if (toAddressWrapper) toAddressWrapper.style.display = type === "address" ? "block" : "none";
 
       updateAirportExtrasVisibility();
     }
@@ -437,19 +431,18 @@
 
       tripTabs.forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
 
-      // Show/hide relevant sections
-      returnFields.style.display = mode === "return" ? "block" : "none";
-      waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
-      hourlyWrapper.style.display = mode === "hourly" ? "block" : "none";
+      if (returnFields) returnFields.style.display = mode === "return" ? "block" : "none";
+      if (waitHoursWrapper) waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
+      if (hourlyWrapper) hourlyWrapper.style.display = mode === "hourly" ? "block" : "none";
 
       if (mode === "hourly") {
-        fromToRow.style.display = "none";
-        otherAddressWrapper.style.display = "block";
-        otherDropoffInput.style.display = "none"; // pickup only
+        if (fromToRow) fromToRow.style.display = "none";
+        if (otherAddressWrapper) otherAddressWrapper.style.display = "block";
+        if (otherDropoffInput) otherDropoffInput.style.display = "none"; // pickup only
       } else {
-        fromToRow.style.display = "flex";
-        otherAddressWrapper.style.display = "none";
-        otherDropoffInput.style.display = "block";
+        if (fromToRow) fromToRow.style.display = "flex";
+        if (otherAddressWrapper) otherAddressWrapper.style.display = "none";
+        if (otherDropoffInput) otherDropoffInput.style.display = "block";
       }
 
       updateAirportExtrasVisibility();
@@ -468,42 +461,9 @@
     const extraStopAddressWrapper = document.getElementById("extraStopAddressWrapper");
 
     extraStopsCheckbox.addEventListener("change", () => {
+      if (!extraStopAddressWrapper) return;
       extraStopAddressWrapper.style.display = extraStopsCheckbox.checked ? "block" : "none";
     });
-
-    /* ============================================================
-       GOOGLE AUTOCOMPLETE (NO CALLBACK, NO ERRORS)
-    ============================================================ */
-
-    function attachAutocomplete(element) {
-      if (!element) return;
-      if (!window.google || !google.maps || !google.maps.places) return;
-
-      new google.maps.places.Autocomplete(element, {
-        componentRestrictions: { country: "GB" },
-        fields: ["formatted_address", "geometry", "address_components"],
-        types: ["address"]
-      });
-    }
-
-    function attachAutocompleteAll() {
-      attachAutocomplete(document.getElementById("fromAddress"));
-      attachAutocomplete(document.getElementById("toAddress"));
-      attachAutocomplete(document.getElementById("otherPickup"));
-      attachAutocomplete(document.getElementById("otherDropoff"));
-      attachAutocomplete(document.getElementById("extraStopAddress"));
-    }
-
-    function waitForGoogleMapsAndInit() {
-      if (window.google && google.maps && google.maps.places) {
-        attachAutocompleteAll();
-      } else {
-        setTimeout(waitForGoogleMapsAndInit, 200);
-      }
-    }
-
-    // DOM is ready (script is at the bottom), start polling for Google
-    waitForGoogleMapsAndInit();
 
     /* ============================================================
        FORM SUBMISSION
@@ -525,20 +485,20 @@
 
       // HOURLY
       if (tripType === "hourly") {
-        pickup = (otherPickupInput.value || "").trim();
+        pickup = (otherPickupInput?.value || "").trim();
         dropoff = "";
         direction = "HOURLY";
       } else {
-        const fromIsFixed = fromFixedWrapper.style.display !== "none";
-        const toIsFixed = toFixedWrapper.style.display !== "none";
+        const fromIsFixed = fromFixedWrapper && fromFixedWrapper.style.display !== "none";
+        const toIsFixed = toFixedWrapper && toFixedWrapper.style.display !== "none";
 
         pickup = fromIsFixed
           ? (fromFixedSelect.options[fromFixedSelect.selectedIndex] || {}).text || ""
-          : fromAddressInput.value;
+          : (fromAddressInput?.value || "");
 
         dropoff = toIsFixed
           ? (toFixedSelect.options[toFixedSelect.selectedIndex] || {}).text || ""
-          : toAddressInput.value;
+          : (toAddressInput?.value || "");
 
         const fromCode = fromIsFixed ? fromFixedSelect.value : "";
         const toCode = toIsFixed ? toFixedSelect.value : "";
