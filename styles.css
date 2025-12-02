@@ -1863,14 +1863,14 @@ textarea.premium-field {
 }
 
 /* Make ALL 2-field rows behave exactly like phone/email */
-.form-row:not(#returnFields),
+/* .form-row:not(#returnFields),
 .date-time-row:not(#returnFields),
 .flight-row:not(#returnFields) {
   display: flex !important;
   flex-direction: row !important;
   gap: 12px !important;
   width: 100% !important;
-}
+} */
 
 /* Each field takes equal width */
 .form-row > *,
@@ -1925,15 +1925,15 @@ input[type="time"],
     gap: 8px;
   }
 
-  .nav-links {
+  /* .nav-links {
     position: absolute;
     top: 80px; /* drop down under button */
-    right: 0; /* attach to the RIGHT side*/
-    left: auto; /* disable left alignment */
-    width: 60%; /* optional: adjust size*/
-    border-radius: 15px 15px 15px 15px; /* right-side dropdown shape*/
-    background-color: rgba(0, 0, 0, 0.75);
-  }
+    /* right: 0; /* attach to the RIGHT side*/
+    /* left: auto; /* disable left alignment */
+    /* width: 60%; optional: adjust size */
+    /* border-radius: 15px 15px 15px 15px; right-side dropdown shape */
+    /* background-color: rgba(0, 0, 0, 0.75); */
+  /* } */ 
 
   .nav-links.active {
     display: flex;
@@ -2012,5 +2012,73 @@ input[type="time"],
 
   .nav-links li.active .dropdown-content {
     display: block;
+  }
+}
+
+
+
+/* FIX: Only show airport extras inside AIRPORT journeys */
+#airportExtras {
+    display: none !important;
+}
+
+.booking-section.airport-active #airportExtras {
+    display: flex !important;
+}
+
+
+
+/* FIX: Home page enquiry textarea must be black */
+.enquiry-form textarea,
+textarea.premium-field {
+    background: #111 !important;
+    color: #fff !important;
+    border: 1px solid #444 !important;
+    border-radius: 10px !important;
+    padding: 14px !important;
+    font-size: 16px !important;
+}
+
+
+textarea:focus {
+  outline: none !important;
+  border-color: #27ae60 !important;
+  box-shadow: 0 0 6px rgba(39,174,96,0.5) !important;
+}
+
+
+
+@media (max-width: 768px) {
+  .nav-links {
+    right: 0 !important;
+    left: auto !important;
+    width: 65% !important;
+    background-color: rgba(0,0,0,0.75) !important;
+    border-radius: 20px 0 0 20px !important;
+  }
+}
+
+
+
+/* FORCE all input boxes to same height */
+.premium-input,
+#terminal,
+#flightNumber,
+#date,
+#time,
+#returnDate,
+#returnTime {
+    height: 50px !important;
+    line-height: 50px !important;
+    padding: 0 14px !important;
+}
+
+/* Fix rows on mobile */
+@media (max-width: 768px) {
+  .form-row,
+  .date-time-row,
+  .flight-row {
+    flex-direction: column !important;
+    gap: 8px !important;
   }
 }
