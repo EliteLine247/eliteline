@@ -5,31 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eliteline | Booking</title>
 
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/circle_logo.png">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  <!-- GOOGLE MAPS API (WORKING + ERROR-FREE) -->
+  <!-- Google Maps JS (no callback, no legacy nonsense) -->
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY_Ht1E_M8zy1_GqcnF5llzF-79umXES4&libraries=places&callback=initAutocomplete"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY_Ht1E_M8zy1_GqcnF5llzF-79umXES4&libraries=places"
     async
     defer>
   </script>
 </head>
 
 <body>
+
 <header>
   <nav class="navbar">
     <div class="container">
-
       <div class="logo">
         <a href="index.html">
           <img src="images/circle_logo.png" alt="Eliteline logo">
         </a>
       </div>
 
-      <button class="menu-toggle"><i class="fas fa-bars"></i><span class="menu-text">Menu</span></button>
+      <button class="menu-toggle" aria-label="Open Menu">
+        <i class="fas fa-bars"></i>
+        <span class="menu-text">Menu</span>
+      </button>
 
       <ul class="nav-links">
         <li><a href="index.html">HOME</a></li>
@@ -41,11 +47,18 @@
       </ul>
 
       <div class="social-icons">
-        <a href="https://www.facebook.com/profile.php?id=61567137089321" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/elitelineofficial/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/447340868719" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      </div>
+        <a href="https://www.facebook.com/profile.php?id=61567137089321" target="_blank" class="facebook-icon">
+          <i class="fab fa-facebook-f"></i>
+        </a>
 
+        <a href="https://www.instagram.com/elitelineofficial/" target="_blank" class="instagram-icon">
+          <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://wa.me/447340868719" target="_blank" class="whatsapp-icon">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
     </div>
   </nav>
 </header>
@@ -57,24 +70,30 @@
 
   <form id="bookingForm" class="enquiry-form">
 
-    <!-- TRIP TYPE -->
+    <!-- ============================
+         TRIP TYPE (One Way / Return / Wait & Return / Hourly)
+    ============================ -->
     <div class="trip-tabs">
       <button type="button" class="trip-tab active" data-mode="one_way">One Way</button>
       <button type="button" class="trip-tab" data-mode="return">Return</button>
       <button type="button" class="trip-tab" data-mode="wait_return">Wait & Return</button>
       <button type="button" class="trip-tab" data-mode="hourly">By The Hour</button>
     </div>
-    <input type="hidden" id="tripType" value="one_way">
+    <input type="hidden" id="tripType" name="tripType" value="one_way">
 
-    <!-- CAR CLASS -->
+    <!-- ============================
+         CAR CLASS
+    ============================ -->
     <div class="car-class-buttons">
       <button type="button" class="car-btn active" data-car="business">Business Class</button>
       <button type="button" class="car-btn" data-car="first">First Class</button>
       <button type="button" class="car-btn" data-car="xl">Business XL</button>
     </div>
-    <input type="hidden" id="vehicle" value="business">
+    <input type="hidden" name="vehicle" id="vehicle" value="business">
 
-    <!-- FROM / TO -->
+    <!-- ============================
+         FROM / TO — FIXED FARE OR ADDRESS
+    ============================ -->
     <div id="fromToRow" class="from-to-row">
 
       <!-- FROM -->
@@ -86,8 +105,9 @@
           <button type="button" class="from-btn" data-from="address">Address</button>
         </div>
 
+        <!-- Fixed Fare select -->
         <div id="fromFixedWrapper" class="premium-select">
-          <select id="fromFixedFare">
+          <select id="fromFixedFare" name="fromFixedFare">
             <option value="">Select a fixed fare *</option>
             <optgroup label="Airports">
               <option value="LHR">London Heathrow Airport (LHR)</option>
@@ -101,7 +121,7 @@
               <option value="FAB">Farnborough Airport (FAB)</option>
             </optgroup>
             <optgroup label="Cities">
-              <option value="BRIGHTON_HOVE">Brighton & Hove</option>
+              <option value="BRIGHTON_HOVE">Brighton &amp; Hove</option>
               <option value="PORTSMOUTH">Portsmouth</option>
               <option value="SOUTHAMPTON_CITY">Southampton</option>
               <option value="GUILDFORD">Guildford</option>
@@ -110,8 +130,9 @@
           </select>
         </div>
 
+        <!-- Manual Address -->
         <div id="fromAddressWrapper" class="address-wrapper" style="display:none;">
-          <input id="fromAddress" class="premium-input" placeholder="From address *">
+          <input class="premium-input" type="text" id="fromAddress" name="fromAddress" placeholder="From address *">
         </div>
       </div>
 
@@ -124,8 +145,9 @@
           <button type="button" class="to-btn" data-to="address">Address</button>
         </div>
 
+        <!-- Fixed Fare select -->
         <div id="toFixedWrapper" class="premium-select">
-          <select id="toFixedFare">
+          <select id="toFixedFare" name="toFixedFare">
             <option value="">Select a fixed fare *</option>
             <optgroup label="Airports">
               <option value="LHR">London Heathrow Airport (LHR)</option>
@@ -139,7 +161,7 @@
               <option value="FAB">Farnborough Airport (FAB)</option>
             </optgroup>
             <optgroup label="Cities">
-              <option value="BRIGHTON_HOVE">Brighton & Hove</option>
+              <option value="BRIGHTON_HOVE">Brighton &amp; Hove</option>
               <option value="PORTSMOUTH">Portsmouth</option>
               <option value="SOUTHAMPTON_CITY">Southampton</option>
               <option value="GUILDFORD">Guildford</option>
@@ -148,57 +170,72 @@
           </select>
         </div>
 
+        <!-- Manual address -->
         <div id="toAddressWrapper" class="address-wrapper" style="display:none;">
-          <input id="toAddress" class="premium-input" placeholder="To address *">
+          <input class="premium-input" type="text" id="toAddress" name="toAddress" placeholder="To address *">
         </div>
       </div>
 
     </div>
 
-    <!-- HOURLY -->
+    <!-- ============================
+         HOURLY PICKUP (ONLY)
+    ============================ -->
     <div id="otherAddressWrapper" style="display:none;">
-      <input id="otherPickup" class="premium-input" placeholder="Pickup location *">
-      <input id="otherDropoff" class="premium-input" placeholder="Drop-off location *">
+      <input class="premium-input" type="text" id="otherPickup" name="otherPickup" placeholder="Pickup location *">
+      <input class="premium-input" type="text" id="otherDropoff" name="otherDropoff" placeholder="Drop-off location *">
     </div>
 
-    <!-- CONTACT -->
-    <input class="premium-input" placeholder="Full Name *" required>
-    <div class="form-row">
-      <input class="premium-input" placeholder="Phone Number *" required>
-      <input class="premium-input" placeholder="Email Address *" required>
+    <!-- ============================
+         PASSENGER DETAILS
+    ============================ -->
+    <input class="premium-input" type="text" name="fullName" placeholder="Full Name *" required>
+
+    <div class="form-row date-time-row">
+      <input class="premium-input" type="tel" name="phone" placeholder="Phone Number *" required>
+      <input class="premium-input" type="email" name="email" placeholder="Email Address *" required>
     </div>
 
-    <!-- DATE/TIME -->
+    <!-- ============================
+         OUTBOUND DATE & TIME
+    ============================ -->
     <div class="form-row">
       <div class="input-box">
         <label>Date</label>
-        <input type="date" id="date" class="premium-input" required>
+        <input type="date" id="date" name="date" class="premium-input" required>
       </div>
+    
       <div class="input-box">
         <label>Time</label>
-        <input type="time" id="time" class="premium-input" required>
+        <input type="time" id="time" name="time" class="premium-input" required>
       </div>
     </div>
 
-    <!-- RETURN -->
+    <!-- ============================
+         RETURN DATE & TIME
+    ============================ -->
     <div id="returnFields" style="display:none;">
-      <h4 style="text-align:center;margin:10px 0;">Return Journey Details</h4>
+      <h4 style="text-align:center; margin-top:10px; margin-bottom:10px;">Return Journey Details</h4>
+    
       <div class="form-row">
         <div class="input-box">
           <label>Return Date</label>
-          <input type="date" id="returnDate" class="premium-input">
+          <input type="date" id="returnDate" name="returnDate" class="premium-input">
         </div>
+    
         <div class="input-box">
           <label>Return Time</label>
-          <input type="time" id="returnTime" class="premium-input">
+          <input type="time" id="returnTime" name="returnTime" class="premium-input">
         </div>
       </div>
     </div>
 
-    <!-- WAIT HOURS -->
-    <div id="waitHoursWrapper" style="display:none;">
+    <!-- ============================
+         WAIT & RETURN HOURS
+    ============================ -->
+    <div id="waitHoursWrapper" class="premium-select" style="display:none;">
       <label>How many hours should the driver wait?</label>
-      <select id="waitHours" class="premium-input">
+      <select id="waitHours" name="waitHours">
         <option value="">Select hours *</option>
         <option value="1">1 hour</option>
         <option value="2">2 hours</option>
@@ -209,119 +246,371 @@
       </select>
     </div>
 
-    <!-- AIRPORT EXTRAS -->
+    <!-- ============================
+         AIRPORT EXTRAS (Terminal + Flight)
+         Only show when an AIRPORT is selected in fixed fare
+    ============================ -->
     <div id="airportExtras" class="form-row" style="display:none;">
       <div class="input-box">
         <label>Terminal</label>
-        <input id="terminal" class="premium-input" placeholder="Terminal">
+        <input type="text" id="terminal" name="terminal" class="premium-input" placeholder="Terminal">
       </div>
+    
       <div class="input-box">
         <label>Flight Number</label>
-        <input id="flightNumber" class="premium-input" placeholder="Flight Number">
+        <input type="text" id="flightNumber" name="flightNumber" class="premium-input" placeholder="Flight Number">
       </div>
     </div>
 
-    <!-- EXTRA STOP -->
+    <!-- ============================
+         HOURLY BOOKINGS
+    ============================ -->
+    <div id="hourlyWrapper" style="display:none;">
+      <label class="floating-label">Hours (minimum 4–5 depending on vehicle)</label>
+      <input type="number" min="4" id="hours" name="hours" class="premium-field" value="4">
+    </div>
+
+    <!-- ============================
+         EXTRA STOP OPTION
+    ============================ -->
     <fieldset class="extras-fieldset">
-      <label class="pill"><input type="checkbox" id="childSeat"><span>Child Seat</span></label>
-      <label class="pill"><input type="checkbox" id="extraStops"><span>Extra Stop(s)</span></label>
+      <label class="pill">
+        <input type="checkbox" id="childSeat" name="childSeat" value="yes">
+        <span>Child Seat</span>
+      </label>
+
+      <label class="pill">
+        <input type="checkbox" id="extraStops" name="extraStops" value="yes">
+        <span>Extra Stop(s)</span>
+      </label>
     </fieldset>
 
     <div id="extraStopAddressWrapper" style="display:none;">
-      <input id="extraStopAddress" class="premium-input" placeholder="Enter stop address *">
+      <input class="premium-input" type="text" id="extraStopAddress" name="extraStopAddress" placeholder="Enter stop address *">
     </div>
 
+    <!-- ============================
+         SUBMIT
+    ============================ -->
     <button type="submit" class="submit-btn">Proceed to Payment</button>
+
+    <!-- Hidden fields -->
+    <input type="hidden" id="pickup" name="pickup">
+    <input type="hidden" id="dropoff" name="dropoff">
+    <input type="hidden" id="airportCode" name="airportCode">
+    <input type="hidden" id="direction" name="direction">
+    <input type="hidden" id="pickupPostcode" name="pickupPostcode">
+    <input type="hidden" id="pickupSurcharge" name="pickupSurcharge">
 
   </form>
 </section>
 
-<!-- AUTOCOMPLETE (FIXED) -->
 <script>
-window.initAutocomplete = function () {
-  console.log("Google Maps Loaded");
+  (function () {
+    /* ============================================================
+       ELEMENT REFERENCES
+    ============================================================ */
+    const form = document.getElementById("bookingForm");
 
-  function setup(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    new google.maps.places.Autocomplete(el, {
-      componentRestrictions: { country: "gb" },
-      fields: ["formatted_address", "geometry", "address_components"],
-      types: ["address"]
-    });
-  }
+    // Trip type tabs
+    const tripTabs = document.querySelectorAll(".trip-tab");
+    const tripTypeInput = document.getElementById("tripType");
 
-  setup("fromAddress");
-  setup("toAddress");
-  setup("otherPickup");
-  setup("otherDropoff");
-  setup("extraStopAddress");
-};
-</script>
+    // Sections
+    const returnFields = document.getElementById("returnFields");
+    const waitHoursWrapper = document.getElementById("waitHoursWrapper");
+    const hourlyWrapper = document.getElementById("hourlyWrapper");
+    const airportExtras = document.getElementById("airportExtras");
 
-<!-- MAIN LOGIC FIXED -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+    const fromToRow = document.getElementById("fromToRow");
+    const otherAddressWrapper = document.getElementById("otherAddressWrapper");
 
-  const tripTypeInput = document.getElementById("tripType");
-  const returnFields = document.getElementById("returnFields");
-  const waitHoursWrapper = document.getElementById("waitHoursWrapper");
-  const hourlyWrapper = document.getElementById("hourlyWrapper");
-  const fromToRow = document.getElementById("fromToRow");
-  const otherAddressWrapper = document.getElementById("otherAddressWrapper");
-  const airportExtras = document.getElementById("airportExtras");
+    const otherPickupInput = document.getElementById("otherPickup");
+    const otherDropoffInput = document.getElementById("otherDropoff");
 
-  function setTrip(mode) {
-    tripTypeInput.value = mode;
+    /* ============================================================
+       CAR CLASS LOGIC (Business, First, XL)
+    ============================================================ */
+    const carButtons = document.querySelectorAll(".car-btn");
+    const vehicleInput = document.getElementById("vehicle");
+    const hoursInput = document.getElementById("hours");
 
-    returnFields.style.display = mode === "return" ? "block" : "none";
-    waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
-    hourlyWrapper && (hourlyWrapper.style.display = mode === "hourly" ? "block" : "none");
-
-    if (mode === "hourly") {
-      fromToRow.style.display = "none";
-      otherAddressWrapper.style.display = "block";
-    } else {
-      fromToRow.style.display = "flex";
-      otherAddressWrapper.style.display = "none";
+    function updateHourlyMinHours() {
+      if (!hoursInput) return;
+      if (vehicleInput.value === "business") {
+        hoursInput.min = 4;
+        if (hoursInput.value < 4) hoursInput.value = 4;
+      } else {
+        hoursInput.min = 5;
+        if (hoursInput.value < 5) hoursInput.value = 5;
+      }
     }
-  }
 
-  document.querySelectorAll(".trip-tab").forEach(btn => {
-    btn.addEventListener("click", () => setTrip(btn.dataset.mode));
-  });
+    carButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        carButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        vehicleInput.value = btn.dataset.car;
+        updateHourlyMinHours();
+      });
+    });
 
-  setTrip("one_way");
+    updateHourlyMinHours();
 
-});
+    /* ============================================================
+       FROM/TO — FIXED FARE OR ADDRESS LOGIC
+    ============================================================ */
+    const fromButtons = document.querySelectorAll(".from-btn");
+    const toButtons = document.querySelectorAll(".to-btn");
+
+    const fromFixedWrapper = document.getElementById("fromFixedWrapper");
+    const toFixedWrapper = document.getElementById("toFixedWrapper");
+
+    const fromAddressWrapper = document.getElementById("fromAddressWrapper");
+    const toAddressWrapper = document.getElementById("toAddressWrapper");
+
+    const fromFixedSelect = document.getElementById("fromFixedFare");
+    const toFixedSelect = document.getElementById("toFixedFare");
+
+    const fromAddressInput = document.getElementById("fromAddress");
+    const toAddressInput = document.getElementById("toAddress");
+
+    const AIRPORT_CODES = ["LHR","LGW","STN","SOU","LTN","BOH","LCY","BQH","FAB"];
+
+    function updateAirportExtrasVisibility() {
+      // Never show on hourly bookings
+      if (tripTypeInput.value === "hourly") {
+        airportExtras.style.display = "none";
+        return;
+      }
+
+      const fromIsFixed = fromFixedWrapper.style.display !== "none";
+      const toIsFixed = toFixedWrapper.style.display !== "none";
+
+      const fromCode = fromIsFixed ? fromFixedSelect.value : "";
+      const toCode = toIsFixed ? toFixedSelect.value : "";
+
+      const show =
+        (fromIsFixed && AIRPORT_CODES.includes(fromCode)) ||
+        (toIsFixed && AIRPORT_CODES.includes(toCode));
+
+      airportExtras.style.display = show ? "flex" : "none";
+    }
+
+    function setFromType(type) {
+      fromButtons.forEach(b => b.classList.toggle("active", b.dataset.from === type));
+
+      fromFixedWrapper.style.display = type === "fixed" ? "block" : "none";
+      fromAddressWrapper.style.display = type === "address" ? "block" : "none";
+
+      updateAirportExtrasVisibility();
+    }
+
+    function setToType(type) {
+      toButtons.forEach(b => b.classList.toggle("active", b.dataset.to === type));
+
+      toFixedWrapper.style.display = type === "fixed" ? "block" : "none";
+      toAddressWrapper.style.display = type === "address" ? "block" : "none";
+
+      updateAirportExtrasVisibility();
+    }
+
+    fromButtons.forEach(btn =>
+      btn.addEventListener("click", () => setFromType(btn.dataset.from))
+    );
+    toButtons.forEach(btn =>
+      btn.addEventListener("click", () => setToType(btn.dataset.to))
+    );
+
+    fromFixedSelect.addEventListener("change", updateAirportExtrasVisibility);
+    toFixedSelect.addEventListener("change", updateAirportExtrasVisibility);
+
+    // Default: fixed fare on both sides
+    setFromType("fixed");
+    setToType("fixed");
+
+    /* ============================================================
+       TRIP TYPE LOGIC (One Way / Return / Wait / Hourly)
+    ============================================================ */
+    function setTrip(mode) {
+      tripTypeInput.value = mode;
+
+      tripTabs.forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
+
+      // Show/hide relevant sections
+      returnFields.style.display = mode === "return" ? "block" : "none";
+      waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
+      hourlyWrapper.style.display = mode === "hourly" ? "block" : "none";
+
+      if (mode === "hourly") {
+        fromToRow.style.display = "none";
+        otherAddressWrapper.style.display = "block";
+        otherDropoffInput.style.display = "none"; // pickup only
+      } else {
+        fromToRow.style.display = "flex";
+        otherAddressWrapper.style.display = "none";
+        otherDropoffInput.style.display = "block";
+      }
+
+      updateAirportExtrasVisibility();
+    }
+
+    tripTabs.forEach(btn =>
+      btn.addEventListener("click", () => setTrip(btn.dataset.mode))
+    );
+
+    setTrip("one_way");
+
+    /* ============================================================
+       EXTRA STOPS
+    ============================================================ */
+    const extraStopsCheckbox = document.getElementById("extraStops");
+    const extraStopAddressWrapper = document.getElementById("extraStopAddressWrapper");
+
+    extraStopsCheckbox.addEventListener("change", () => {
+      extraStopAddressWrapper.style.display = extraStopsCheckbox.checked ? "block" : "none";
+    });
+
+    /* ============================================================
+       GOOGLE AUTOCOMPLETE (NO CALLBACK, NO ERRORS)
+    ============================================================ */
+
+    function attachAutocomplete(element) {
+      if (!element) return;
+      if (!window.google || !google.maps || !google.maps.places) return;
+
+      new google.maps.places.Autocomplete(element, {
+        componentRestrictions: { country: "GB" },
+        fields: ["formatted_address", "geometry", "address_components"],
+        types: ["address"]
+      });
+    }
+
+    function attachAutocompleteAll() {
+      attachAutocomplete(document.getElementById("fromAddress"));
+      attachAutocomplete(document.getElementById("toAddress"));
+      attachAutocomplete(document.getElementById("otherPickup"));
+      attachAutocomplete(document.getElementById("otherDropoff"));
+      attachAutocomplete(document.getElementById("extraStopAddress"));
+    }
+
+    function waitForGoogleMapsAndInit() {
+      if (window.google && google.maps && google.maps.places) {
+        attachAutocompleteAll();
+      } else {
+        setTimeout(waitForGoogleMapsAndInit, 200);
+      }
+    }
+
+    // DOM is ready (script is at the bottom), start polling for Google
+    waitForGoogleMapsAndInit();
+
+    /* ============================================================
+       FORM SUBMISSION
+    ============================================================ */
+    const pickupHidden = document.getElementById("pickup");
+    const dropoffHidden = document.getElementById("dropoff");
+    const airportCodeHidden = document.getElementById("airportCode");
+    const directionHidden = document.getElementById("direction");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const tripType = tripTypeInput.value;
+
+      let pickup = "";
+      let dropoff = "";
+      let airportCode = "";
+      let direction = "";
+
+      // HOURLY
+      if (tripType === "hourly") {
+        pickup = (otherPickupInput.value || "").trim();
+        dropoff = "";
+        direction = "HOURLY";
+      } else {
+        const fromIsFixed = fromFixedWrapper.style.display !== "none";
+        const toIsFixed = toFixedWrapper.style.display !== "none";
+
+        pickup = fromIsFixed
+          ? (fromFixedSelect.options[fromFixedSelect.selectedIndex] || {}).text || ""
+          : fromAddressInput.value;
+
+        dropoff = toIsFixed
+          ? (toFixedSelect.options[toFixedSelect.selectedIndex] || {}).text || ""
+          : toAddressInput.value;
+
+        const fromCode = fromIsFixed ? fromFixedSelect.value : "";
+        const toCode = toIsFixed ? toFixedSelect.value : "";
+
+        const fromIsAirport = fromIsFixed && AIRPORT_CODES.includes(fromCode);
+        const toIsAirport = toIsFixed && AIRPORT_CODES.includes(toCode);
+
+        if (fromIsAirport) airportCode = fromCode;
+        else if (toIsAirport) airportCode = toCode;
+
+        if (fromIsAirport && !toIsAirport) direction = "AIRPORT_TO_ADDRESS";
+        else if (!fromIsAirport && toIsAirport) direction = "ADDRESS_TO_AIRPORT";
+        else if (fromIsAirport && toIsAirport) direction = "AIRPORT_TO_AIRPORT";
+        else direction = "OTHER";
+      }
+
+      pickupHidden.value = pickup;
+      dropoffHidden.value = dropoff;
+      airportCodeHidden.value = airportCode;
+      directionHidden.value = direction;
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch("/api/create-booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        const json = await res.json();
+
+        if (res.ok && json.paymentUrl) {
+          window.location.href = json.paymentUrl;
+        } else {
+          alert("Booking error: " + (json.error || "Unknown error"));
+        }
+      } catch (err) {
+        alert("Network error — please try again.");
+      }
+    });
+
+  })();
 </script>
 
 <footer>
-    <p>
-      Copyright © 2025 |
-      Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom.
-      Company Registration Number: 16871447
-    </p>
-  </footer>
+  <p>
+    Copyright All Rights Reserved © 2025 |
+    Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom.
+    Company Registration Number: 16871447
+    <a href="privacy_policy.html" style="color:#000;">Privacy Policy</a>
+  </p>
+</footer>
 
+<!-- AOS Animation -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>AOS.init();</script>
 
+<!-- Header scroll behavior -->
 <script>
-document.querySelector(".menu-toggle").addEventListener("click", () => {
-  document.querySelector(".nav-links").classList.toggle("active");
-});
-</script>
-
-<script>
-document.addEventListener("scroll", () => {
+document.addEventListener("scroll", function () {
   const header = document.querySelector("header");
   header.style.top = window.scrollY > 50 ? "0" : "-100px";
 });
 </script>
 
+<!-- Mobile menu -->
+<script>
+document.querySelector(".menu-toggle").addEventListener("click", function () {
+  document.querySelector(".nav-links").classList.toggle("active");
+});
+</script>
+
 </body>
 </html>
-
-
-
