@@ -14,9 +14,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- Google API -->
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places">
-  </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY_Ht1E_M8zy1_GqcnF5llzF-79umXES4&libraries=places">
+    </script>
+
 </head>
 
 <body>
@@ -303,6 +304,29 @@
   </form>
 </section>
 
+
+<script>
+    function initAutocomplete() {
+      function attachAutocomplete(element) {
+        if (!element) return;
+    
+        new google.maps.places.Autocomplete(element, {
+          componentRestrictions: { country: "gb" },
+          fields: ["formatted_address", "geometry", "address_components"],
+          types: ["address"]
+        });
+      }
+    
+      // Attach autocomplete to all fields
+      attachAutocomplete(document.getElementById("fromAddress"));
+      attachAutocomplete(document.getElementById("toAddress"));
+      attachAutocomplete(document.getElementById("otherPickup"));
+      attachAutocomplete(document.getElementById("otherDropoff"));
+      attachAutocomplete(document.getElementById("extraStopAddress"));
+    }
+    </script>
+
+
 <script>
   (function () {
     /* ============================================================
@@ -472,21 +496,40 @@
     /* ============================================================
        GOOGLE AUTOCOMPLETE
     ============================================================ */
-    function attachAutocomplete(el) {
-      if (!el) return;
-      new google.maps.places.Autocomplete(el, {
-        componentRestrictions: { country: "GB" },
-        fields: ["formatted_address"]
-      });
-    }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      attachAutocomplete(fromAddressInput);
-      attachAutocomplete(toAddressInput);
-      attachAutocomplete(otherPickupInput);
-      attachAutocomplete(otherDropoffInput);
-      attachAutocomplete(document.getElementById("extraStopAddress"));
-    });
+    function attachAutocomplete(element) {
+        if (!element) return;
+
+        new google.maps.places.Autocomplete(element, {
+            componentRestrictions: { country: "gb" },
+            fields: ["formatted_address", "geometry", "address_components"],
+            types: ["address"]
+        });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+        attachAutocomplete(document.getElementById("fromAddress"));
+        attachAutocomplete(document.getElementById("toAddress"));
+        attachAutocomplete(document.getElementById("otherPickup"));
+        attachAutocomplete(document.getElementById("otherDropoff"));
+        attachAutocomplete(document.getElementById("extraStopAddress"));
+});
+
+    // function attachAutocomplete(el) {
+    //   if (!el) return;
+    //   new google.maps.places.Autocomplete(el, {
+    //     componentRestrictions: { country: "GB" },
+    //     fields: ["formatted_address"]
+    //   });
+    // }
+
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   attachAutocomplete(fromAddressInput);
+    //   attachAutocomplete(toAddressInput);
+    //   attachAutocomplete(otherPickupInput);
+    //   attachAutocomplete(otherDropoffInput);
+    //   attachAutocomplete(document.getElementById("extraStopAddress"));
+    // });
 
     /* ============================================================
        FORM SUBMISSION
