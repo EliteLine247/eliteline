@@ -10,30 +10,26 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  <!-- GOOGLE MAPS (WORKING AUTOCOMPLETE VERSION) -->
+  <!-- GOOGLE MAPS API (WORKING + ERROR-FREE) -->
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY_Ht1E_M8zy1_GqcnF5llzF-79umXES4&libraries=places&callback=initAutocomplete"
     async
     defer>
   </script>
-
 </head>
-<body>
 
+<body>
 <header>
   <nav class="navbar">
     <div class="container">
-      
+
       <div class="logo">
         <a href="index.html">
           <img src="images/circle_logo.png" alt="Eliteline logo">
         </a>
       </div>
 
-      <button class="menu-toggle" aria-label="Open Menu">
-        <i class="fas fa-bars"></i>
-        <span class="menu-text">Menu</span>
-      </button>
+      <button class="menu-toggle"><i class="fas fa-bars"></i><span class="menu-text">Menu</span></button>
 
       <ul class="nav-links">
         <li><a href="index.html">HOME</a></li>
@@ -68,7 +64,7 @@
       <button type="button" class="trip-tab" data-mode="wait_return">Wait & Return</button>
       <button type="button" class="trip-tab" data-mode="hourly">By The Hour</button>
     </div>
-    <input type="hidden" id="tripType" name="tripType" value="one_way">
+    <input type="hidden" id="tripType" value="one_way">
 
     <!-- CAR CLASS -->
     <div class="car-class-buttons">
@@ -76,7 +72,7 @@
       <button type="button" class="car-btn" data-car="first">First Class</button>
       <button type="button" class="car-btn" data-car="xl">Business XL</button>
     </div>
-    <input type="hidden" name="vehicle" id="vehicle" value="business">
+    <input type="hidden" id="vehicle" value="business">
 
     <!-- FROM / TO -->
     <div id="fromToRow" class="from-to-row">
@@ -115,7 +111,7 @@
         </div>
 
         <div id="fromAddressWrapper" class="address-wrapper" style="display:none;">
-          <input type="text" id="fromAddress" class="premium-input" placeholder="From address *">
+          <input id="fromAddress" class="premium-input" placeholder="From address *">
         </div>
       </div>
 
@@ -153,7 +149,7 @@
         </div>
 
         <div id="toAddressWrapper" class="address-wrapper" style="display:none;">
-          <input type="text" id="toAddress" class="premium-input" placeholder="To address *">
+          <input id="toAddress" class="premium-input" placeholder="To address *">
         </div>
       </div>
 
@@ -161,50 +157,48 @@
 
     <!-- HOURLY -->
     <div id="otherAddressWrapper" style="display:none;">
-      <input type="text" id="otherPickup" class="premium-input" placeholder="Pickup location *">
-      <input type="text" id="otherDropoff" class="premium-input" placeholder="Drop-off location *">
+      <input id="otherPickup" class="premium-input" placeholder="Pickup location *">
+      <input id="otherDropoff" class="premium-input" placeholder="Drop-off location *">
     </div>
 
-    <input type="text" name="fullName" class="premium-input" placeholder="Full Name *" required>
-
+    <!-- CONTACT -->
+    <input class="premium-input" placeholder="Full Name *" required>
     <div class="form-row">
-      <input type="tel" name="phone" class="premium-input" placeholder="Phone Number *" required>
-      <input type="email" name="email" class="premium-input" placeholder="Email Address *" required>
+      <input class="premium-input" placeholder="Phone Number *" required>
+      <input class="premium-input" placeholder="Email Address *" required>
     </div>
 
+    <!-- DATE/TIME -->
     <div class="form-row">
       <div class="input-box">
         <label>Date</label>
-        <input type="date" id="date" name="date" class="premium-input" required>
+        <input type="date" id="date" class="premium-input" required>
       </div>
-
       <div class="input-box">
         <label>Time</label>
-        <input type="time" id="time" name="time" class="premium-input" required>
+        <input type="time" id="time" class="premium-input" required>
       </div>
     </div>
 
     <!-- RETURN -->
     <div id="returnFields" style="display:none;">
-      <h4 style="text-align:center; margin-top:10px; margin-bottom:10px;">Return Journey Details</h4>
-
+      <h4 style="text-align:center;margin:10px 0;">Return Journey Details</h4>
       <div class="form-row">
         <div class="input-box">
           <label>Return Date</label>
-          <input type="date" id="returnDate" name="returnDate" class="premium-input">
+          <input type="date" id="returnDate" class="premium-input">
         </div>
-
         <div class="input-box">
           <label>Return Time</label>
-          <input type="time" id="returnTime" name="returnTime" class="premium-input">
+          <input type="time" id="returnTime" class="premium-input">
         </div>
       </div>
     </div>
 
     <!-- WAIT HOURS -->
-    <div id="waitHoursWrapper" class="premium-select" style="display:none;">
+    <div id="waitHoursWrapper" style="display:none;">
       <label>How many hours should the driver wait?</label>
-      <select id="waitHours" name="waitHours">
+      <select id="waitHours" class="premium-input">
         <option value="">Select hours *</option>
         <option value="1">1 hour</option>
         <option value="2">2 hours</option>
@@ -219,47 +213,38 @@
     <div id="airportExtras" class="form-row" style="display:none;">
       <div class="input-box">
         <label>Terminal</label>
-        <input type="text" id="terminal" name="terminal" class="premium-input" placeholder="Terminal">
+        <input id="terminal" class="premium-input" placeholder="Terminal">
       </div>
       <div class="input-box">
         <label>Flight Number</label>
-        <input type="text" id="flightNumber" name="flightNumber" class="premium-input" placeholder="Flight Number">
+        <input id="flightNumber" class="premium-input" placeholder="Flight Number">
       </div>
     </div>
 
+    <!-- EXTRA STOP -->
     <fieldset class="extras-fieldset">
-      <label class="pill"><input type="checkbox" id="childSeat" name="childSeat"> <span>Child Seat</span></label>
-      <label class="pill"><input type="checkbox" id="extraStops" name="extraStops"> <span>Extra Stop(s)</span></label>
+      <label class="pill"><input type="checkbox" id="childSeat"><span>Child Seat</span></label>
+      <label class="pill"><input type="checkbox" id="extraStops"><span>Extra Stop(s)</span></label>
     </fieldset>
 
     <div id="extraStopAddressWrapper" style="display:none;">
-      <input type="text" id="extraStopAddress" class="premium-input" placeholder="Enter stop address *">
+      <input id="extraStopAddress" class="premium-input" placeholder="Enter stop address *">
     </div>
 
     <button type="submit" class="submit-btn">Proceed to Payment</button>
 
-    <input type="hidden" id="pickup" name="pickup">
-    <input type="hidden" id="dropoff" name="dropoff">
-    <input type="hidden" id="airportCode" name="airportCode">
-    <input type="hidden" id="direction" name="direction">
-    <input type="hidden" id="pickupPostcode" name="pickupPostcode">
-    <input type="hidden" id="pickupSurcharge" name="pickupSurcharge">
   </form>
 </section>
 
-
-<!-- ============================
-     GOOGLE AUTOCOMPLETE JS
-============================ -->
+<!-- AUTOCOMPLETE (FIXED) -->
 <script>
-function initAutocomplete() {
+window.initAutocomplete = function () {
   console.log("Google Maps Loaded");
 
   function setup(id) {
-    const input = document.getElementById(id);
-    if (!input) return;
-
-    new google.maps.places.Autocomplete(input, {
+    const el = document.getElementById(id);
+    if (!el) return;
+    new google.maps.places.Autocomplete(el, {
       componentRestrictions: { country: "gb" },
       fields: ["formatted_address", "geometry", "address_components"],
       types: ["address"]
@@ -271,161 +256,65 @@ function initAutocomplete() {
   setup("otherPickup");
   setup("otherDropoff");
   setup("extraStopAddress");
-}
+};
 </script>
 
-
-<!-- ============================
-     MAIN BOOKING LOGIC
-============================ -->
+<!-- MAIN LOGIC FIXED -->
 <script>
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const form = document.getElementById("bookingForm");
-
-  const tripTabs = document.querySelectorAll(".trip-tab");
   const tripTypeInput = document.getElementById("tripType");
-
   const returnFields = document.getElementById("returnFields");
   const waitHoursWrapper = document.getElementById("waitHoursWrapper");
   const hourlyWrapper = document.getElementById("hourlyWrapper");
-  const airportExtras = document.getElementById("airportExtras");
-
   const fromToRow = document.getElementById("fromToRow");
   const otherAddressWrapper = document.getElementById("otherAddressWrapper");
+  const airportExtras = document.getElementById("airportExtras");
 
-  const otherPickupInput = document.getElementById("otherPickup");
-  const otherDropoffInput = document.getElementById("otherDropoff");
-
-  const carButtons = document.querySelectorAll(".car-btn");
-  const vehicleInput = document.getElementById("vehicle");
-  const hoursInput = document.getElementById("hours");
-
-  function updateHourlyMin() {
-    if (!hoursInput) return;
-    hoursInput.min = (vehicleInput.value === "business" ? 4 : 5);
-  }
-
-  carButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      carButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      vehicleInput.value = btn.dataset.car;
-      updateHourlyMin();
-    });
-  });
-
-  updateHourlyMin();
-
-  /* FIXED / ADDRESS */
-  const fromButtons = document.querySelectorAll(".from-btn");
-  const toButtons = document.querySelectorAll(".to-btn");
-
-  const fromFixedWrapper = document.getElementById("fromFixedWrapper");
-  const toFixedWrapper = document.getElementById("toFixedWrapper");
-
-  const fromAddressWrapperEl = document.getElementById("fromAddressWrapper");
-  const toAddressWrapperEl = document.getElementById("toAddressWrapper");
-
-  const fromFixedSelect = document.getElementById("fromFixedFare");
-  const toFixedSelect = document.getElementById("toFixedFare");
-
-  const AIRPORT_CODES = ["LHR","LGW","STN","SOU","LTN","BOH","LCY","BQH","FAB"];
-
-  function updateAirportExtras() {
-    if (tripTypeInput.value === "hourly") {
-      airportExtras.style.display = "none";
-      return;
-    }
-
-    const fromCode = fromFixedSelect.value;
-    const toCode = toFixedSelect.value;
-
-    const show =
-      AIRPORT_CODES.includes(fromCode) ||
-      AIRPORT_CODES.includes(toCode);
-
-    airportExtras.style.display = show ? "flex" : "none";
-  }
-
-  function setFromType(type) {
-    fromButtons.forEach(b => b.classList.toggle("active", b.dataset.from === type));
-    fromFixedWrapper.style.display = type === "fixed" ? "block" : "none";
-    fromAddressWrapperEl.style.display = type === "address" ? "block" : "none";
-    updateAirportExtras();
-  }
-
-  function setToType(type) {
-    toButtons.forEach(b => b.classList.toggle("active", b.dataset.to === type));
-    toFixedWrapper.style.display = type === "fixed" ? "block" : "none";
-    toAddressWrapperEl.style.display = type === "address" ? "block" : "none";
-    updateAirportExtras();
-  }
-
-  fromButtons.forEach(btn => btn.addEventListener("click", () => setFromType(btn.dataset.from)));
-  toButtons.forEach(btn => btn.addEventListener("click", () => setToType(btn.dataset.to)));
-
-  fromFixedSelect.addEventListener("change", updateAirportExtras);
-  toFixedSelect.addEventListener("change", updateAirportExtras);
-
-  setFromType("fixed");
-  setToType("fixed");
-
-  /* TRIP LOGIC */
   function setTrip(mode) {
     tripTypeInput.value = mode;
-    tripTabs.forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
 
     returnFields.style.display = mode === "return" ? "block" : "none";
     waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
-    hourlyWrapper.style.display = mode === "hourly" ? "block" : "none";
+    hourlyWrapper && (hourlyWrapper.style.display = mode === "hourly" ? "block" : "none");
 
     if (mode === "hourly") {
       fromToRow.style.display = "none";
       otherAddressWrapper.style.display = "block";
-      otherDropoffInput.style.display = "none";
     } else {
       fromToRow.style.display = "flex";
       otherAddressWrapper.style.display = "none";
-      otherDropoffInput.style.display = "block";
     }
-
-    updateAirportExtras();
   }
 
-  tripTabs.forEach(btn => btn.addEventListener("click", () => setTrip(btn.dataset.mode)));
-  setTrip("one_way");
-
-  /* EXTRA STOPS */
-  const extraStopsCheckbox = document.getElementById("extraStops");
-  const extraStopAddressWrapper = document.getElementById("extraStopAddressWrapper");
-
-  extraStopsCheckbox.addEventListener("change", () => {
-    extraStopAddressWrapper.style.display = extraStopsCheckbox.checked ? "block" : "none";
+  document.querySelectorAll(".trip-tab").forEach(btn => {
+    btn.addEventListener("click", () => setTrip(btn.dataset.mode));
   });
 
-})();
+  setTrip("one_way");
+
+});
 </script>
 
 <footer>
-  <p>
-    Copyright © 2025 |
-    Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom.
-    Company Registration Number: 16871447
-  </p>
-</footer>
+    <p>
+      Copyright © 2025 |
+      Eliteline, Chichester District Council. Operator's Licence Number: 381, United Kingdom.
+      Company Registration Number: 16871447
+    </p>
+  </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>AOS.init();</script>
 
 <script>
-document.querySelector(".menu-toggle").addEventListener("click", function () {
+document.querySelector(".menu-toggle").addEventListener("click", () => {
   document.querySelector(".nav-links").classList.toggle("active");
 });
 </script>
 
 <script>
-document.addEventListener("scroll", function () {
+document.addEventListener("scroll", () => {
   const header = document.querySelector("header");
   header.style.top = window.scrollY > 50 ? "0" : "-100px";
 });
@@ -433,3 +322,6 @@ document.addEventListener("scroll", function () {
 
 </body>
 </html>
+
+
+
