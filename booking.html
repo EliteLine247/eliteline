@@ -267,7 +267,7 @@
     <!-- ============================
          OUTBOUND DATE & TIME
     ============================ -->
-    <div class="date-time-row">
+    <!-- <div class="date-time-row">
       <div class="input-box">
         <label class="floating-label">Date</label>
         <input type="date" id="date" name="date" class="premium-field" required>
@@ -277,28 +277,57 @@
         <label class="floating-label">Time</label>
         <input type="time" id="time" name="time" class="premium-field" required step="300">
       </div>
+    </div> -->
+
+
+    <div class="form-row">
+      <div class="input-box">
+        <label>Date</label>
+        <input type="date" id="date" name="date" class="premium-input" required>
+      </div>
+    
+      <div class="input-box">
+        <label>Time</label>
+        <input type="time" id="time" name="time" class="premium-input" required>
+      </div>
     </div>
+    
 
 
     <!-- ============================
          RETURN DATE & TIME — FLOATING LABELS
     ============================ -->
-    <div id="returnFields" style="display:none;">
+    <!-- <div id="returnFields" style="display:none;">
       <h4 style="text-align:center; margin-top:10px; margin-bottom:10px;">Return Journey Details</h4>
 
-      <div class="date-time-row">
-        <div class="input-box">
-          <label class="floating-label" id="label-return-date">Return Date</label>
-          <input type="date" id="returnDate" name="returnDate" class="premium-field">
-        </div>
+      <div class="floating-group">
+        <input type="date" id="returnDate" class="premium-input" placeholder="">
+        <label class="floating-label">Return Date</label>
+      </div>
+      
+      <div class="floating-group">
+        <input type="time" id="returnTime" class="premium-input" placeholder="">
+        <label class="floating-label">Return Time</label>
+      </div>
+    </div> -->
 
+
+    <div id="returnFields" style="display:none;">
+      <h4 style="text-align:center; margin-top:10px; margin-bottom:10px;">Return Journey Details</h4>
+    
+      <div class="form-row">
         <div class="input-box">
-          <label class="floating-label" id="label-return-time">Return Time</label>
-          <input type="time" id="returnTime" name="returnTime" class="premium-field" step="300">
+          <label>Return Date</label>
+          <input type="date" id="returnDate" name="returnDate" class="premium-input">
+        </div>
+    
+        <div class="input-box">
+          <label>Return Time</label>
+          <input type="time" id="returnTime" name="returnTime" class="premium-input">
         </div>
       </div>
     </div>
-
+    
 
     <!-- ============================
          WAIT & RETURN HOURS
@@ -320,7 +349,7 @@
     <!-- ============================
          AIRPORT EXTRAS
     ============================ -->
-    <div id="airportExtras" class="form-row flight-row" style="display:none;">
+    <!-- <div id="airportExtras" class="form-row flight-row" style="display:none;">
       <div class="input-box">
         <label class="floating-label">Terminal</label>
         <input type="text" id="terminal" name="terminal" class="premium-field" placeholder="Terminal">
@@ -330,7 +359,21 @@
         <label class="floating-label">Flight Number</label>
         <input type="text" id="flightNumber" name="flightNumber" class="premium-field" placeholder="Flight Number">
       </div>
+    </div> -->
+
+
+    <div id="airportExtras" class="form-row" style="display:none;">
+      <div class="input-box">
+        <label>Terminal</label>
+        <input type="text" id="terminal" name="terminal" class="premium-input" placeholder="Terminal">
+      </div>
+    
+      <div class="input-box">
+        <label>Flight Number</label>
+        <input type="text" id="flightNumber" name="flightNumber" class="premium-input" placeholder="Flight Number">
+      </div>
     </div>
+    
 
 
     <!-- ============================
