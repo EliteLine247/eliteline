@@ -574,55 +574,31 @@
        JOURNEY TYPE LOGIC (Airport / City / Other)
     ============================================================ */
     function handleJourneyType(type) {
-  journeyTypeInput.value = type;
+    journeyTypeInput.value = type;
 
-  // Mark airport active for CSS
-  document.querySelector(".booking-section").classList.toggle("airport-active", type === "airport");
+    // Activate airport mode for CSS
+    document.querySelector(".booking-section")
+        .classList.toggle("airport-active", type === "airport");
 
-  // Toggle buttons
-  journeyBtns.forEach(b => 
-    b.classList.toggle("active", b.dataset.type === type)
-  );
+    // Show/hide terminal + flight
+    airportExtras.style.display = (type === "airport") ? "flex" : "none";
 
-  // Airport extras only for airport
-  airportExtras.style.display = type === "airport" ? "flex" : "none";
-
-  // Hourly overrides everything
-  if (tripTypeInput.value === "hourly") {
-    journeyTypeButtons.style.display = "none";
-    fromToRow.style.display = "none";
-    cityFromToRow.style.display = "none";
-    otherAddressWrapper.style.display = "block";
-    otherDropoffInput.style.display = "none";
-    return;
-  }
-
-  if (type === "airport") {
-    fromToRow.style.display = "flex";
-    cityFromToRow.style.display = "none";
-    otherAddressWrapper.style.display = "none";
-    return;
-  }
-
-  if (type === "city") {
-    fromToRow.style.display = "none";
-    cityFromToRow.style.display = "flex";
-    otherAddressWrapper.style.display = "none";
-    return;
-  }
-
-  // Other
-  fromToRow.style.display = "none";
-  cityFromToRow.style.display = "none";
-  otherAddressWrapper.style.display = "block";
+    // NORMAL BEHAVIOR
+    if (type === "airport") {
+        fromToRow.style.display = "flex";
+        cityFromToRow.style.display = "none";
+        otherAddressWrapper.style.display = "none";
+    } else if (type === "city") {
+        fromToRow.style.display = "none";
+        cityFromToRow.style.display = "flex";
+        otherAddressWrapper.style.display = "none";
+    } else {
+        fromToRow.style.display = "none";
+        cityFromToRow.style.display = "none";
+        otherAddressWrapper.style.display = "block";
+    }
 }
 
-  
-    journeyBtns.forEach(btn =>
-      btn.addEventListener("click", () => handleJourneyType(btn.dataset.type))
-    );
-  
-    handleJourneyType("airport");
   
   
     /* ============================================================
