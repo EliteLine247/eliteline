@@ -8,12 +8,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/circle_logo.png">
 
-  <!-- Google Maps JavaScript (needed by the web components, but we WON'T call google.maps.places.Autocomplete) -->
-  <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY_Ht1E_M8zy1_GqcnF5llzF-79umXES4&libraries=places">
-  </script>
-
-  <!-- Google Maps Extended Component Library (PlaceAutocompleteElement) -->
+  <!-- ONLY USE THE NEW GOOGLE MAPS EXTENDED COMPONENT LIBRARY -->
   <script type="module"
     src="https://unpkg.com/@googlemaps/extended-component-library@0.6.1">
   </script>
@@ -73,9 +68,7 @@
 
   <form id="bookingForm" class="enquiry-form">
 
-    <!-- ============================
-         TRIP TYPE (One Way / Return / Wait & Return / Hourly)
-    ============================ -->
+    <!-- TRIP TYPE -->
     <div class="trip-tabs">
       <button type="button" class="trip-tab active" data-mode="one_way">One Way</button>
       <button type="button" class="trip-tab" data-mode="return">Return</button>
@@ -84,9 +77,7 @@
     </div>
     <input type="hidden" id="tripType" name="tripType" value="one_way">
 
-    <!-- ============================
-         CAR CLASS
-    ============================ -->
+    <!-- CAR CLASS -->
     <div class="car-class-buttons">
       <button type="button" class="car-btn active" data-car="business">Business Class</button>
       <button type="button" class="car-btn" data-car="first">First Class</button>
@@ -94,9 +85,7 @@
     </div>
     <input type="hidden" name="vehicle" id="vehicle" value="business">
 
-    <!-- ============================
-         FROM / TO — FIXED FARE OR ADDRESS
-    ============================ -->
+    <!-- FROM / TO -->
     <div id="fromToRow" class="from-to-row">
 
       <!-- FROM -->
@@ -108,7 +97,6 @@
           <button type="button" class="from-btn" data-from="address">Address</button>
         </div>
 
-        <!-- Fixed Fare select -->
         <div id="fromFixedWrapper" class="premium-select">
           <select id="fromFixedFare" name="fromFixedFare">
             <option value="">Select a fixed fare *</option>
@@ -124,7 +112,7 @@
               <option value="FAB">Farnborough Airport (FAB)</option>
             </optgroup>
             <optgroup label="Cities">
-              <option value="BRIGHTON_HOVE">Brighton &amp; Hove</option>
+              <option value="BRIGHTON_HOVE">Brighton & Hove</option>
               <option value="PORTSMOUTH">Portsmouth</option>
               <option value="SOUTHAMPTON_CITY">Southampton</option>
               <option value="GUILDFORD">Guildford</option>
@@ -133,19 +121,9 @@
           </select>
         </div>
 
-        <!-- Manual Address + Place Autocomplete -->
         <div id="fromAddressWrapper" class="address-wrapper" style="display:none;">
-          <input
-            class="premium-input"
-            type="text"
-            id="fromAddress"
-            name="fromAddress"
-            placeholder="From address *"
-            autocomplete="off">
-          <gmpx-place-autocomplete
-            for="fromAddress"
-            country-restrictions="gb">
-          </gmpx-place-autocomplete>
+          <input class="premium-input" type="text" id="fromAddress" name="fromAddress" placeholder="From address *" autocomplete="off">
+          <gmpx-place-autocomplete for="fromAddress" country-restrictions="gb"></gmpx-place-autocomplete>
         </div>
       </div>
 
@@ -158,7 +136,6 @@
           <button type="button" class="to-btn" data-to="address">Address</button>
         </div>
 
-        <!-- Fixed Fare select -->
         <div id="toFixedWrapper" class="premium-select">
           <select id="toFixedFare" name="toFixedFare">
             <option value="">Select a fixed fare *</option>
@@ -174,7 +151,7 @@
               <option value="FAB">Farnborough Airport (FAB)</option>
             </optgroup>
             <optgroup label="Cities">
-              <option value="BRIGHTON_HOVE">Brighton &amp; Hove</option>
+              <option value="BRIGHTON_HOVE">Brighton & Hove</option>
               <option value="PORTSMOUTH">Portsmouth</option>
               <option value="SOUTHAMPTON_CITY">Southampton</option>
               <option value="GUILDFORD">Guildford</option>
@@ -183,60 +160,28 @@
           </select>
         </div>
 
-        <!-- Manual address + Place Autocomplete -->
         <div id="toAddressWrapper" class="address-wrapper" style="display:none;">
-          <input
-            class="premium-input"
-            type="text"
-            id="toAddress"
-            name="toAddress"
-            placeholder="To address *"
-            autocomplete="off">
-          <gmpx-place-autocomplete
-            for="toAddress"
-            country-restrictions="gb">
-          </gmpx-place-autocomplete>
+          <input class="premium-input" type="text" id="toAddress" name="toAddress" placeholder="To address *" autocomplete="off">
+          <gmpx-place-autocomplete for="toAddress" country-restrictions="gb"></gmpx-place-autocomplete>
         </div>
       </div>
 
     </div>
 
-    <!-- ============================
-         HOURLY PICKUP (ONLY)
-    ============================ -->
+    <!-- HOURLY PICKUP -->
     <div id="otherAddressWrapper" style="display:none;">
       <div class="address-wrapper">
-        <input
-          class="premium-input"
-          type="text"
-          id="otherPickup"
-          name="otherPickup"
-          placeholder="Pickup location *"
-          autocomplete="off">
-        <gmpx-place-autocomplete
-          for="otherPickup"
-          country-restrictions="gb">
-        </gmpx-place-autocomplete>
+        <input class="premium-input" type="text" id="otherPickup" name="otherPickup" placeholder="Pickup location *" autocomplete="off">
+        <gmpx-place-autocomplete for="otherPickup" country-restrictions="gb"></gmpx-place-autocomplete>
       </div>
 
       <div class="address-wrapper">
-        <input
-          class="premium-input"
-          type="text"
-          id="otherDropoff"
-          name="otherDropoff"
-          placeholder="Drop-off location *"
-          autocomplete="off">
-        <gmpx-place-autocomplete
-          for="otherDropoff"
-          country-restrictions="gb">
-        </gmpx-place-autocomplete>
+        <input class="premium-input" type="text" id="otherDropoff" name="otherDropoff" placeholder="Drop-off location *" autocomplete="off">
+        <gmpx-place-autocomplete for="otherDropoff" country-restrictions="gb"></gmpx-place-autocomplete>
       </div>
     </div>
 
-    <!-- ============================
-         PASSENGER DETAILS
-    ============================ -->
+    <!-- PASSENGER DETAILS -->
     <input class="premium-input" type="text" name="fullName" placeholder="Full Name *" required>
 
     <div class="form-row date-time-row">
@@ -244,33 +189,29 @@
       <input class="premium-input" type="email" name="email" placeholder="Email Address *" required>
     </div>
 
-    <!-- ============================
-         OUTBOUND DATE & TIME
-    ============================ -->
+    <!-- DATE & TIME -->
     <div class="form-row">
       <div class="input-box">
         <label>Date</label>
         <input type="date" id="date" name="date" class="premium-input" required>
       </div>
-    
+
       <div class="input-box">
         <label>Time</label>
         <input type="time" id="time" name="time" class="premium-input" required>
       </div>
     </div>
 
-    <!-- ============================
-         RETURN DATE & TIME
-    ============================ -->
+    <!-- RETURN FIELDS -->
     <div id="returnFields" style="display:none;">
       <h4 style="text-align:center; margin-top:10px; margin-bottom:10px;">Return Journey Details</h4>
-    
+
       <div class="form-row">
         <div class="input-box">
           <label>Return Date</label>
           <input type="date" id="returnDate" name="returnDate" class="premium-input">
         </div>
-    
+
         <div class="input-box">
           <label>Return Time</label>
           <input type="time" id="returnTime" name="returnTime" class="premium-input">
@@ -278,9 +219,7 @@
       </div>
     </div>
 
-    <!-- ============================
-         WAIT & RETURN HOURS
-    ============================ -->
+    <!-- WAIT & RETURN -->
     <div id="waitHoursWrapper" class="premium-select" style="display:none;">
       <label>How many hours should the driver wait?</label>
       <select id="waitHours" name="waitHours">
@@ -294,32 +233,26 @@
       </select>
     </div>
 
-    <!-- ============================
-         AIRPORT EXTRAS (Terminal + Flight)
-    ============================ -->
+    <!-- AIRPORT EXTRAS -->
     <div id="airportExtras" class="form-row" style="display:none;">
       <div class="input-box">
         <label>Terminal</label>
         <input type="text" id="terminal" name="terminal" class="premium-input" placeholder="Terminal">
       </div>
-    
+
       <div class="input-box">
         <label>Flight Number</label>
         <input type="text" id="flightNumber" name="flightNumber" class="premium-input" placeholder="Flight Number">
       </div>
     </div>
 
-    <!-- ============================
-         HOURLY BOOKINGS
-    ============================ -->
+    <!-- HOURLY -->
     <div id="hourlyWrapper" style="display:none;">
       <label class="floating-label">Hours (minimum 4–5 depending on vehicle)</label>
       <input type="number" min="4" id="hours" name="hours" class="premium-field" value="4">
     </div>
 
-    <!-- ============================
-         EXTRA STOP OPTION
-    ============================ -->
+    <!-- EXTRA STOPS -->
     <fieldset class="extras-fieldset">
       <label class="pill">
         <input type="checkbox" id="childSeat" name="childSeat" value="yes">
@@ -334,26 +267,14 @@
 
     <div id="extraStopAddressWrapper" style="display:none;">
       <div class="address-wrapper">
-        <input
-          class="premium-input"
-          type="text"
-          id="extraStopAddress"
-          name="extraStopAddress"
-          placeholder="Enter stop address *"
-          autocomplete="off">
-        <gmpx-place-autocomplete
-          for="extraStopAddress"
-          country-restrictions="gb">
-        </gmpx-place-autocomplete>
+        <input class="premium-input" type="text" id="extraStopAddress" name="extraStopAddress" placeholder="Enter stop address *" autocomplete="off">
+        <gmpx-place-autocomplete for="extraStopAddress" country-restrictions="gb"></gmpx-place-autocomplete>
       </div>
     </div>
 
-    <!-- ============================
-         SUBMIT
-    ============================ -->
+    <!-- SUBMIT -->
     <button type="submit" class="submit-btn">Proceed to Payment</button>
 
-    <!-- Hidden fields -->
     <input type="hidden" id="pickup" name="pickup">
     <input type="hidden" id="dropoff" name="dropoff">
     <input type="hidden" id="airportCode" name="airportCode">
@@ -364,18 +285,14 @@
   </form>
 </section>
 
+<!-- JS LOGIC (unchanged) -->
 <script>
   (function () {
-    /* ============================================================
-       ELEMENT REFERENCES
-    ============================================================ */
     const form = document.getElementById("bookingForm");
 
-    // Trip type tabs
     const tripTabs = document.querySelectorAll(".trip-tab");
     const tripTypeInput = document.getElementById("tripType");
 
-    // Sections
     const returnFields = document.getElementById("returnFields");
     const waitHoursWrapper = document.getElementById("waitHoursWrapper");
     const hourlyWrapper = document.getElementById("hourlyWrapper");
@@ -387,9 +304,6 @@
     const otherPickupInput = document.getElementById("otherPickup");
     const otherDropoffInput = document.getElementById("otherDropoff");
 
-    /* ============================================================
-       CAR CLASS LOGIC (Business, First, XL)
-    ============================================================ */
     const carButtons = document.querySelectorAll(".car-btn");
     const vehicleInput = document.getElementById("vehicle");
     const hoursInput = document.getElementById("hours");
@@ -416,9 +330,6 @@
 
     updateHourlyMinHours();
 
-    /* ============================================================
-       FROM/TO — FIXED FARE OR ADDRESS LOGIC
-    ============================================================ */
     const fromButtons = document.querySelectorAll(".from-btn");
     const toButtons = document.querySelectorAll(".to-btn");
 
@@ -439,7 +350,6 @@
     function updateAirportExtrasVisibility() {
       if (!airportExtras) return;
 
-      // Never show on hourly bookings
       if (tripTypeInput.value === "hourly") {
         airportExtras.style.display = "none";
         return;
@@ -460,81 +370,60 @@
 
     function setFromType(type) {
       fromButtons.forEach(b => b.classList.toggle("active", b.dataset.from === type));
-
-      if (fromFixedWrapper) fromFixedWrapper.style.display = type === "fixed" ? "block" : "none";
-      if (fromAddressWrapper) fromAddressWrapper.style.display = type === "address" ? "block" : "none";
-
+      fromFixedWrapper.style.display = type === "fixed" ? "block" : "none";
+      fromAddressWrapper.style.display = type === "address" ? "block" : "none";
       updateAirportExtrasVisibility();
     }
 
     function setToType(type) {
       toButtons.forEach(b => b.classList.toggle("active", b.dataset.to === type));
-
-      if (toFixedWrapper) toFixedWrapper.style.display = type === "fixed" ? "block" : "none";
-      if (toAddressWrapper) toAddressWrapper.style.display = type === "address" ? "block" : "none";
-
+      toFixedWrapper.style.display = type === "fixed" ? "block" : "none";
+      toAddressWrapper.style.display = type === "address" ? "block" : "none";
       updateAirportExtrasVisibility();
     }
 
-    fromButtons.forEach(btn =>
-      btn.addEventListener("click", () => setFromType(btn.dataset.from))
-    );
-    toButtons.forEach(btn =>
-      btn.addEventListener("click", () => setToType(btn.dataset.to))
-    );
+    fromButtons.forEach(btn => btn.addEventListener("click", () => setFromType(btn.dataset.from)));
+    toButtons.forEach(btn => btn.addEventListener("click", () => setToType(btn.dataset.to)));
 
     fromFixedSelect.addEventListener("change", updateAirportExtrasVisibility);
     toFixedSelect.addEventListener("change", updateAirportExtrasVisibility);
 
-    // Default: fixed fare on both sides
     setFromType("fixed");
     setToType("fixed");
 
-    /* ============================================================
-       TRIP TYPE LOGIC (One Way / Return / Wait / Hourly)
-    ============================================================ */
     function setTrip(mode) {
       tripTypeInput.value = mode;
 
       tripTabs.forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
 
-      if (returnFields) returnFields.style.display = mode === "return" ? "block" : "none";
-      if (waitHoursWrapper) waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
-      if (hourlyWrapper) hourlyWrapper.style.display = mode === "hourly" ? "block" : "none";
+      returnFields.style.display = mode === "return" ? "block" : "none";
+      waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
+      hourlyWrapper.style.display = mode === "hourly" ? "block" : "none";
 
       if (mode === "hourly") {
-        if (fromToRow) fromToRow.style.display = "none";
-        if (otherAddressWrapper) otherAddressWrapper.style.display = "block";
-        if (otherDropoffInput) otherDropoffInput.style.display = "none"; // pickup only
+        fromToRow.style.display = "none";
+        otherAddressWrapper.style.display = "block";
+        otherDropoffInput.style.display = "none";
       } else {
-        if (fromToRow) fromToRow.style.display = "flex";
-        if (otherAddressWrapper) otherAddressWrapper.style.display = "none";
-        if (otherDropoffInput) otherDropoffInput.style.display = "block";
+        fromToRow.style.display = "flex";
+        otherAddressWrapper.style.display = "none";
+        otherDropoffInput.style.display = "block";
       }
 
       updateAirportExtrasVisibility();
     }
 
-    tripTabs.forEach(btn =>
-      btn.addEventListener("click", () => setTrip(btn.dataset.mode))
-    );
+    tripTabs.forEach(btn => btn.addEventListener("click", () => setTrip(btn.dataset.mode)));
 
     setTrip("one_way");
 
-    /* ============================================================
-       EXTRA STOPS
-    ============================================================ */
     const extraStopsCheckbox = document.getElementById("extraStops");
     const extraStopAddressWrapper = document.getElementById("extraStopAddressWrapper");
 
     extraStopsCheckbox.addEventListener("change", () => {
-      if (!extraStopAddressWrapper) return;
       extraStopAddressWrapper.style.display = extraStopsCheckbox.checked ? "block" : "none";
     });
 
-    /* ============================================================
-       FORM SUBMISSION
-    ============================================================ */
     const pickupHidden = document.getElementById("pickup");
     const dropoffHidden = document.getElementById("dropoff");
     const airportCodeHidden = document.getElementById("airportCode");
@@ -550,14 +439,13 @@
       let airportCode = "";
       let direction = "";
 
-      // HOURLY
       if (tripType === "hourly") {
         pickup = (otherPickupInput?.value || "").trim();
         dropoff = "";
         direction = "HOURLY";
       } else {
-        const fromIsFixed = fromFixedWrapper && fromFixedWrapper.style.display !== "none";
-        const toIsFixed = toFixedWrapper && toFixedWrapper.style.display !== "none";
+        const fromIsFixed = fromFixedWrapper.style.display !== "none";
+        const toIsFixed = toFixedWrapper.style.display !== "none";
 
         pickup = fromIsFixed
           ? (fromFixedSelect.options[fromFixedSelect.selectedIndex] || {}).text || ""
@@ -620,11 +508,9 @@
   </p>
 </footer>
 
-<!-- AOS Animation -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>AOS.init();</script>
 
-<!-- Header scroll behavior -->
 <script>
 document.addEventListener("scroll", function () {
   const header = document.querySelector("header");
@@ -632,7 +518,6 @@ document.addEventListener("scroll", function () {
 });
 </script>
 
-<!-- Mobile menu -->
 <script>
 document.querySelector(".menu-toggle").addEventListener("click", function () {
   document.querySelector(".nav-links").classList.toggle("active");
