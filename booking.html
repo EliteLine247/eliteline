@@ -8,9 +8,15 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/circle_logo.png">
 
-  <!-- Google Maps NEW Autocomplete (2025+) -->
-  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY_Ht1E_M8zy1_GqcnF5llzF-79umXES4&libraries=places"></script>
-  <script type="module" src="https://unpkg.com/@googlemaps/extended-component-library@0.6.1"></script>
+  <!-- Google Maps JavaScript (needed by the web components, but we WON'T call google.maps.places.Autocomplete) -->
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDY_Ht1E_M8zy1_GqcnF5llzF-79umXES4&libraries=places">
+  </script>
+
+  <!-- Google Maps Extended Component Library (PlaceAutocompleteElement) -->
+  <script type="module"
+    src="https://unpkg.com/@googlemaps/extended-component-library@0.6.1">
+  </script>
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
@@ -68,7 +74,7 @@
   <form id="bookingForm" class="enquiry-form">
 
     <!-- ============================
-         TRIP TYPE TABS
+         TRIP TYPE (One Way / Return / Wait & Return / Hourly)
     ============================ -->
     <div class="trip-tabs">
       <button type="button" class="trip-tab active" data-mode="one_way">One Way</button>
@@ -109,16 +115,16 @@
             <optgroup label="Airports">
               <option value="LHR">London Heathrow Airport (LHR)</option>
               <option value="LGW">London Gatwick Airport (LGW)</option>
-              <option value="STN">Stanstead Airport (STN)</option>
+              <option value="STN">London Stansted Airport (STN)</option>
               <option value="SOU">Southampton Airport (SOU)</option>
               <option value="LTN">London Luton Airport (LTN)</option>
               <option value="BOH">Bournemouth Airport (BOH)</option>
               <option value="LCY">London City Airport (LCY)</option>
-              <option value="BQH">Biggin Hill Airport (BQH)</option>
+              <option value="BQH">London Biggin Hill Airport (BQH)</option>
               <option value="FAB">Farnborough Airport (FAB)</option>
             </optgroup>
             <optgroup label="Cities">
-              <option value="BRIGHTON_HOVE">Brighton & Hove</option>
+              <option value="BRIGHTON_HOVE">Brighton &amp; Hove</option>
               <option value="PORTSMOUTH">Portsmouth</option>
               <option value="SOUTHAMPTON_CITY">Southampton</option>
               <option value="GUILDFORD">Guildford</option>
@@ -127,10 +133,19 @@
           </select>
         </div>
 
-        <!-- Manual Address -->
+        <!-- Manual Address + Place Autocomplete -->
         <div id="fromAddressWrapper" class="address-wrapper" style="display:none;">
-          <gmpx-place-autocomplete for="fromAddress"></gmpx-place-autocomplete>
-          <input class="premium-input" type="text" id="fromAddress" name="fromAddress" placeholder="From address *">
+          <input
+            class="premium-input"
+            type="text"
+            id="fromAddress"
+            name="fromAddress"
+            placeholder="From address *"
+            autocomplete="off">
+          <gmpx-place-autocomplete
+            for="fromAddress"
+            country-restrictions="gb">
+          </gmpx-place-autocomplete>
         </div>
       </div>
 
@@ -150,16 +165,16 @@
             <optgroup label="Airports">
               <option value="LHR">London Heathrow Airport (LHR)</option>
               <option value="LGW">London Gatwick Airport (LGW)</option>
-              <option value="STN">Stanstead Airport (STN)</option>
+              <option value="STN">London Stansted Airport (STN)</option>
               <option value="SOU">Southampton Airport (SOU)</option>
               <option value="LTN">London Luton Airport (LTN)</option>
               <option value="BOH">Bournemouth Airport (BOH)</option>
               <option value="LCY">London City Airport (LCY)</option>
-              <option value="BQH">Biggin Hill Airport (BQH)</option>
+              <option value="BQH">London Biggin Hill Airport (BQH)</option>
               <option value="FAB">Farnborough Airport (FAB)</option>
             </optgroup>
             <optgroup label="Cities">
-              <option value="BRIGHTON_HOVE">Brighton & Hove</option>
+              <option value="BRIGHTON_HOVE">Brighton &amp; Hove</option>
               <option value="PORTSMOUTH">Portsmouth</option>
               <option value="SOUTHAMPTON_CITY">Southampton</option>
               <option value="GUILDFORD">Guildford</option>
@@ -168,28 +183,58 @@
           </select>
         </div>
 
-        <!-- Manual address -->
+        <!-- Manual address + Place Autocomplete -->
         <div id="toAddressWrapper" class="address-wrapper" style="display:none;">
-          <gmpx-place-autocomplete for="toAddress"></gmpx-place-autocomplete>
-          <input class="premium-input" type="text" id="toAddress" name="toAddress" placeholder="To address *">
+          <input
+            class="premium-input"
+            type="text"
+            id="toAddress"
+            name="toAddress"
+            placeholder="To address *"
+            autocomplete="off">
+          <gmpx-place-autocomplete
+            for="toAddress"
+            country-restrictions="gb">
+          </gmpx-place-autocomplete>
         </div>
+      </div>
+
+    </div>
+
+    <!-- ============================
+         HOURLY PICKUP (ONLY)
+    ============================ -->
+    <div id="otherAddressWrapper" style="display:none;">
+      <div class="address-wrapper">
+        <input
+          class="premium-input"
+          type="text"
+          id="otherPickup"
+          name="otherPickup"
+          placeholder="Pickup location *"
+          autocomplete="off">
+        <gmpx-place-autocomplete
+          for="otherPickup"
+          country-restrictions="gb">
+        </gmpx-place-autocomplete>
+      </div>
+
+      <div class="address-wrapper">
+        <input
+          class="premium-input"
+          type="text"
+          id="otherDropoff"
+          name="otherDropoff"
+          placeholder="Drop-off location *"
+          autocomplete="off">
+        <gmpx-place-autocomplete
+          for="otherDropoff"
+          country-restrictions="gb">
+        </gmpx-place-autocomplete>
       </div>
     </div>
 
     <!-- ============================
-         HOURLY PICKUP
-    ============================ -->
-    <div id="otherAddressWrapper" style="display:none;">
-      <gmpx-place-autocomplete for="otherPickup"></gmpx-place-autocomplete>
-      <input class="premium-input" type="text" id="otherPickup" name="otherPickup" placeholder="Pickup location *">
-
-      <gmpx-place-autocomplete for="otherDropoff"></gmpx-place-autocomplete>
-      <input class="premium-input" type="text" id="otherDropoff" name="otherDropoff" placeholder="Drop-off location *">
-    </div>
-
-    <!-- END OF PART 1 -->
-
-        <!-- ============================
          PASSENGER DETAILS
     ============================ -->
     <input class="premium-input" type="text" name="fullName" placeholder="Full Name *" required>
@@ -250,7 +295,7 @@
     </div>
 
     <!-- ============================
-         AIRPORT EXTRAS
+         AIRPORT EXTRAS (Terminal + Flight)
     ============================ -->
     <div id="airportExtras" class="form-row" style="display:none;">
       <div class="input-box">
@@ -288,8 +333,19 @@
     </fieldset>
 
     <div id="extraStopAddressWrapper" style="display:none;">
-      <gmpx-place-autocomplete for="extraStopAddress"></gmpx-place-autocomplete>
-      <input class="premium-input" type="text" id="extraStopAddress" name="extraStopAddress" placeholder="Enter stop address *">
+      <div class="address-wrapper">
+        <input
+          class="premium-input"
+          type="text"
+          id="extraStopAddress"
+          name="extraStopAddress"
+          placeholder="Enter stop address *"
+          autocomplete="off">
+        <gmpx-place-autocomplete
+          for="extraStopAddress"
+          country-restrictions="gb">
+        </gmpx-place-autocomplete>
+      </div>
     </div>
 
     <!-- ============================
@@ -308,243 +364,251 @@
   </form>
 </section>
 
-<!-- ============================
-     JAVASCRIPT LOGIC (UNCHANGED EXCEPT AUTOCOMPLETE REMOVED)
-============================ -->
 <script>
-(function () {
+  (function () {
+    /* ============================================================
+       ELEMENT REFERENCES
+    ============================================================ */
+    const form = document.getElementById("bookingForm");
 
-  const form = document.getElementById("bookingForm");
+    // Trip type tabs
+    const tripTabs = document.querySelectorAll(".trip-tab");
+    const tripTypeInput = document.getElementById("tripType");
 
-  const tripTabs = document.querySelectorAll(".trip-tab");
-  const tripTypeInput = document.getElementById("tripType");
+    // Sections
+    const returnFields = document.getElementById("returnFields");
+    const waitHoursWrapper = document.getElementById("waitHoursWrapper");
+    const hourlyWrapper = document.getElementById("hourlyWrapper");
+    const airportExtras = document.getElementById("airportExtras");
 
-  const returnFields = document.getElementById("returnFields");
-  const waitHoursWrapper = document.getElementById("waitHoursWrapper");
-  const hourlyWrapper = document.getElementById("hourlyWrapper");
-  const airportExtras = document.getElementById("airportExtras");
+    const fromToRow = document.getElementById("fromToRow");
+    const otherAddressWrapper = document.getElementById("otherAddressWrapper");
 
-  const fromToRow = document.getElementById("fromToRow");
-  const otherAddressWrapper = document.getElementById("otherAddressWrapper");
+    const otherPickupInput = document.getElementById("otherPickup");
+    const otherDropoffInput = document.getElementById("otherDropoff");
 
-  const otherPickupInput = document.getElementById("otherPickup");
-  const otherDropoffInput = document.getElementById("otherDropoff");
+    /* ============================================================
+       CAR CLASS LOGIC (Business, First, XL)
+    ============================================================ */
+    const carButtons = document.querySelectorAll(".car-btn");
+    const vehicleInput = document.getElementById("vehicle");
+    const hoursInput = document.getElementById("hours");
 
-  const carButtons = document.querySelectorAll(".car-btn");
-  const vehicleInput = document.getElementById("vehicle");
-  const hoursInput = document.getElementById("hours");
-
-  function updateHourlyMinHours() {
-    if (!hoursInput) return;
-    if (vehicleInput.value === "business") {
-      hoursInput.min = 4;
-      if (hoursInput.value < 4) hoursInput.value = 4;
-    } else {
-      hoursInput.min = 5;
-      if (hoursInput.value < 5) hoursInput.value = 5;
+    function updateHourlyMinHours() {
+      if (!hoursInput) return;
+      if (vehicleInput.value === "business") {
+        hoursInput.min = 4;
+        if (hoursInput.value < 4) hoursInput.value = 4;
+      } else {
+        hoursInput.min = 5;
+        if (hoursInput.value < 5) hoursInput.value = 5;
+      }
     }
-  }
 
-  carButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      carButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      vehicleInput.value = btn.dataset.car;
-      updateHourlyMinHours();
+    carButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        carButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        vehicleInput.value = btn.dataset.car;
+        updateHourlyMinHours();
+      });
     });
-  });
 
-  updateHourlyMinHours();
+    updateHourlyMinHours();
 
-  // -----------------------
-  // Fixed Fare vs Address
-  // -----------------------
+    /* ============================================================
+       FROM/TO — FIXED FARE OR ADDRESS LOGIC
+    ============================================================ */
+    const fromButtons = document.querySelectorAll(".from-btn");
+    const toButtons = document.querySelectorAll(".to-btn");
 
-  const fromButtons = document.querySelectorAll(".from-btn");
-  const toButtons = document.querySelectorAll(".to-btn");
+    const fromFixedWrapper = document.getElementById("fromFixedWrapper");
+    const toFixedWrapper = document.getElementById("toFixedWrapper");
 
-  const fromFixedWrapper = document.getElementById("fromFixedWrapper");
-  const toFixedWrapper = document.getElementById("toFixedWrapper");
+    const fromAddressWrapper = document.getElementById("fromAddressWrapper");
+    const toAddressWrapper = document.getElementById("toAddressWrapper");
 
-  const fromAddressWrapper = document.getElementById("fromAddressWrapper");
-  const toAddressWrapper = document.getElementById("toAddressWrapper");
+    const fromFixedSelect = document.getElementById("fromFixedFare");
+    const toFixedSelect = document.getElementById("toFixedFare");
 
-  const fromFixedSelect = document.getElementById("fromFixedFare");
-  const toFixedSelect = document.getElementById("toFixedFare");
+    const fromAddressInput = document.getElementById("fromAddress");
+    const toAddressInput = document.getElementById("toAddress");
 
-  const fromAddressInput = document.getElementById("fromAddress");
-  const toAddressInput = document.getElementById("toAddress");
+    const AIRPORT_CODES = ["LHR","LGW","STN","SOU","LTN","BOH","LCY","BQH","FAB"];
 
-  const AIRPORT_CODES = ["LHR","LGW","STN","SOU","LTN","BOH","LCY","BQH","FAB"];
+    function updateAirportExtrasVisibility() {
+      if (!airportExtras) return;
 
-  function updateAirportExtrasVisibility() {
+      // Never show on hourly bookings
+      if (tripTypeInput.value === "hourly") {
+        airportExtras.style.display = "none";
+        return;
+      }
 
-    if (tripTypeInput.value === "hourly") {
-      airportExtras.style.display = "none";
-      return;
-    }
-
-    const fromIsFixed = fromFixedWrapper.style.display !== "none";
-    const toIsFixed = toFixedWrapper.style.display !== "none";
-
-    const fromCode = fromIsFixed ? fromFixedSelect.value : "";
-    const toCode = toIsFixed ? toFixedSelect.value : "";
-
-    const show =
-      (fromIsFixed && AIRPORT_CODES.includes(fromCode)) ||
-      (toIsFixed && AIRPORT_CODES.includes(toCode));
-
-    airportExtras.style.display = show ? "flex" : "none";
-  }
-
-  function setFromType(type) {
-    fromButtons.forEach(b => b.classList.toggle("active", b.dataset.from === type));
-    fromFixedWrapper.style.display = type === "fixed" ? "block" : "none";
-    fromAddressWrapper.style.display = type === "address" ? "block" : "none";
-    updateAirportExtrasVisibility();
-  }
-
-  function setToType(type) {
-    toButtons.forEach(b => b.classList.toggle("active", b.dataset.to === type));
-    toFixedWrapper.style.display = type === "fixed" ? "block" : "none";
-    toAddressWrapper.style.display = type === "address" ? "block" : "none";
-    updateAirportExtrasVisibility();
-  }
-
-  fromButtons.forEach(btn =>
-    btn.addEventListener("click", () => setFromType(btn.dataset.from))
-  );
-  toButtons.forEach(btn =>
-    btn.addEventListener("click", () => setToType(btn.dataset.to))
-  );
-
-  fromFixedSelect.addEventListener("change", updateAirportExtrasVisibility);
-  toFixedSelect.addEventListener("change", updateAirportExtrasVisibility);
-
-  // Default
-  setFromType("fixed");
-  setToType("fixed");
-
-  // -----------------------
-  // Trip Type Tabs
-  // -----------------------
-
-  function setTrip(mode) {
-    tripTypeInput.value = mode;
-
-    tripTabs.forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
-
-    returnFields.style.display = mode === "return" ? "block" : "none";
-    waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
-    hourlyWrapper.style.display = mode === "hourly" ? "block" : "none";
-
-    if (mode === "hourly") {
-      fromToRow.style.display = "none";
-      otherAddressWrapper.style.display = "block";
-      otherDropoffInput.style.display = "none";
-    } else {
-      fromToRow.style.display = "flex";
-      otherAddressWrapper.style.display = "none";
-      otherDropoffInput.style.display = "block";
-    }
-
-    updateAirportExtrasVisibility();
-  }
-
-  tripTabs.forEach(btn =>
-    btn.addEventListener("click", () => setTrip(btn.dataset.mode))
-  );
-
-  setTrip("one_way");
-
-  // -----------------------
-  // Extra Stop reveal
-  // -----------------------
-
-  const extraStopsCheckbox = document.getElementById("extraStops");
-  const extraStopAddressWrapper = document.getElementById("extraStopAddressWrapper");
-
-  extraStopsCheckbox.addEventListener("change", () => {
-    extraStopAddressWrapper.style.display = extraStopsCheckbox.checked ? "block" : "none";
-  });
-
-  // -----------------------
-  // Submit Handler
-  // -----------------------
-
-  const pickupHidden = document.getElementById("pickup");
-  const dropoffHidden = document.getElementById("dropoff");
-  const airportCodeHidden = document.getElementById("airportCode");
-  const directionHidden = document.getElementById("direction");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const tripType = tripTypeInput.value;
-    let pickup = "";
-    let dropoff = "";
-    let airportCode = "";
-    let direction = "";
-
-    if (tripType === "hourly") {
-      pickup = (otherPickupInput.value || "").trim();
-      dropoff = "";
-      direction = "HOURLY";
-    } 
-    else {
-      const fromIsFixed = fromFixedWrapper.style.display !== "none";
-      const toIsFixed = toFixedWrapper.style.display !== "none";
-
-      pickup = fromIsFixed
-        ? (fromFixedSelect.options[fromFixedSelect.selectedIndex] || {}).text || ""
-        : fromAddressInput.value;
-
-      dropoff = toIsFixed
-        ? (toFixedSelect.options[toFixedSelect.selectedIndex] || {}).text || ""
-        : toAddressInput.value;
+      const fromIsFixed = fromFixedWrapper && fromFixedWrapper.style.display !== "none";
+      const toIsFixed = toFixedWrapper && toFixedWrapper.style.display !== "none";
 
       const fromCode = fromIsFixed ? fromFixedSelect.value : "";
       const toCode = toIsFixed ? toFixedSelect.value : "";
 
-      const fromIsAirport = fromIsFixed && AIRPORT_CODES.includes(fromCode);
-      const toIsAirport = toIsFixed && AIRPORT_CODES.includes(toCode);
+      const show =
+        (fromIsFixed && AIRPORT_CODES.includes(fromCode)) ||
+        (toIsFixed && AIRPORT_CODES.includes(toCode));
 
-      if (fromIsAirport) airportCode = fromCode;
-      else if (toIsAirport) airportCode = toCode;
-
-      if (fromIsAirport && !toIsAirport) direction = "AIRPORT_TO_ADDRESS";
-      else if (!fromIsAirport && toIsAirport) direction = "ADDRESS_TO_AIRPORT";
-      else if (fromIsAirport && toIsAirport) direction = "AIRPORT_TO_AIRPORT";
-      else direction = "OTHER";
+      airportExtras.style.display = show ? "flex" : "none";
     }
 
-    pickupHidden.value = pickup;
-    dropoffHidden.value = dropoff;
-    airportCodeHidden.value = airportCode;
-    directionHidden.value = direction;
+    function setFromType(type) {
+      fromButtons.forEach(b => b.classList.toggle("active", b.dataset.from === type));
 
-    const data = Object.fromEntries(new FormData(form).entries());
+      if (fromFixedWrapper) fromFixedWrapper.style.display = type === "fixed" ? "block" : "none";
+      if (fromAddressWrapper) fromAddressWrapper.style.display = type === "address" ? "block" : "none";
 
-    try {
-      const res = await fetch("/api/create-booking", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      updateAirportExtrasVisibility();
+    }
 
-      const json = await res.json();
+    function setToType(type) {
+      toButtons.forEach(b => b.classList.toggle("active", b.dataset.to === type));
 
-      if (res.ok && json.paymentUrl) {
-        window.location.href = json.paymentUrl;
+      if (toFixedWrapper) toFixedWrapper.style.display = type === "fixed" ? "block" : "none";
+      if (toAddressWrapper) toAddressWrapper.style.display = type === "address" ? "block" : "none";
+
+      updateAirportExtrasVisibility();
+    }
+
+    fromButtons.forEach(btn =>
+      btn.addEventListener("click", () => setFromType(btn.dataset.from))
+    );
+    toButtons.forEach(btn =>
+      btn.addEventListener("click", () => setToType(btn.dataset.to))
+    );
+
+    fromFixedSelect.addEventListener("change", updateAirportExtrasVisibility);
+    toFixedSelect.addEventListener("change", updateAirportExtrasVisibility);
+
+    // Default: fixed fare on both sides
+    setFromType("fixed");
+    setToType("fixed");
+
+    /* ============================================================
+       TRIP TYPE LOGIC (One Way / Return / Wait / Hourly)
+    ============================================================ */
+    function setTrip(mode) {
+      tripTypeInput.value = mode;
+
+      tripTabs.forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
+
+      if (returnFields) returnFields.style.display = mode === "return" ? "block" : "none";
+      if (waitHoursWrapper) waitHoursWrapper.style.display = mode === "wait_return" ? "block" : "none";
+      if (hourlyWrapper) hourlyWrapper.style.display = mode === "hourly" ? "block" : "none";
+
+      if (mode === "hourly") {
+        if (fromToRow) fromToRow.style.display = "none";
+        if (otherAddressWrapper) otherAddressWrapper.style.display = "block";
+        if (otherDropoffInput) otherDropoffInput.style.display = "none"; // pickup only
       } else {
-        alert("Booking error: " + (json.error || "Unknown error"));
+        if (fromToRow) fromToRow.style.display = "flex";
+        if (otherAddressWrapper) otherAddressWrapper.style.display = "none";
+        if (otherDropoffInput) otherDropoffInput.style.display = "block";
       }
-    } catch (err) {
-      alert("Network error — please try again.");
-    }
-  });
 
-})();
+      updateAirportExtrasVisibility();
+    }
+
+    tripTabs.forEach(btn =>
+      btn.addEventListener("click", () => setTrip(btn.dataset.mode))
+    );
+
+    setTrip("one_way");
+
+    /* ============================================================
+       EXTRA STOPS
+    ============================================================ */
+    const extraStopsCheckbox = document.getElementById("extraStops");
+    const extraStopAddressWrapper = document.getElementById("extraStopAddressWrapper");
+
+    extraStopsCheckbox.addEventListener("change", () => {
+      if (!extraStopAddressWrapper) return;
+      extraStopAddressWrapper.style.display = extraStopsCheckbox.checked ? "block" : "none";
+    });
+
+    /* ============================================================
+       FORM SUBMISSION
+    ============================================================ */
+    const pickupHidden = document.getElementById("pickup");
+    const dropoffHidden = document.getElementById("dropoff");
+    const airportCodeHidden = document.getElementById("airportCode");
+    const directionHidden = document.getElementById("direction");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const tripType = tripTypeInput.value;
+
+      let pickup = "";
+      let dropoff = "";
+      let airportCode = "";
+      let direction = "";
+
+      // HOURLY
+      if (tripType === "hourly") {
+        pickup = (otherPickupInput?.value || "").trim();
+        dropoff = "";
+        direction = "HOURLY";
+      } else {
+        const fromIsFixed = fromFixedWrapper && fromFixedWrapper.style.display !== "none";
+        const toIsFixed = toFixedWrapper && toFixedWrapper.style.display !== "none";
+
+        pickup = fromIsFixed
+          ? (fromFixedSelect.options[fromFixedSelect.selectedIndex] || {}).text || ""
+          : (fromAddressInput?.value || "");
+
+        dropoff = toIsFixed
+          ? (toFixedSelect.options[toFixedSelect.selectedIndex] || {}).text || ""
+          : (toAddressInput?.value || "");
+
+        const fromCode = fromIsFixed ? fromFixedSelect.value : "";
+        const toCode = toIsFixed ? toFixedSelect.value : "";
+
+        const fromIsAirport = fromIsFixed && AIRPORT_CODES.includes(fromCode);
+        const toIsAirport = toIsFixed && AIRPORT_CODES.includes(toCode);
+
+        if (fromIsAirport) airportCode = fromCode;
+        else if (toIsAirport) airportCode = toCode;
+
+        if (fromIsAirport && !toIsAirport) direction = "AIRPORT_TO_ADDRESS";
+        else if (!fromIsAirport && toIsAirport) direction = "ADDRESS_TO_AIRPORT";
+        else if (fromIsAirport && toIsAirport) direction = "AIRPORT_TO_AIRPORT";
+        else direction = "OTHER";
+      }
+
+      pickupHidden.value = pickup;
+      dropoffHidden.value = dropoff;
+      airportCodeHidden.value = airportCode;
+      directionHidden.value = direction;
+
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch("/api/create-booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        const json = await res.json();
+
+        if (res.ok && json.paymentUrl) {
+          window.location.href = json.paymentUrl;
+        } else {
+          alert("Booking error: " + (json.error || "Unknown error"));
+        }
+      } catch (err) {
+        alert("Network error — please try again.");
+      }
+    });
+
+  })();
 </script>
 
 <footer>
@@ -556,10 +620,11 @@
   </p>
 </footer>
 
-<!-- AOS -->
+<!-- AOS Animation -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>AOS.init();</script>
 
+<!-- Header scroll behavior -->
 <script>
 document.addEventListener("scroll", function () {
   const header = document.querySelector("header");
@@ -567,6 +632,7 @@ document.addEventListener("scroll", function () {
 });
 </script>
 
+<!-- Mobile menu -->
 <script>
 document.querySelector(".menu-toggle").addEventListener("click", function () {
   document.querySelector(".nav-links").classList.toggle("active");
