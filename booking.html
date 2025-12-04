@@ -13,6 +13,12 @@
     src="https://unpkg.com/@googlemaps/extended-component-library@0.6.1">
   </script>
 
+  <!-- Register the custom components -->
+<script type="module">
+  import { defineCustomElements } from 'https://unpkg.com/@googlemaps/extended-component-library@0.6.1/loader';
+  defineCustomElements();
+</script>
+
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
